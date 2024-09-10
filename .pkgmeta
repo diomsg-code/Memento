@@ -7,4 +7,4 @@ manual-changelog:
   filename: CHANGELOG.md
   markup-type: markdown
 
-license-output: LICENSE.md
+license-output: LICENSE.txt
