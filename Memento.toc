@@ -1,12 +1,12 @@
 ## Interface: 110002
 ## Title: Memento
-## Notes: Addon to automatically create a screenshot for various events.
-## Notes-deDE: Addon zum automatischen erstellen eines Screenshot bei verschiedenen Ereignissen.
+## Notes: A World of Warcraft addon that automatically takes screenshots of specific events.
+## Notes-deDE: Ein World of Warcraft Addon, das automatisch Screenshots von bestimmten Ereignissen erstellt.
 ## Author: diomsg
-## Version: 1.0.0
+## Version: 1.0.1
 ## IconTexture: Interface\AddOns\Memento\media\icon
 ## SavedVariables: MementoDatabase
-## OptionalDeps: Ace3
+## X-Curse-Project-ID: 1099991
 
 embeds.xml
 localization.xml

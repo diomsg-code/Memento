@@ -35,21 +35,35 @@ local defaults = {
 }
 
 -- Local functions
-local function ShowScreenshotMessage(message)
+local function markWhiteFont(text)
+	return WrapTextInColorCode(text, "FFFFFFFF")
+end
+
+local function markLightYellowFont(text)
+	return WrapTextInColorCode(text, "FFFFFF99")
+end
+
+local function markOrangeFont(text)
+	return WrapTextInColorCode(text, "FFFF8040")
+end
+
+local function printMessage(msg)
     if Memento.db.profile.setting.notification then
-        DEFAULT_CHAT_FRAME:AddMessage("|cnNORMAL_FONT_COLOR:" .. message .. "|r")
+        DEFAULT_CHAT_FRAME:AddMessage(markLightYellowFont("Memento: ") .. markWhiteFont(msg))
     end
 end
 
-local function ShowDebugMessage(message)
-	if Memento.db.profile.setting.debug then
-        DEFAULT_CHAT_FRAME:AddMessage("|cnWARNING_FONT_COLOR:Debug: " .. message .. "|r")
+local function printDebug(msg)
+    if Memento.db.profile.setting.debug then
+        DEFAULT_CHAT_FRAME:AddMessage(markOrangeFont("Debug (Memento): " .. msg))
 	end
 end
 
 -- Memento functions
 function Memento:OnInitialize()
     self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults, true)
+
+	self:RegisterChatCommand("memento", "SlashCommand")
 
     self:RegisterEvent(
         "ACHIEVEMENT_EARNED",
@@ -82,24 +96,32 @@ function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned
     local name = select(2, GetAchievementInfo(achievementID))
 
     if not alreadyEarned then
-        ShowScreenshotMessage(L["chat.event.achievement.personal.new"] .. name)
+        printMessage(L["chat.event.achievement.personal.new"] .. name)
         Screenshot()
     elseif self.db.profile.event.achievement.personal.exist then
-        ShowScreenshotMessage(L["chat.event.achievement.personal.exist"] .. name)
+        printMessage(L["chat.event.achievement.personal.exist"] .. name)
         Screenshot()
     else
-        ShowDebugMessage(L["debug.event.achievement.personal.exist"] .. name)
+        printDebug(L["debug.event.achievement.personal.exist"] .. name)
     end
 end
 
 function Memento:TimerScreenshotGuildAchievement(achievementID)
     local name = select(2, GetAchievementInfo(achievementID))
 
-    ShowScreenshotMessage(L["chat.event.achievement.guild.new"] .. name)
+    printMessage(L["chat.event.achievement.guild.new"] .. name)
     Screenshot()
 end
 
 function Memento:TimerScreenshotLevelUp(level)
-	ShowScreenshotMessage(L["chat.event.levelUp.new"] .. level)
+	printMessage(L["chat.event.levelUp.new"] .. level)
 	Screenshot()
+end
+
+function Memento:SlashCommand(msg)
+	if not msg or msg:trim() == "" then
+        Settings.OpenToCategory("Memento")
+	else
+        printDebug(L["debug.cmd.exist"])
+	end
 end

@@ -38,4 +38,5 @@ L["chat.event.achievement.personal.exist"] = "Screenshot taken - personal achiev
 L["chat.event.achievement.guild.new"] = "Screenshot taken - guild achievement: "
 L["chat.event.levelUp.new"] = "Screenshot taken - level-up: "
 
+L["debug.cmd.exist"] = "No arguments will be accepted."
 L["debug.event.achievement.personal.exist"] = "No screenshot has been taken as the achievement has already been reached by another character."

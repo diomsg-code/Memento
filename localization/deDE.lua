@@ -40,4 +40,5 @@ L["chat.event.achievement.personal.exist"] = "Screenshot erstellt - persöhnlich
 L["chat.event.achievement.guild.new"] = "Screenshot erstellt - Gildenerfolg: "
 L["chat.event.levelUp.new"] = "Screenshot erstellt - Levelaufstieg: "
 
+L["debug.cmd.exist"] = "Es werden keine Argumente akzeptiert."
 L["debug.event.achievement.personal.exist"] = "Es wurde kein Screenshot erstellt, da der Erfolg bereits von einem anderen Charakter erzielt wurde."

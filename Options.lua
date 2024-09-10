@@ -1,4 +1,4 @@
-local addonName, Memento  = ...
+local addonName, Memento = ...
 
 local AceConfig = LibStub("AceConfigRegistry-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
@@ -7,8 +7,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Memento")
 
 local mediaPath = "Interface\\AddOns\\" .. addonName .. "\\media\\"
 
--- Local functions
-local function markTextNormalFont(text)
+--Local functions
+local function markNormalFont(text)
 	return WrapTextInColorCode(text, "FFFFD200")
 end
 
@@ -31,14 +31,14 @@ local options = {
 					order = 0.1,
 					args = {
 						version = {
-							name = markTextNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
+							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
 							type = "description",
 							width = "normal",
 							fontSize = "medium",
 							order = 0.11,
 						},
 						build = {
-							name = markTextNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion,
+							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion,
 							type = "description",
 							width = "normal",
 							fontSize = "medium",
@@ -52,7 +52,7 @@ local options = {
 							order = 0.21,
 						},
 						author = {
-							name = markTextNormalFont(L["options.info.generel.author"] .. ":") .. " " .. Memento.author,
+							name = markNormalFont(L["options.info.generel.author"] .. ":") .. " " .. Memento.author,
 							type = "description",
 							width = "full",
 							fontSize = "medium",

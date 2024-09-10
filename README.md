@@ -8,3 +8,7 @@ Memento is an addon that automatically takes screenshots of specific events. Cur
 *   After triggering an event, a delay can be set for creating the screenshot
 *   If another character has already earned an achievement, a screenshot can optionally be prevented
 *   Supported languages: English, German
+
+## Quick Start
+
+To open the addon option window, type `/memento` into your chat and hit enter.
