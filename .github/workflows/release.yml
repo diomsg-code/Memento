@@ -24,3 +24,5 @@ jobs:
           fetch-depth: 0 # reads history for commit changelog
 
       - uses: BigWigsMods/packager@v2
+        with:
+          args: -n "{package-name}-{project-version}{nolib}{classic}:{package-name}-{project-version}{classic}{nolib}.zip"
