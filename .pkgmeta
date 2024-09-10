@@ -1,7 +1,9 @@
 package-as: Memento
 
 ignore:
+  - LICENSE
   - README.md
+  - FULL-CHANGELOG.md
 
 manual-changelog:
   filename: CHANGELOG.md
