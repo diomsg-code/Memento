@@ -1,0 +1,15 @@
+## Interface: 110002
+## Title: Memento
+## Notes: Addon to automatically create a screenshot for various events.
+## Notes-deDE: Addon zum automatischen erstellen eines Screenshot bei verschiedenen Ereignissen.
+## Author: diomsg
+## Version: 1.0.0
+## IconTexture: Interface\AddOns\Memento\media\icon
+## SavedVariables: MementoDatabase
+## OptionalDeps: Ace3
+
+embeds.xml
+localization.xml
+
+Core.lua
+Options.lua
