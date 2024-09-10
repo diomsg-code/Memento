@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package-as: Memento
 
 ignore:
@@ -9,15 +8,3 @@ manual-changelog:
   markup-type: markdown
 
 license-output: LICENSE.txt
-=======
-package-as: Memento
-
-ignore:
-  - README.md
-
-manual-changelog:
-  filename: CHANGELOG.md
-  markup-type: markdown
-
-license-output: LICENSE.txt
->>>>>>> c55e1a35e4f098d3e27fc6a3b98072d15f8714f8

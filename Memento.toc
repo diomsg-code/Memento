@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Interface: 110002
 ## Title: Memento
 ## Notes: A World of Warcraft addon that automatically takes screenshots of specific events.
@@ -13,20 +12,4 @@ embeds.xml
 localization.xml
 
 Core.lua
-=======
-## Interface: 110002
-## Title: Memento
-## Notes: A World of Warcraft addon that automatically takes screenshots of specific events.
-## Notes-deDE: Ein World of Warcraft Addon, das automatisch Screenshots von bestimmten Ereignissen erstellt.
-## Author: diomsg
-## Version: @project-version@
-## IconTexture: Interface\AddOns\Memento\media\icon
-## SavedVariables: MementoDatabase
-## X-Curse-Project-ID: 1099991
-
-embeds.xml
-localization.xml
-
-Core.lua
->>>>>>> c55e1a35e4f098d3e27fc6a3b98072d15f8714f8
 Options.lua
