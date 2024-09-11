@@ -221,6 +221,45 @@ local options = {
 						},
 					},
 				},
+				death = {
+					name = L["options.setting.death"],
+					type = "group",
+					inline = true,
+					order = 1.5,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["options.setting.death.active.name"],
+							desc = L["options.setting.death.active.desc"],
+							get = function()
+								return Memento.db.profile.event.death.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.death.active = value
+							end,
+							width = "full",
+							order = 1.51,
+						},
+						timer = {
+							name = L["options.setting.death.timer.name"],
+							desc = L["options.setting.death.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.event.death.active
+							end,
+							get = function()
+								return Memento.db.profile.event.death.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.death.timer = value
+							end,
+							order = 1.52,
+						},
+					},
+				},
     		},
 		},
 		debug = {

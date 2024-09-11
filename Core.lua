@@ -29,6 +29,10 @@ local defaults = {
             levelUp = {
                 active = true,
                 timer = 5
+            },
+            death = {
+                active = true,
+                timer = 1
             }
 		}
     }
@@ -90,6 +94,15 @@ function Memento:OnInitialize()
             end
         end
     )
+
+    self:RegisterEvent(
+        "PLAYER_DEAD",
+        function()
+            if self.db.profile.event.death.active then
+                self:ScheduleTimer("TimerScreenshotDeath", self.db.profile.event.death.timer)
+            end
+        end
+    )
 end
 
 function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned)
@@ -115,6 +128,11 @@ end
 
 function Memento:TimerScreenshotLevelUp(level)
 	printMessage(L["chat.event.levelUp.new"] .. level)
+	Screenshot()
+end
+
+function Memento:TimerScreenshotDeath()
+	printMessage(L["chat.event.death.new"])
 	Screenshot()
 end
 
