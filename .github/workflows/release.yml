@@ -36,7 +36,7 @@ jobs:
 
       # CurseForge
       - name: Package and release for Wrath of the Lich King Classic
-      - uses: BigWigsMods/packager@v2
+        uses: BigWigsMods/packager@v2
         with:
           args: -p 1099991 -n "{package-name}-{project-version}{nolib}{classic}:{package-name}-{project-version}{classic}{nolib}.zip"
 
