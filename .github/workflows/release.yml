@@ -35,12 +35,13 @@ jobs:
         uses: BigWigsMods/packager@v2
 
       # CurseForge
-      - name: Package and release for Wrath of the Lich King Classic
+      - name: Package and release for CurseForge
         uses: BigWigsMods/packager@v2
         with:
           args: -p 1099991 -n "{package-name}-{project-version}{nolib}{classic}:{package-name}-{project-version}{classic}{nolib}.zip"
 
       # WoWInterface and Wago
-      - uses: BigWigsMods/packager@v2
+      - name: Package and release for WoWInterface and Wago
+        uses: BigWigsMods/packager@v2
         with:
           args: -w 26848 -a QKywRlN7
