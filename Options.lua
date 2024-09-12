@@ -14,7 +14,7 @@ end
 
 -- Options
 local options = {
-	name = "|T" .. mediaPath .. "icon:22:22:-1:9|t" .. addonName,
+	name = addonName .. "|T" .. mediaPath .. "icon:20:20:2:9|t",
 	type = "group",
 	childGroups = "tab",
     guiInline = true,
@@ -33,14 +33,14 @@ local options = {
 						version = {
 							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
 							type = "description",
-							width = "normal",
+							width =  "normal",
 							fontSize = "medium",
 							order = 0.11,
 						},
 						build = {
-							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion,
+							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = "normal",
+							width = "double",
 							fontSize = "medium",
 							order = 0.12,
 						},
@@ -293,5 +293,384 @@ local options = {
 	},
 }
 
-AceConfig:RegisterOptionsTable(addonName, options)
+local options_vanilla = {
+	name = addonName .. "|T" .. mediaPath .. "icon:20:20:2:12|t",
+	type = "group",
+	childGroups = "tab",
+    guiInline = true,
+	args = {
+		info = {
+			name = L["options.info"],
+			type = "group",
+			order = 0,
+			args = {
+				general = {
+					name = L["options.info.generel"],
+					type = "group",
+					inline = true,
+					order = 0.1,
+					args = {
+						version = {
+							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
+							type = "description",
+							width =  "normal",
+							fontSize = "medium",
+							order = 0.11,
+						},
+						build = {
+							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
+							type = "description",
+							width = "double",
+							fontSize = "medium",
+							order = 0.12,
+						},
+						space = {
+							name = " ",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.21,
+						},
+						author = {
+							name = markNormalFont(L["options.info.generel.author"] .. ":") .. " " .. Memento.author,
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.31,
+						},
+					},
+				},
+			},
+		},
+		setting = {
+			name = L["options.setting"],
+			type = "group",
+            order = 1,
+            args = {
+				generel = {
+					name = L["options.setting.generel"],
+					type = "group",
+					inline = true,
+					order = 1.1,
+					args = {
+						notification = {
+							type = "toggle",
+							name = L["options.setting.generel.notification.name"],
+							desc = L["options.setting.generel.notification.desc"],
+							get = function()
+								return Memento.db.profile.setting.notification
+							end,
+							set = function(_, value)
+								Memento.db.profile.setting.notification = value
+							end,
+							width = "full",
+							order = 1.11,
+						},
+					},
+				},
+				levelUp = {
+					name = L["options.setting.levelUp"],
+					type = "group",
+					inline = true,
+					order = 1.2,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["options.setting.levelUp.active.name"],
+							desc = L["options.setting.levelUp.active.desc"],
+							get = function()
+								return Memento.db.profile.event.levelUp.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.levelUp.active = value
+							end,
+							width = "full",
+							order = 1.21,
+						},
+						timer = {
+							name = L["options.setting.levelUp.timer.name"],
+							desc = L["options.setting.levelUp.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.event.levelUp.active
+							end,
+							get = function()
+								return Memento.db.profile.event.levelUp.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.levelUp.timer = value
+							end,
+							order = 1.22,
+						},
+					},
+				},
+				death = {
+					name = L["options.setting.death"],
+					type = "group",
+					inline = true,
+					order = 1.3,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["options.setting.death.active.name"],
+							desc = L["options.setting.death.active.desc"],
+							get = function()
+								return Memento.db.profile.event.death.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.death.active = value
+							end,
+							width = "full",
+							order = 1.31,
+						},
+						timer = {
+							name = L["options.setting.death.timer.name"],
+							desc = L["options.setting.death.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.event.death.active
+							end,
+							get = function()
+								return Memento.db.profile.event.death.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.death.timer = value
+							end,
+							order = 1.32,
+						},
+					},
+				},
+    		},
+		},
+		debug = {
+			name = L["options.debug"],
+			type = "group",
+            order = 2,
+            args = {
+				generel = {
+					name = L["options.debug.generel"],
+					type = "group",
+					inline = true,
+					order = 2.1,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["options.debug.generel.active.name"],
+							desc = L["options.debug.generel.active.desc"],
+							get = function()
+								return Memento.db.profile.setting.debug
+							end,
+							set = function(_, value)
+								Memento.db.profile.setting.debug = value
+							end,
+							width = "full",
+							order = 2.11,
+						},
+					},
+				},
+			},
+		},
+	},
+}
+
+local options_cata = {
+	name = addonName .. "|T" .. mediaPath .. "icon:20:20:2:12|t",
+	type = "group",
+	childGroups = "tab",
+    guiInline = true,
+	args = {
+		info = {
+			name = L["options.info"],
+			type = "group",
+			order = 0,
+			args = {
+				general = {
+					name = L["options.info.generel"],
+					type = "group",
+					inline = true,
+					order = 0.1,
+					args = {
+						version = {
+							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
+							type = "description",
+							width =  "normal",
+							fontSize = "medium",
+							order = 0.11,
+						},
+						build = {
+							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
+							type = "description",
+							width = "double",
+							fontSize = "medium",
+							order = 0.12,
+						},
+						space = {
+							name = " ",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.21,
+						},
+						author = {
+							name = markNormalFont(L["options.info.generel.author"] .. ":") .. " " .. Memento.author,
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.31,
+						},
+					},
+				},
+			},
+		},
+		setting = {
+			name = L["options.setting"],
+			type = "group",
+            order = 1,
+            args = {
+				generel = {
+					name = L["options.setting.generel"],
+					type = "group",
+					inline = true,
+					order = 1.1,
+					args = {
+						notification = {
+							type = "toggle",
+							name = L["options.setting.generel.notification.name"],
+							desc = L["options.setting.generel.notification.desc"],
+							get = function()
+								return Memento.db.profile.setting.notification
+							end,
+							set = function(_, value)
+								Memento.db.profile.setting.notification = value
+							end,
+							width = "full",
+							order = 1.11,
+						},
+					},
+				},
+				levelUp = {
+					name = L["options.setting.levelUp"],
+					type = "group",
+					inline = true,
+					order = 1.2,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["options.setting.levelUp.active.name"],
+							desc = L["options.setting.levelUp.active.desc"],
+							get = function()
+								return Memento.db.profile.event.levelUp.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.levelUp.active = value
+							end,
+							width = "full",
+							order = 1.2,
+						},
+						timer = {
+							name = L["options.setting.levelUp.timer.name"],
+							desc = L["options.setting.levelUp.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.event.levelUp.active
+							end,
+							get = function()
+								return Memento.db.profile.event.levelUp.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.levelUp.timer = value
+							end,
+							order = 1.22,
+						},
+					},
+				},
+				death = {
+					name = L["options.setting.death"],
+					type = "group",
+					inline = true,
+					order = 1.3,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["options.setting.death.active.name"],
+							desc = L["options.setting.death.active.desc"],
+							get = function()
+								return Memento.db.profile.event.death.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.death.active = value
+							end,
+							width = "full",
+							order = 1.31,
+						},
+						timer = {
+							name = L["options.setting.death.timer.name"],
+							desc = L["options.setting.death.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.event.death.active
+							end,
+							get = function()
+								return Memento.db.profile.event.death.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.event.death.timer = value
+							end,
+							order = 1.32,
+						},
+					},
+				},
+    		},
+		},
+		debug = {
+			name = L["options.debug"],
+			type = "group",
+            order = 2,
+            args = {
+				generel = {
+					name = L["options.debug.generel"],
+					type = "group",
+					inline = true,
+					order = 2.1,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["options.debug.generel.active.name"],
+							desc = L["options.debug.generel.active.desc"],
+							get = function()
+								return Memento.db.profile.setting.debug
+							end,
+							set = function(_, value)
+								Memento.db.profile.setting.debug = value
+							end,
+							width = "full",
+							order = 2.11,
+						},
+					},
+				},
+			},
+		},
+	},
+}
+
+if Memento.flavor == "Vanilla" then
+	AceConfig:RegisterOptionsTable(addonName, options_vanilla)
+elseif Memento.flavor == "Cata" then
+	AceConfig:RegisterOptionsTable(addonName, options_cata)
+else
+	AceConfig:RegisterOptionsTable(addonName, options)
+end
+
 AceConfigDialog:AddToBlizOptions(addonName, addonName)

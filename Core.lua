@@ -5,6 +5,8 @@ Memento = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceConsole-3.0", "
 
 Memento.addonVersion = C_AddOns.GetAddOnMetadata(addonName, "Version")
 Memento.author = C_AddOns.GetAddOnMetadata(addonName, "Author")
+Memento.flavor = C_AddOns.GetAddOnMetadata(addonName, "X-Flavor")
+
 Memento.gameVersion = GetBuildInfo()
 
 -- Default
@@ -26,6 +28,44 @@ local defaults = {
                     timer = 2
                 },
             },
+            levelUp = {
+                active = true,
+                timer = 5
+            },
+            death = {
+                active = true,
+                timer = 1
+            }
+		}
+    }
+}
+
+local defaults_vanilla = {
+    profile = {
+        setting = {
+            notification = true,
+			debug = false
+		},
+		event = {
+            levelUp = {
+                active = true,
+                timer = 5
+            },
+            death = {
+                active = true,
+                timer = 1
+            }
+		}
+    }
+}
+
+local defaults_cata = {
+    profile = {
+        setting = {
+            notification = true,
+			debug = false
+		},
+		event = {
             levelUp = {
                 active = true,
                 timer = 5
@@ -65,7 +105,16 @@ end
 
 -- Memento functions
 function Memento:OnInitialize()
-    self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults, true)
+    if self.flavor == "Vanilla" then
+        self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults_vanilla, true)
+        printDebug(L["debug.load.options.vanilla"])
+    elseif self.flavor == "Cata" then
+        self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults_cata, true)
+        printDebug(L["debug.load.options.cata"])
+    else
+        self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults, true)
+        printDebug(L["debug.load.options.mainline"])
+    end
 
 	self:RegisterChatCommand("memento", "SlashCommand")
 
@@ -103,6 +152,8 @@ function Memento:OnInitialize()
             end
         end
     )
+
+    printDebug(L["debug.load.addon"])
 end
 
 function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned)

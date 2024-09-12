@@ -50,5 +50,10 @@ L["chat.event.achievement.guild.new"] = "Screenshot taken - guild achievement: "
 L["chat.event.levelUp.new"] = "Screenshot taken - level-up: "
 L["chat.event.death.new"] = "Screenshot taken - Player death: You are dead."
 
+L["debug.load.addon"] = "Addon has been fully loaded."
+L["debug.load.options.vanilla"] = "Vanilla default options have been loaded."
+L["debug.load.options.cata"] = "Cata default options have been loaded."
+L["debug.load.options.mainline"] = "Mainline default options have been loaded."
+
 L["debug.cmd.exist"] = "No arguments will be accepted."
 L["debug.event.achievement.personal.exist"] = "No screenshot has been taken as the achievement has already been reached by another character."
