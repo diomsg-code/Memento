@@ -6,9 +6,6 @@
 ## Version: @project-version@
 ## IconTexture: Interface\AddOns\Memento\media\icon
 ## SavedVariables: MementoDatabase
-## X-Curse-Project-ID: 1099991
-## X-WoWI-ID: 26848
-## X-Wago-ID: QKywRlN7
 
 embeds.xml
 localization.xml
