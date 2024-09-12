@@ -13,6 +13,7 @@ Memento is an addon that automatically takes screenshots of specific events. The
 *   After triggering an event, a delay can be set for creating the screenshot
 *   If another character has already earned an achievement, a screenshot can optionally be prevented
 *   Supported languages: English, German
+*   Supported versions: Classic, Cataclysm Classic and Retail
 
 ## Quick Start
 
