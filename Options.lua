@@ -30,17 +30,17 @@ local options = {
 					inline = true,
 					order = 0.1,
 					args = {
-						version = {
-							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
-							type = "description",
-							width =  "normal",
-							fontSize = "medium",
-							order = 0.11,
-						},
 						build = {
 							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = "double",
+							width = "normal",
+							fontSize = "medium",
+							order = 0.11,
+						},
+						version = {
+							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
+							type = "description",
+							width =  "double",
 							fontSize = "medium",
 							order = 0.12,
 						},
@@ -310,17 +310,17 @@ local options_vanilla = {
 					inline = true,
 					order = 0.1,
 					args = {
-						version = {
-							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
-							type = "description",
-							width =  "normal",
-							fontSize = "medium",
-							order = 0.11,
-						},
 						build = {
 							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = "double",
+							width = "normal",
+							fontSize = "medium",
+							order = 0.11,
+						},
+						version = {
+							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
+							type = "description",
+							width =  "double",
 							fontSize = "medium",
 							order = 0.12,
 						},
@@ -496,17 +496,17 @@ local options_cata = {
 					inline = true,
 					order = 0.1,
 					args = {
-						version = {
-							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
-							type = "description",
-							width =  "normal",
-							fontSize = "medium",
-							order = 0.11,
-						},
 						build = {
 							name = markNormalFont(L["options.info.generel.game-version"] .. ":") .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = "double",
+							width = "normal",
+							fontSize = "medium",
+							order = 0.11,
+						},
+						version = {
+							name = markNormalFont(L["options.info.generel.addon-version"] .. ":") .. " " .. Memento.addonVersion,
+							type = "description",
+							width =  "double",
 							fontSize = "medium",
 							order = 0.12,
 						},

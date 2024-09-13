@@ -1,6 +1,6 @@
 ## Memento
-### [1.1.0](https://github.com/diomsg-code/Memento/tree/1.1.0) (2024-09-12)
-[Full Changelog](https://github.com/diomsg-code/Memento/compare/1.0.2...1.1.0) - [Previous Releases](https://github.com/diomsg-code/Memento/releases)
+### [1.1.1](https://github.com/diomsg-code/Memento/tree/1.1.1) (2024-09-13)
+[Full Changelog](https://github.com/diomsg-code/Memento/compare/1.1.0...1.1.1) - [Previous Releases](https://github.com/diomsg-code/Memento/releases)
 
-- Added: Support for Classic and Cataclysm Classic (Note: Not all events have been ported yet)
+- Removed: Language support for debug mode
 - Minor code adjustments

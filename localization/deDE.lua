@@ -51,11 +51,3 @@ L["chat.event.achievement.personal.exist"] = "Screenshot erstellt - persöhnlich
 L["chat.event.achievement.guild.new"] = "Screenshot erstellt - Gildenerfolg: "
 L["chat.event.levelUp.new"] = "Screenshot erstellt - Levelaufstieg: "
 L["chat.event.death.new"] = "Screenshot erstellt - Spielertod: Du bist gestorben."
-
-L["debug.load.addon"] = "Addon wurde vollständig geladen."
-L["debug.load.options.vanilla"] = "Vanilla Standard-Optionen wurden geladen."
-L["debug.load.options.cata"] = "Cata Standard-Optionen wurden geladen."
-L["debug.load.options.mainline"] = "Mainline Standard-Optionen wurden geladen."
-
-L["debug.cmd.exist"] = "Es werden keine Argumente akzeptiert."
-L["debug.event.achievement.personal.exist"] = "Es wurde kein Screenshot erstellt, da der Erfolg bereits von einem anderen Charakter erzielt wurde."

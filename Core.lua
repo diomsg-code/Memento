@@ -107,33 +107,37 @@ end
 function Memento:OnInitialize()
     if self.flavor == "Vanilla" then
         self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults_vanilla, true)
-        printDebug(L["debug.load.options.vanilla"])
+        printDebug("Vanilla default options have been loaded.")
     elseif self.flavor == "Cata" then
         self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults_cata, true)
-        printDebug(L["debug.load.options.cata"])
+        printDebug("Cata default options have been loaded.")
     else
         self.db = LibStub("AceDB-3.0"):New("MementoDatabase", defaults, true)
-        printDebug(L["debug.load.options.mainline"])
+        printDebug("Retail default options have been loaded.")
     end
 
 	self:RegisterChatCommand("memento", "SlashCommand")
 
-    self:RegisterEvent(
-        "ACHIEVEMENT_EARNED",
-        function(_, achievementID, alreadyEarned)
-            local isGuildAchievement = select(12, GetAchievementInfo(achievementID))
+    if self.flavor == "Retail" then
+        self:RegisterEvent(
+            "ACHIEVEMENT_EARNED",
+            function(_, achievementID, alreadyEarned)
+                local isGuildAchievement = select(12, GetAchievementInfo(achievementID))
 
-            if not isGuildAchievement then
-                if self.db.profile.event.achievement.personal.active then
-                    self:ScheduleTimer("TimerScreenshotPersonalAchievement", self.db.profile.event.achievement.personal.timer, achievementID, alreadyEarned)
-                end
-            else
-                if self.db.profile.event.achievement.guild.active then
-                    self:ScheduleTimer("TimerScreenshotGuildAchievement", self.db.profile.event.achievement.guild.timer, achievementID)
+                if not isGuildAchievement then
+                    if self.db.profile.event.achievement.personal.active then
+                        self:ScheduleTimer("TimerScreenshotPersonalAchievement", self.db.profile.event.achievement.personal.timer, achievementID, alreadyEarned)
+                    end
+                else
+                    if self.db.profile.event.achievement.guild.active then
+                        self:ScheduleTimer("TimerScreenshotGuildAchievement", self.db.profile.event.achievement.guild.timer, achievementID)
+                    end
                 end
             end
-        end
-    )
+        )
+
+        printDebug("Event \"ACHIEVEMENT_EARNED\" registered. (Retail)")
+    end
     
     self:RegisterEvent(
         "PLAYER_LEVEL_UP",
@@ -144,6 +148,8 @@ function Memento:OnInitialize()
         end
     )
 
+    printDebug("Event \"PLAYER_LEVEL_UP\" registered.")
+
     self:RegisterEvent(
         "PLAYER_DEAD",
         function()
@@ -153,7 +159,8 @@ function Memento:OnInitialize()
         end
     )
 
-    printDebug(L["debug.load.addon"])
+    printDebug("Event \"PLAYER_DEAD\" registered.")
+    printDebug("Addon has been fully loaded.")
 end
 
 function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned)
@@ -166,7 +173,7 @@ function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned
         printMessage(L["chat.event.achievement.personal.exist"] .. name)
         Screenshot()
     else
-        printDebug(L["debug.event.achievement.personal.exist"] .. name)
+        printDebug("No screenshot has been taken as the achievement has already been reached by another character." .. name)
     end
 end
 
@@ -189,8 +196,8 @@ end
 
 function Memento:SlashCommand(msg)
 	if not msg or msg:trim() == "" then
-        Settings.OpenToCategory("Memento")
+        Settings.OpenToCategory(addonName)
 	else
-        printDebug(L["debug.cmd.exist"])
+        printDebug("No arguments will be accepted.")
 	end
 end

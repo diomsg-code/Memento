@@ -1,3 +1,7 @@
+**1.1.1 (2024-09-13)**
+- Removed: Language support for debug mode
+- Minor code adjustments
+
 **1.1.0 (2024-09-12)**
 - Added: Support for Classic and Cataclysm Classic (Note: Not all events have been ported yet)
 - Minor code adjustments
