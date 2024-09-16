@@ -20,26 +20,3 @@ jobs:
       - name: Package and release for Github
         uses: BigWigsMods/packager@v2
 
-  repository-release:
-    runs-on: ubuntu-latest
-    env:
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
-      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-    steps:
-      - name: Clone project
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      # CourseForge
-      - name: Package and release for CourseForge
-        uses: BigWigsMods/packager@v2
-        with:
-          args: -p 1099991 -n "{package-name}-{project-version}{nolib}{classic}:{package-name}-{project-version}{classic}{nolib}.zip"
-
-      # WoWInterface and Wago
-      - name: Package and release for WoWInterface and Wago
-        uses: BigWigsMods/packager@v2
-        with:
-          args: -w 26848 -a QKywRlN7
