@@ -6,6 +6,7 @@ Memento = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceConsole-3.0", "
 Memento.addonVersion = C_AddOns.GetAddOnMetadata(addonName, "Version")
 Memento.author = C_AddOns.GetAddOnMetadata(addonName, "Author")
 Memento.flavor = C_AddOns.GetAddOnMetadata(addonName, "X-Flavor")
+Memento.buildDate = C_AddOns.GetAddOnMetadata(addonName, "X-BuildDate")
 
 Memento.gameVersion = GetBuildInfo()
 

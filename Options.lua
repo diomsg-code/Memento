@@ -43,14 +43,14 @@ options.retail.general = {
 						build = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = 1.5,
+							width = 1.25,
 							fontSize = "medium",
 							order = 0.21
 						},
 						version = {
-							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 							type = "description",
-							width = 1.5,
+							width = 1.75,
 							fontSize = "medium",
 							order = 0.22
 						},
@@ -419,14 +419,14 @@ options.vanilla.general = {
 						build = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = 1.5,
+							width = 1.25,
 							fontSize = "medium",
 							order = 0.21
 						},
 						version = {
-							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 							type = "description",
-							width = 1.5,
+							width = 1.75,
 							fontSize = "medium",
 							order = 0.22
 						},
@@ -701,14 +701,14 @@ options.cata.general = {
 						build = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = 1.5,
+							width = 1.25,
 							fontSize = "medium",
 							order = 0.21
 						},
 						version = {
-							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 							type = "description",
-							width = 1.5,
+							width = 1.75,
 							fontSize = "medium",
 							order = 0.22
 						},
