@@ -8,11 +8,13 @@
 ## Notes-deDE: Ein World of Warcraft Addon, das automatisch Screenshots von bestimmten Ereignissen erstellt.
 ## LoadOnDemand: 0
 ## DefaultState: enabled
-## SavedVariables: MementoDatabase
-## OptionalDeps: Ace3
+## AllowLoadGameType: mainline
+## SavedVariables: Memento_Options, Memento_Statistic
+## OptionalDeps: Ace3, AceGUI-3.0_SFX-Widgets
 
 embeds.xml
 localization.xml
 
 Core.lua
 Options.lua
+Utils.lua

@@ -9,11 +9,12 @@
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## AllowLoadGameType: cata
-## SavedVariables: MementoDatabase
-## OptionalDeps: Ace3
+## SavedVariables: Memento_Options, Memento_Statistic
+## OptionalDeps: Ace3, AceGUI-3.0_SFX-Widgets
 
 embeds.xml
 localization.xml
 
 Core.lua
 Options.lua
+Utils.lua
