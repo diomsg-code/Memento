@@ -4,6 +4,7 @@
 ## Version: @project-version@
 ## IconTexture: Interface\AddOns\Memento\media\icon.blp
 ## X-Flavor: Retail
+## X-BuildDate: @build-date@ @build-date-iso@ @build-date-integer@ @build-timestamp@
 ## Notes: A World of Warcraft addon that automatically takes screenshots of specific events.
 ## Notes-deDE: Ein World of Warcraft Addon, das automatisch Screenshots von bestimmten Ereignissen erstellt.
 ## LoadOnDemand: 0
