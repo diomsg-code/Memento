@@ -7,7 +7,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Memento")
 
 local mediaPath = "Interface\\AddOns\\" .. addonName .. "\\media\\"
 
-local MM_NORMAL_FONT_COLOR = "|cffffd200"
+local MEMENTO_NORMAL_FONT_COLOR = "|cffffd200"
+local MEMENTO_LINK_FONT_COLOR = "|cff66bbff"
 
 local options = {}
 options.retail = {}
@@ -40,20 +41,20 @@ options.retail.general = {
 					order = 0.2,
 					args = {
 						build = {
-							name = MM_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
 							width = 1.5,
 							fontSize = "medium",
 							order = 0.21
 						},
 						version = {
-							name = MM_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
 							type = "description",
 							width = 1.5,
 							fontSize = "medium",
 							order = 0.22
 						},
-						space = {
+						space1 = {
 							name = " ",
 							type = "description",
 							width = "full",
@@ -61,11 +62,55 @@ options.retail.general = {
 							order = 0.23
 						},
 						author = {
-							name =  MM_NORMAL_FONT_COLOR .. L["general.info.about.author"] .. ":|r" .. " " .. Memento.author,
+							name =  MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.author"] .. ":|r" .. " " .. Memento.author,
 							type = "description",
 							width = "full",
 							fontSize = "medium",
 							order = 0.24
+						},
+						separator = {
+							name = "",
+							type = "header",
+							dialogControl = "SFX-Header",
+							order = 0.25
+						},
+						email = {
+							name = "E-Mail",
+							type = "input",
+							arg = MEMENTO_LINK_FONT_COLOR .. "feedback@memento-addon.de|r",
+							get = function(Info)
+								return Info.arg
+							end,
+							set = function() end,
+							disabled = true,
+							dialogControl = "SFX-Info-URL",
+							order = 0.26
+						 },
+						 space2 = {
+							name = "",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.27
+						},
+						 github = {
+							name = "Github",
+							type = "input",
+							arg = MEMENTO_LINK_FONT_COLOR .. "https://github.com/diomsg-code/Memento|r",
+							get = function(Info)
+								return Info.arg
+							end,
+							set = function() end,
+							disabled = true,
+							dialogControl = "SFX-Info-URL",
+							order = 0.28
+						 },
+						 space3 = {
+							name = "",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.29
 						},
 					},
 				},
@@ -365,39 +410,83 @@ options.vanilla.general = {
 			type = "group",
 			order = 0,
 			args = {
-				general = {
+				about = {
 					name = L["general.info.about"],
 					type = "group",
 					inline = true,
-					order = 0.1,
+					order = 0.2,
 					args = {
 						build = {
-							name = MM_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
 							width = 1.5,
 							fontSize = "medium",
-							order = 0.11
+							order = 0.21
 						},
 						version = {
-							name = MM_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
 							type = "description",
 							width = 1.5,
 							fontSize = "medium",
-							order = 0.12
+							order = 0.22
 						},
-						space = {
+						space1 = {
 							name = " ",
 							type = "description",
 							width = "full",
 							fontSize = "medium",
-							order = 0.21
+							order = 0.23
 						},
 						author = {
-							name =  MM_NORMAL_FONT_COLOR .. L["general.info.about.author"] .. ":|r" .. " " .. Memento.author,
+							name =  MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.author"] .. ":|r" .. " " .. Memento.author,
 							type = "description",
 							width = "full",
 							fontSize = "medium",
-							order = 0.31
+							order = 0.24
+						},
+						separator = {
+							name = "",
+							type = "header",
+							dialogControl = "SFX-Header",
+							order = 0.25
+						},
+						email = {
+							name = "E-Mail",
+							type = "input",
+							arg = MEMENTO_LINK_FONT_COLOR .. "feedback@memento-addon.de|r",
+							get = function(Info)
+								return Info.arg
+							end,
+							set = function() end,
+							disabled = true,
+							dialogControl = "SFX-Info-URL",
+							order = 0.26
+						 },
+						 space2 = {
+							name = "",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.27
+						},
+						 github = {
+							name = "Github",
+							type = "input",
+							arg = MEMENTO_LINK_FONT_COLOR .. "https://github.com/diomsg-code/Memento|r",
+							get = function(Info)
+								return Info.arg
+							end,
+							set = function() end,
+							disabled = true,
+							dialogControl = "SFX-Info-URL",
+							order = 0.28
+						 },
+						 space3 = {
+							name = "",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.29
 						},
 					},
 				},
@@ -603,39 +692,83 @@ options.cata.general = {
 			type = "group",
 			order = 0,
 			args = {
-				general = {
+				about = {
 					name = L["general.info.about"],
 					type = "group",
 					inline = true,
-					order = 0.1,
+					order = 0.2,
 					args = {
 						build = {
-							name = MM_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
 							width = 1.5,
 							fontSize = "medium",
-							order = 0.11
+							order = 0.21
 						},
 						version = {
-							name = MM_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
+							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion,
 							type = "description",
 							width = 1.5,
 							fontSize = "medium",
-							order = 0.12
+							order = 0.22
 						},
-						space = {
+						space1 = {
 							name = " ",
 							type = "description",
 							width = "full",
 							fontSize = "medium",
-							order = 0.21
+							order = 0.23
 						},
 						author = {
-							name =  MM_NORMAL_FONT_COLOR .. L["general.info.about.author"] .. ":|r" .. " " .. Memento.author,
+							name =  MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.author"] .. ":|r" .. " " .. Memento.author,
 							type = "description",
 							width = "full",
 							fontSize = "medium",
-							order = 0.31
+							order = 0.24
+						},
+						separator = {
+							name = "",
+							type = "header",
+							dialogControl = "SFX-Header",
+							order = 0.25
+						},
+						email = {
+							name = "E-Mail",
+							type = "input",
+							arg = MEMENTO_LINK_FONT_COLOR .. "feedback@memento-addon.de|r",
+							get = function(Info)
+								return Info.arg
+							end,
+							set = function() end,
+							disabled = true,
+							dialogControl = "SFX-Info-URL",
+							order = 0.26
+						 },
+						 space2 = {
+							name = "",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.27
+						},
+						 github = {
+							name = "Github",
+							type = "input",
+							arg = MEMENTO_LINK_FONT_COLOR .. "https://github.com/diomsg-code/Memento|r",
+							get = function(Info)
+								return Info.arg
+							end,
+							set = function() end,
+							disabled = true,
+							dialogControl = "SFX-Info-URL",
+							order = 0.28
+						 },
+						 space3 = {
+							name = "",
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 0.29
 						},
 					},
 				},
