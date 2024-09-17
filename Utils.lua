@@ -40,7 +40,7 @@ function Memento:PrintStatistic()
     if self.db.profile.options.notification then
         local msg = markLightYellowFont("Memento: ") .. markWhiteFont(L["chat.statistic.header"]) .. "\n"
 
-        if Memento.flavor == "Retail" then
+        if Memento.flavor == "Retail" or Memento.flavor == "Cata" then
             msg = msg .. markNormalFont(L["chat.statistic.achievement.personal"].. ": ") .. markWhiteFont(self.dbStatstic.global.events.achievement.personal.count .. " (" .. self.dbStatstic.char.events.achievement.personal.count .. ")\n")
             msg = msg .. markNormalFont(L["chat.statistic.achievement.guild"].. ": ") .. markWhiteFont(self.dbStatstic.global.events.achievement.guild.count .. " (" .. self.dbStatstic.char.events.achievement.guild.count .. ")\n")
         end

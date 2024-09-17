@@ -26,7 +26,7 @@ function Memento:OnInitialize()
 
 	self:RegisterChatCommand("memento", "SlashCommand")
 
-    if self.flavor == "Retail" then
+    if self.flavor == "Retail" or self.flavor == "Cata" then
         self:RegisterEvent(
             "ACHIEVEMENT_EARNED",
             function(_, achievementID, alreadyEarned)
@@ -44,7 +44,7 @@ function Memento:OnInitialize()
             end
         )
 
-        self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" registered. (Retail)")
+        self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" registered. (Retail / Cata)")
     end
     
     self:RegisterEvent(

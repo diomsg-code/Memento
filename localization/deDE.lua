@@ -63,7 +63,7 @@ L["chat.events.achievement.personal.new"] = "Screenshot erstellt - persönlicher
 L["chat.events.achievement.personal.exist"] = "Screenshot erstellt - persönlicher Erfolg (wurde bereits von einem anderen Charakter erzielt): "
 L["chat.events.achievement.guild.new"] = "Screenshot erstellt - Gildenerfolg: "
 L["chat.events.levelUp.new"] = "Screenshot erstellt - Levelaufstieg: "
-L["chat.events.death.new"] = "Screenshot taken - Spielertod: Du bist gestorben."
+L["chat.events.death.new"] = "Screenshot erstellt - Spielertod: Du bist gestorben."
 L["chat.events.duel.new"] = "Screenshot erstellt - Duell beendet."
 
 L["chat.statistic.header"] = "Diese kleine Übersicht zeigt die Anzahl aller ab Release 1.2.0 erstellten Screenshots durch Memento. In Klammern steht die Anzahl für den aktuellen Charakter."

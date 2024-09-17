@@ -43,14 +43,14 @@ options.retail.general = {
 						build = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = 1.25,
+							width = 1.5,
 							fontSize = "medium",
 							order = 0.21
 						},
 						version = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 							type = "description",
-							width = 1.75,
+							width = 1.5,
 							fontSize = "medium",
 							order = 0.22
 						},
@@ -419,14 +419,14 @@ options.vanilla.general = {
 						build = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = 1.25,
+							width = 1.5,
 							fontSize = "medium",
 							order = 0.21
 						},
 						version = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 							type = "description",
-							width = 1.75,
+							width = 1.5,
 							fontSize = "medium",
 							order = 0.22
 						},
@@ -701,14 +701,14 @@ options.cata.general = {
 						build = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.game-version"] .. ":|r" .. " " .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 							type = "description",
-							width = 1.25,
+							width = 1.5,
 							fontSize = "medium",
 							order = 0.21
 						},
 						version = {
 							name = MEMENTO_NORMAL_FONT_COLOR .. L["general.info.about.addon-version"] .. ":|r" .. " " .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 							type = "description",
-							width = 1.75,
+							width = 1.5,
 							fontSize = "medium",
 							order = 0.22
 						},
@@ -813,6 +813,100 @@ options.cata.general = {
 						},
 					},
 				},
+				personalAchievement = {
+					name = L["general.options.achievement.personal"],
+					type = "group",
+					inline = true,
+					order = 1.2,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["general.options.achievement.personal.active.name"],
+							desc = L["general.options.achievement.personal.active.desc"],
+							get = function()
+								return Memento.db.profile.events.achievement.personal.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.achievement.personal.active = value
+							end,
+							width = "double",
+							order = 1.21
+						},
+						timer = {
+							name = L["general.options.achievement.personal.timer.name"],
+							desc = L["general.options.achievement.personal.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.events.achievement.personal.active
+							end,
+							get = function()
+								return Memento.db.profile.events.achievement.personal.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.achievement.personal.timer = value
+							end,
+							order = 1.22
+						},
+						exist = {
+							type = "toggle",
+							name = L["general.options.achievement.personal.exist.name"],
+							desc = L["general.options.achievement.personal.exist.desc"],
+							disabled = function()
+								return not Memento.db.profile.events.achievement.personal.active
+							end,
+							get = function()
+								return Memento.db.profile.events.achievement.personal.exist
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.achievement.personal.exist = value
+							end,
+							width = "full",
+							order = 1.23
+						},
+					},
+				},
+				guildAchievement = {
+					name = L["general.options.achievement.guild"],
+					type = "group",
+					inline = true,
+					order = 1.3,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["general.options.achievement.guild.active.name"],
+							desc = L["general.options.achievement.guild.active.desc"],
+							get = function()
+								return Memento.db.profile.events.achievement.guild.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.achievement.guild.active = value
+							end,
+							width = "double",
+							order = 1.31
+						},
+						timer = {
+							name = L["general.options.achievement.guild.timer.name"],
+							desc = L["general.options.achievement.guild.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.events.achievement.guild.active
+							end,
+							get = function()
+								return Memento.db.profile.events.achievement.guild.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.achievement.guild.timer = value
+							end,
+							order = 1.32
+						},
+					},
+				},
 				levelUp = {
 					name = L["general.options.levelUp"],
 					type = "group",
@@ -830,7 +924,7 @@ options.cata.general = {
 								Memento.db.profile.events.levelUp.active = value
 							end,
 							width = "double",
-							order = 1.2,
+							order = 1.41,
 						},
 						timer = {
 							name = L["general.options.levelUp.timer.name"],
@@ -848,7 +942,7 @@ options.cata.general = {
 							set = function(_, value)
 								Memento.db.profile.events.levelUp.timer = value
 							end,
-							order = 1.22,
+							order = 1.42,
 						},
 					},
 				},
@@ -869,7 +963,7 @@ options.cata.general = {
 								Memento.db.profile.events.death.active = value
 							end,
 							width = "double",
-							order = 1.31,
+							order = 1.51,
 						},
 						timer = {
 							name = L["general.options.death.timer.name"],
@@ -887,7 +981,7 @@ options.cata.general = {
 							set = function(_, value)
 								Memento.db.profile.events.death.timer = value
 							end,
-							order = 1.32,
+							order = 1.52,
 						},
 					},
 				},
@@ -908,7 +1002,7 @@ options.cata.general = {
 								Memento.db.profile.events.duel.active = value
 							end,
 							width = "double",
-							order = 1.41
+							order = 1.61
 						},
 						timer = {
 							name = L["general.options.duel.timer.name"],
@@ -926,7 +1020,7 @@ options.cata.general = {
 							set = function(_, value)
 								Memento.db.profile.events.duel.timer = value
 							end,
-							order = 1.42
+							order = 1.62
 						},
 					},
 				},
@@ -1107,6 +1201,17 @@ defaults.cata.options = {
 			debug = false
 		},
 		events = {
+			achievement = {
+                personal = {
+                    active = true,
+					exist = false,
+                    timer = 2
+                },
+                guild = {
+                    active = true,
+                    timer = 2
+                },
+            },
             levelUp = {
                 active = true,
                 timer = 5
@@ -1126,6 +1231,14 @@ defaults.cata.options = {
 defaults.cata.statistic = {
 	char = {
 		events = {
+			achievement = {
+                personal = {
+                    count = 0
+                },
+                guild = {
+                    count = 0
+                },
+            },
             levelUp = {
 				count = 0
             },
@@ -1139,6 +1252,14 @@ defaults.cata.statistic = {
 	},
     global = {
 		events = {
+			achievement = {
+                personal = {
+                    count = 0
+                },
+                guild = {
+                    count = 0
+                },
+            },
             levelUp = {
 				count = 0
             },
@@ -1156,7 +1277,12 @@ defaults.cata.statistic = {
 --- Memento functions ---
 -------------------------
 function Memento:SetupOptions()
-	if self.flavor == "Vanilla" then
+	if self.flavor == "Retail" then
+		AceConfig:RegisterOptionsTable(addonName, options.retail.general)
+		self.db = LibStub("AceDB-3.0"):New("Memento_Options", defaults.retail.options, true)
+		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic", defaults.retail.statistic, true)
+        self:PrintDebug("Retail default options and database have been loaded.")
+	elseif self.flavor == "Vanilla" then
 		AceConfig:RegisterOptionsTable(addonName, options.vanilla.general)
 		self.db = LibStub("AceDB-3.0"):New("Memento_Options", defaults.vanilla.options, true)
 		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic", defaults.vanilla.statistic, true)
@@ -1167,10 +1293,7 @@ function Memento:SetupOptions()
 		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic", defaults.cata.statistic, true)
         self:PrintDebug("Cata default options and database have been loaded.")
 	else
-		AceConfig:RegisterOptionsTable(addonName, options.retail.general)
-		self.db = LibStub("AceDB-3.0"):New("Memento_Options", defaults.retail.options, true)
-		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic", defaults.retail.statistic, true)
-        self:PrintDebug("Retail default options and database have been loaded.")
+		self:PrintDebug("No default options and database have been loaded.")
 	end
 
 	options.profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db)
