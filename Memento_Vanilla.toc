@@ -10,7 +10,8 @@
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## AllowLoadGameType: vanilla
-## SavedVariables: Memento_Options
+## SavedVariables: Memento_Options, Memento_Statistic
+## SavedVariablesPerCharacter: Memento_DataBossKill
 ## OptionalDeps: Ace3, AceGUI-3.0_SFX-Widgets
 
 embeds.xml
