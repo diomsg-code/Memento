@@ -249,11 +249,92 @@ options.retail.general = {
 						},
 					},
 				},
+				encounter = {
+					name = L["general.options.encounter"],
+					type = "group",
+					inline = true,
+					order = 1.4,
+					args = {
+						party = {
+							type = "toggle",
+							name = L["general.options.encounter.party.name"],
+							desc = L["general.options.encounter.party.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.party
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.party = value
+							end,
+							width = "normal",
+							order = 1.41
+						},
+						raid = {
+							type = "toggle",
+							name = L["general.options.encounter.raid.name"],
+							desc = L["general.options.encounter.raid.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.raid
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.raid = value
+							end,
+							width = "normal",
+							order = 1.42
+						},
+						scenario = {
+							type = "toggle",
+							name = L["general.options.encounter.scenario.name"],
+							desc = L["general.options.encounter.scenario.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.scenario
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.scenario = value
+							end,
+							width = "normal",
+							order = 1.43
+						},
+						first = {
+							type = "toggle",
+							name = L["general.options.encounter.first.name"],
+							desc = L["general.options.encounter.first.desc"],
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid) and (not Memento.db.profile.events.encounter.scenario))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.first
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.first = value
+							end,
+							width = "double",
+							order = 1.44
+						},
+						timer = {
+							name = L["general.options.encounter.timer.name"],
+							desc = L["general.options.encounter.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid) and (not Memento.db.profile.events.encounter.scenario))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.timer = value
+							end,
+							order = 1.45
+						},
+					},
+				},
 				levelUp = {
 					name = L["general.options.levelUp"],
 					type = "group",
 					inline = true,
-					order = 1.4,
+					order = 1.5,
 					args = {
 						active = {
 							type = "toggle",
@@ -266,7 +347,7 @@ options.retail.general = {
 								Memento.db.profile.events.levelUp.active = value
 							end,
 							width = "double",
-							order = 1.41
+							order = 1.51
 						},
 						timer = {
 							name = L["general.options.levelUp.timer.name"],
@@ -284,7 +365,7 @@ options.retail.general = {
 							set = function(_, value)
 								Memento.db.profile.events.levelUp.timer = value
 							end,
-							order = 1.42
+							order = 1.52
 						},
 					},
 				},
@@ -292,7 +373,7 @@ options.retail.general = {
 					name = L["general.options.death"],
 					type = "group",
 					inline = true,
-					order = 1.5,
+					order = 1.6,
 					args = {
 						active = {
 							type = "toggle",
@@ -305,7 +386,7 @@ options.retail.general = {
 								Memento.db.profile.events.death.active = value
 							end,
 							width = "double",
-							order = 1.51
+							order = 1.61
 						},
 						timer = {
 							name = L["general.options.death.timer.name"],
@@ -323,7 +404,7 @@ options.retail.general = {
 							set = function(_, value)
 								Memento.db.profile.events.death.timer = value
 							end,
-							order = 1.52
+							order = 1.62
 						},
 					},
 				},
@@ -331,7 +412,7 @@ options.retail.general = {
 					name = L["general.options.duel"],
 					type = "group",
 					inline = true,
-					order = 1.6,
+					order = 1.7,
 					args = {
 						active = {
 							type = "toggle",
@@ -344,7 +425,7 @@ options.retail.general = {
 								Memento.db.profile.events.duel.active = value
 							end,
 							width = "double",
-							order = 1.61
+							order = 1.71
 						},
 						timer = {
 							name = L["general.options.duel.timer.name"],
@@ -362,7 +443,46 @@ options.retail.general = {
 							set = function(_, value)
 								Memento.db.profile.events.duel.timer = value
 							end,
-							order = 1.62
+							order = 1.72
+						},
+					},
+				},
+				login = {
+					name = L["general.options.login"],
+					type = "group",
+					inline = true,
+					order = 1.8,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["general.options.login.active.name"],
+							desc = L["general.options.login.active.desc"],
+							get = function()
+								return Memento.db.profile.events.login.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.login.active = value
+							end,
+							width = "double",
+							order = 1.81
+						},
+						timer = {
+							name = L["general.options.login.timer.name"],
+							desc = L["general.options.login.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.events.login.active
+							end,
+							get = function()
+								return Memento.db.profile.events.login.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.login.timer = value
+							end,
+							order = 1.82
 						},
 					},
 				},
@@ -531,11 +651,79 @@ options.vanilla.general = {
 						},
 					},
 				},
+				encounter = {
+					name = L["general.options.encounter"],
+					type = "group",
+					inline = true,
+					order = 1.2,
+					args = {
+						party = {
+							type = "toggle",
+							name = L["general.options.encounter.party.name"],
+							desc = L["general.options.encounter.party.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.party
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.party = value
+							end,
+							width = "normal",
+							order = 1.21
+						},
+						raid = {
+							type = "toggle",
+							name = L["general.options.encounter.raid.name"],
+							desc = L["general.options.encounter.raid.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.raid
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.raid = value
+							end,
+							width = "normal",
+							order = 1.22
+						},
+						first = {
+							type = "toggle",
+							name = L["general.options.encounter.first.name"],
+							desc = L["general.options.encounter.first.desc"],
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.first
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.first = value
+							end,
+							width = "double",
+							order = 1.23
+						},
+						timer = {
+							name = L["general.options.encounter.timer.name"],
+							desc = L["general.options.encounter.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.timer = value
+							end,
+							order = 1.24
+						},
+					},
+				},
 				levelUp = {
 					name = L["general.options.levelUp"],
 					type = "group",
 					inline = true,
-					order = 1.2,
+					order = 1.3,
 					args = {
 						active = {
 							type = "toggle",
@@ -548,7 +736,7 @@ options.vanilla.general = {
 								Memento.db.profile.events.levelUp.active = value
 							end,
 							width = "double",
-							order = 1.21,
+							order = 1.31,
 						},
 						timer = {
 							name = L["general.options.levelUp.timer.name"],
@@ -566,7 +754,7 @@ options.vanilla.general = {
 							set = function(_, value)
 								Memento.db.profile.events.levelUp.timer = value
 							end,
-							order = 1.22,
+							order = 1.32,
 						},
 					},
 				},
@@ -574,7 +762,7 @@ options.vanilla.general = {
 					name = L["general.options.death"],
 					type = "group",
 					inline = true,
-					order = 1.3,
+					order = 1.4,
 					args = {
 						active = {
 							type = "toggle",
@@ -587,7 +775,7 @@ options.vanilla.general = {
 								Memento.db.profile.events.death.active = value
 							end,
 							width = "double",
-							order = 1.31,
+							order = 1.41,
 						},
 						timer = {
 							name = L["general.options.death.timer.name"],
@@ -605,7 +793,7 @@ options.vanilla.general = {
 							set = function(_, value)
 								Memento.db.profile.events.death.timer = value
 							end,
-							order = 1.32,
+							order = 1.42,
 						},
 					},
 				},
@@ -613,7 +801,7 @@ options.vanilla.general = {
 					name = L["general.options.duel"],
 					type = "group",
 					inline = true,
-					order = 1.4,
+					order = 1.5,
 					args = {
 						active = {
 							type = "toggle",
@@ -626,7 +814,7 @@ options.vanilla.general = {
 								Memento.db.profile.events.duel.active = value
 							end,
 							width = "double",
-							order = 1.41
+							order = 1.51
 						},
 						timer = {
 							name = L["general.options.duel.timer.name"],
@@ -644,7 +832,46 @@ options.vanilla.general = {
 							set = function(_, value)
 								Memento.db.profile.events.duel.timer = value
 							end,
-							order = 1.42
+							order = 1.52
+						},
+					},
+				},
+				login = {
+					name = L["general.options.login"],
+					type = "group",
+					inline = true,
+					order = 1.6,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["general.options.login.active.name"],
+							desc = L["general.options.login.active.desc"],
+							get = function()
+								return Memento.db.profile.events.login.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.login.active = value
+							end,
+							width = "double",
+							order = 1.61
+						},
+						timer = {
+							name = L["general.options.login.timer.name"],
+							desc = L["general.options.login.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.events.login.active
+							end,
+							get = function()
+								return Memento.db.profile.events.login.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.login.timer = value
+							end,
+							order = 1.62
 						},
 					},
 				},
@@ -907,11 +1134,79 @@ options.cata.general = {
 						},
 					},
 				},
+				encounter = {
+					name = L["general.options.encounter"],
+					type = "group",
+					inline = true,
+					order = 1.4,
+					args = {
+						party = {
+							type = "toggle",
+							name = L["general.options.encounter.party.name"],
+							desc = L["general.options.encounter.party.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.party
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.party = value
+							end,
+							width = "normal",
+							order = 1.41
+						},
+						raid = {
+							type = "toggle",
+							name = L["general.options.encounter.raid.name"],
+							desc = L["general.options.encounter.raid.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.raid
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.raid = value
+							end,
+							width = "normal",
+							order = 1.42
+						},
+						first = {
+							type = "toggle",
+							name = L["general.options.encounter.first.name"],
+							desc = L["general.options.encounter.first.desc"],
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.first
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.first = value
+							end,
+							width = "double",
+							order = 1.43
+						},
+						timer = {
+							name = L["general.options.encounter.timer.name"],
+							desc = L["general.options.encounter.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.timer = value
+							end,
+							order = 1.44
+						},
+					},
+				},
 				levelUp = {
 					name = L["general.options.levelUp"],
 					type = "group",
 					inline = true,
-					order = 1.2,
+					order = 1.5,
 					args = {
 						active = {
 							type = "toggle",
@@ -924,7 +1219,7 @@ options.cata.general = {
 								Memento.db.profile.events.levelUp.active = value
 							end,
 							width = "double",
-							order = 1.41,
+							order = 1.51,
 						},
 						timer = {
 							name = L["general.options.levelUp.timer.name"],
@@ -942,7 +1237,7 @@ options.cata.general = {
 							set = function(_, value)
 								Memento.db.profile.events.levelUp.timer = value
 							end,
-							order = 1.42,
+							order = 1.52,
 						},
 					},
 				},
@@ -950,7 +1245,7 @@ options.cata.general = {
 					name = L["general.options.death"],
 					type = "group",
 					inline = true,
-					order = 1.3,
+					order = 1.6,
 					args = {
 						active = {
 							type = "toggle",
@@ -963,7 +1258,7 @@ options.cata.general = {
 								Memento.db.profile.events.death.active = value
 							end,
 							width = "double",
-							order = 1.51,
+							order = 1.61,
 						},
 						timer = {
 							name = L["general.options.death.timer.name"],
@@ -981,7 +1276,7 @@ options.cata.general = {
 							set = function(_, value)
 								Memento.db.profile.events.death.timer = value
 							end,
-							order = 1.52,
+							order = 1.62,
 						},
 					},
 				},
@@ -989,7 +1284,7 @@ options.cata.general = {
 					name = L["general.options.duel"],
 					type = "group",
 					inline = true,
-					order = 1.4,
+					order = 1.7,
 					args = {
 						active = {
 							type = "toggle",
@@ -1002,7 +1297,7 @@ options.cata.general = {
 								Memento.db.profile.events.duel.active = value
 							end,
 							width = "double",
-							order = 1.61
+							order = 1.71
 						},
 						timer = {
 							name = L["general.options.duel.timer.name"],
@@ -1020,7 +1315,46 @@ options.cata.general = {
 							set = function(_, value)
 								Memento.db.profile.events.duel.timer = value
 							end,
-							order = 1.62
+							order = 1.72
+						},
+					},
+				},
+				login = {
+					name = L["general.options.login"],
+					type = "group",
+					inline = true,
+					order = 1.8,
+					args = {
+						active = {
+							type = "toggle",
+							name = L["general.options.login.active.name"],
+							desc = L["general.options.login.active.desc"],
+							get = function()
+								return Memento.db.profile.events.login.active
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.login.active = value
+							end,
+							width = "double",
+							order = 1.81
+						},
+						timer = {
+							name = L["general.options.login.timer.name"],
+							desc = L["general.options.login.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return not Memento.db.profile.events.login.active
+							end,
+							get = function()
+								return Memento.db.profile.events.login.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.login.timer = value
+							end,
+							order = 1.82
 						},
 					},
 				},
@@ -1079,6 +1413,13 @@ defaults.retail.options = {
                     timer = 2
                 },
             },
+			encounter = {
+				party = true,
+				raid = true,
+				scenario = true,
+				first = true,
+				timer = 2
+			},
             levelUp = {
                 active = true,
                 timer = 5
@@ -1090,7 +1431,11 @@ defaults.retail.options = {
 			duel = {
                 active = true,
                 timer = 1
-            }
+			},
+			login = {
+                active = false,
+                timer = 5
+			}
 		}
     }
 }
@@ -1106,6 +1451,9 @@ defaults.retail.statistic = {
                     count = 0
                 },
             },
+			encounter = {
+				count = 0
+            },
             levelUp = {
 				count = 0
             },
@@ -1113,6 +1461,9 @@ defaults.retail.statistic = {
 				count = 0
             },
 			duel = {
+				count = 0
+            },
+			login = {
 				count = 0
             }
 		}
@@ -1127,6 +1478,9 @@ defaults.retail.statistic = {
                     count = 0
                 },
             },
+			encounter = {
+				count = 0
+            },
             levelUp = {
 				count = 0
             },
@@ -1134,6 +1488,9 @@ defaults.retail.statistic = {
 				count = 0
             },
 			duel = {
+				count = 0
+            },
+			login = {
 				count = 0
             }
 		}
@@ -1148,6 +1505,13 @@ defaults.vanilla.options = {
 			debug = false
 		},
 		events = {
+			encounter = {
+				party = true,
+				raid = true,
+				scenario = false,
+				first = true,
+				timer = 2
+			},
             levelUp = {
                 active = true,
                 timer = 5
@@ -1159,7 +1523,11 @@ defaults.vanilla.options = {
 			duel = {
                 active = true,
                 timer = 1
-            }
+            },
+			login = {
+                active = false,
+                timer = 5
+			}
 		}
     }
 }
@@ -1167,6 +1535,9 @@ defaults.vanilla.options = {
 defaults.vanilla.statistic = {
 	char = {
 		events = {
+			encounter = {
+				count = 0
+            },
             levelUp = {
 				count = 0
             },
@@ -1174,12 +1545,18 @@ defaults.vanilla.statistic = {
 				count = 0
             },
 			duel = {
+				count = 0
+            },
+			login = {
 				count = 0
             }
 		}
 	},
     global = {
 		events = {
+			encounter = {
+				count = 0
+            },
             levelUp = {
 				count = 0
             },
@@ -1187,6 +1564,9 @@ defaults.vanilla.statistic = {
 				count = 0
             },
 			duel = {
+				count = 0
+            },
+			login = {
 				count = 0
             }
 		}
@@ -1212,6 +1592,13 @@ defaults.cata.options = {
                     timer = 2
                 },
             },
+			encounter = {
+				party = true,
+				raid = true,
+				scenario = false,
+				first = true,
+				timer = 2
+			},
             levelUp = {
                 active = true,
                 timer = 5
@@ -1223,7 +1610,11 @@ defaults.cata.options = {
 			duel = {
                 active = true,
                 timer = 1
-            }
+            },
+			login = {
+                active = false,
+                timer = 5
+			}
 		}
     }
 }
@@ -1239,6 +1630,9 @@ defaults.cata.statistic = {
                     count = 0
                 },
             },
+			encounter = {
+				count = 0
+            },
             levelUp = {
 				count = 0
             },
@@ -1246,6 +1640,9 @@ defaults.cata.statistic = {
 				count = 0
             },
 			duel = {
+				count = 0
+            },
+			login = {
 				count = 0
             }
 		}
@@ -1260,6 +1657,9 @@ defaults.cata.statistic = {
                     count = 0
                 },
             },
+			encounter = {
+				count = 0
+            },
             levelUp = {
 				count = 0
             },
@@ -1267,6 +1667,9 @@ defaults.cata.statistic = {
 				count = 0
             },
 			duel = {
+				count = 0
+            },
+			login = {
 				count = 0
             }
 		}

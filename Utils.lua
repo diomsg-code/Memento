@@ -41,13 +41,15 @@ function Memento:PrintStatistic()
         local msg = markLightYellowFont("Memento: ") .. markWhiteFont(L["chat.statistic.header"]) .. "\n"
 
         if Memento.flavor == "Retail" or Memento.flavor == "Cata" then
-            msg = msg .. markNormalFont(L["chat.statistic.achievement.personal"].. ": ") .. markWhiteFont(self.dbStatstic.global.events.achievement.personal.count .. " (" .. self.dbStatstic.char.events.achievement.personal.count .. ")\n")
-            msg = msg .. markNormalFont(L["chat.statistic.achievement.guild"].. ": ") .. markWhiteFont(self.dbStatstic.global.events.achievement.guild.count .. " (" .. self.dbStatstic.char.events.achievement.guild.count .. ")\n")
+            msg = msg .. markNormalFont(L["chat.statistic.achievement.personal"] .. ": ") .. markWhiteFont(self.dbStatstic.global.events.achievement.personal.count .. " (" .. self.dbStatstic.char.events.achievement.personal.count .. ")\n")
+            msg = msg .. markNormalFont(L["chat.statistic.achievement.guild"] .. ": ") .. markWhiteFont(self.dbStatstic.global.events.achievement.guild.count .. " (" .. self.dbStatstic.char.events.achievement.guild.count .. ")\n")
         end
 
-        msg = msg .. markNormalFont(L["chat.statistic.levelUp"].. ": ") .. markWhiteFont(self.dbStatstic.global.events.levelUp.count .. " (" .. self.dbStatstic.char.events.levelUp.count .. ")\n")
-        msg = msg .. markNormalFont(L["chat.statistic.death"].. ": ") .. markWhiteFont(self.dbStatstic.global.events.death.count .. " (" .. self.dbStatstic.char.events.death.count .. ")\n")
-        msg = msg .. markNormalFont(L["chat.statistic.duel"].. ": ") .. markWhiteFont(self.dbStatstic.global.events.duel.count .. " (" .. self.dbStatstic.char.events.duel.count .. ")")
+        msg = msg .. markNormalFont(L["chat.statistic.encounter"] .. ": ") .. markWhiteFont(self.dbStatstic.global.events.encounter.count .. " (" .. self.dbStatstic.char.events.encounter.count .. ")\n")
+        msg = msg .. markNormalFont(L["chat.statistic.levelUp"] .. ": ") .. markWhiteFont(self.dbStatstic.global.events.levelUp.count .. " (" .. self.dbStatstic.char.events.levelUp.count .. ")\n")
+        msg = msg .. markNormalFont(L["chat.statistic.death"] .. ": ") .. markWhiteFont(self.dbStatstic.global.events.death.count .. " (" .. self.dbStatstic.char.events.death.count .. ")\n")
+        msg = msg .. markNormalFont(L["chat.statistic.duel"] .. ": ") .. markWhiteFont(self.dbStatstic.global.events.duel.count .. " (" .. self.dbStatstic.char.events.duel.count .. ")\n")
+        msg = msg .. markNormalFont(L["chat.statistic.login"] .. ": ") .. markWhiteFont(self.dbStatstic.global.events.login.count .. " (" .. self.dbStatstic.char.events.login.count .. ")")
 
         DEFAULT_CHAT_FRAME:AddMessage(msg)
 	end
@@ -69,16 +71,26 @@ function Memento:TakeScreenshot(event)
         self.dbStatstic.global.events.achievement.guild.count = self.dbStatstic.global.events.achievement.guild.count + 1
         self:PrintDebug("Event counter for EVENT_ACHIEVEMENT_GUILD increased by one.")
     elseif event == 3 then
+        self.dbStatstic.char.events.encounter.count = self.dbStatstic.char.events.encounter.count + 1
+        self.dbStatstic.global.events.encounter.count = self.dbStatstic.global.events.encounter.count + 1
+        self:PrintDebug("Event counter for EVENT_ENCOUNTER increased by one.")
+    elseif event == 4 then
         self.dbStatstic.char.events.levelUp.count = self.dbStatstic.char.events.levelUp.count + 1
         self.dbStatstic.global.events.levelUp.count = self.dbStatstic.global.events.levelUp.count + 1
         self:PrintDebug("Event counter for EVENT_LEVEL_UP increased by one.")
-    elseif event == 4 then
+    elseif event == 5 then
         self.dbStatstic.char.events.death.count = self.dbStatstic.char.events.death.count + 1
         self.dbStatstic.global.events.death.count = self.dbStatstic.global.events.death.count + 1
         self:PrintDebug("Event counter for EVENT_DEATH increased by one.")
-    elseif event == 5 then
+    elseif event == 6 then
         self.dbStatstic.char.events.duel.count = self.dbStatstic.char.events.duel.count + 1
         self.dbStatstic.global.events.duel.count = self.dbStatstic.global.events.duel.count + 1
         self:PrintDebug("Event counter for EVENT_DUEL increased by one.")
+    elseif event == 7 then
+        self.dbStatstic.char.events.login.count = self.dbStatstic.char.events.login.count + 1
+        self.dbStatstic.global.events.login.count = self.dbStatstic.global.events.login.count + 1
+        self:PrintDebug("Event counter for EVENT_LOGIN increased by one.")
+    else
+        self:PrintDebug("Event counter for no event was increased.")
     end
 end

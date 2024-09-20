@@ -1,7 +1,7 @@
 ## Memento
-### [1.2.1](https://github.com/diomsg-code/Memento/tree/1.2.1) (2024-09-17)
-[Full Changelog](https://github.com/diomsg-code/Memento/compare/1.2.0...1.2.1) - [Previous Releases](https://github.com/diomsg-code/Memento/releases)
+### [1.3.0](https://github.com/diomsg-code/Memento/tree/1.3.0) (2024-09-20)
+[Full Changelog](https://github.com/diomsg-code/Memento/compare/1.2.1...1.3.0) - [Previous Releases](https://github.com/diomsg-code/Memento/releases)
 
-- Changed: The events 'Personal achievement' and 'Guild achievement' are now also supported in 'Cataclysm Classic'
-- Updated: deDE localization
+- Added: New event (Boss kill) - An automatic screenshot can now be taken when you have killed a boss (Dungeon, Raid or Scenario)
+- Added: New event (Player login) - An automatic screenshot can now be taken when you have logged in
  

@@ -1,3 +1,7 @@
+**1.3.0 (2024-09-20)**
+- Added: New event (Boss kill) - An automatic screenshot can now be taken when you have killed a boss (Dungeon, Raid or Scenario)
+- Added: New event (Player login) - An automatic screenshot can now be taken when you have logged in
+
 **1.2.1 (2024-09-17)**
 - Changed: The events 'Personal achievement' and 'Guild achievement' are now also supported in 'Cataclysm Classic'
 - Updated: deDE localization

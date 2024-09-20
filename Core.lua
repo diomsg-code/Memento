@@ -14,15 +14,21 @@ local mediaPath = "Interface\\AddOns\\" .. addonName .. "\\media\\"
 
 local EVENT_ACHIEVEMENT_PERSONAL = 1
 local EVENT_ACHIEVEMENT_GUILD = 2
-local EVENT_LEVEL_UP = 3
-local EVENT_DEATH = 4
-local EVENT_DUEL = 5
+local EVENT_ENCOUNTER = 3
+local EVENT_LEVEL_UP = 4
+local EVENT_DEATH = 5
+local EVENT_DUEL = 6
+local EVENT_LOGIN = 7
 
 -------------------------
 --- Memento functions ---
 -------------------------
 function Memento:OnInitialize()
     self:SetupOptions()
+
+    if (not Memento_DataBossKill) then
+        Memento_DataBossKill = {}
+    end
 
 	self:RegisterChatCommand("memento", "SlashCommand")
 
@@ -46,7 +52,32 @@ function Memento:OnInitialize()
 
         self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" registered. (Retail / Cata)")
     end
-    
+
+    self:RegisterEvent(
+        "ENCOUNTER_END",
+        function(_, encounterID, encounterName, difficultyID, groupSize, success)
+            self:PrintDebug("Event \"ENCOUNTER_END\" fired. encounterID=" .. encounterID .. ", encounterName=" .. encounterName .. ", difficultyID=" .. difficultyID .. ", groupSize=" .. groupSize .. ", success=" .. success)
+
+            local difficultyName, groupType = GetDifficultyInfo(difficultyID)
+            local difficulty = "D" .. difficultyID
+
+            if (success == 1 and ((groupType == "party" and self.db.profile.events.encounter.party) or (groupType == "raid" and self.db.profile.events.encounter.raid) or (groupType == "scenario" and self.db.profile.events.encounter.scenario))) then 
+                if (not Memento_DataBossKill[difficulty]) then 
+                    Memento_DataBossKill[difficulty] = {}
+                end
+
+                if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.first) then
+                    self:PrintDebug("Encounter already killed and no screenshot requested.")
+                    return
+                end
+
+                self:ScheduleTimer("TimerScreenshotEncounter", self.db.profile.events.encounter.timer, encounterName, difficultyName, difficulty, encounterID)
+            end
+        end
+    )
+
+    self:PrintDebug("Event \"ENCOUNTER_END\" registered.")
+
     self:RegisterEvent(
         "PLAYER_LEVEL_UP",
         function(_, level)
@@ -80,6 +111,17 @@ function Memento:OnInitialize()
 
     self:PrintDebug("Event \"DUEL_FINISHED\" registered.")
 
+    self:RegisterEvent(
+        "PLAYER_LOGIN",
+        function()
+            if self.db.profile.events.login.active then
+                self:ScheduleTimer("TimerScreenshotLogin", self.db.profile.events.login.timer)
+            end
+        end
+    )
+
+    self:PrintDebug("Event \"PLAYER_LOGIN\" registered.")
+
     if self.db.profile.options.statistic then
         Memento:PrintStatistic()
     end
@@ -108,6 +150,13 @@ function Memento:TimerScreenshotGuildAchievement(achievementID)
     self:TakeScreenshot(EVENT_ACHIEVEMENT_GUILD)
 end
 
+function Memento:TimerScreenshotEncounter(encounterName, difficultyName, difficulty, encounterID)
+	self:PrintMessage(L["chat.events.encounter.new"] .. encounterName .. " (" .. difficultyName .. ")")
+    self:TakeScreenshot(EVENT_ENCOUNTER)
+
+    Memento_DataBossKill[difficulty][encounterID] = true
+end
+
 function Memento:TimerScreenshotLevelUp(level)
 	self:PrintMessage(L["chat.events.levelUp.new"] .. level)
     self:TakeScreenshot(EVENT_LEVEL_UP)
@@ -121,6 +170,11 @@ end
 function Memento:TimerScreenshotDuel()
 	self:PrintMessage(L["chat.events.duel.new"])
     self:TakeScreenshot(EVENT_DUEL)
+end
+
+function Memento:TimerScreenshotLogin()
+	self:PrintMessage(L["chat.events.login.new"])
+    self:TakeScreenshot(EVENT_LOGIN)
 end
 
 function Memento:SlashCommand(msg)
