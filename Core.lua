@@ -63,23 +63,21 @@ function Memento:OnInitialize()
 
             local difficultyName, groupType = GetDifficultyInfo(difficultyID)
             local difficulty = "D" .. difficultyID
-            self:PrintDebug("1")
+
             if (success == 1 and ((groupType == "party" and self.db.profile.events.encounter.victory.party) or (groupType == "raid" and self.db.profile.events.encounter.victory.raid) or (groupType == "scenario" and self.db.profile.events.encounter.victory.scenario))) then 
                 if (not Memento_DataBossKill[difficulty]) then 
                     Memento_DataBossKill[difficulty] = {}
                 end
-                self:PrintDebug("2")
+
                 if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.victory.first) then
                     self:PrintDebug("Encounter already killed and no screenshot requested.")
                     return
                 end
-                self:PrintDebug("3")
+
                 self:ScheduleTimer("TimerScreenshotEncounterVictory", self.db.profile.events.encounter.victory.timer, encounterName, difficultyName, difficulty, encounterID)
             elseif (success == 0 and ((groupType == "party" and self.db.profile.events.encounter.wipe.party) or (groupType == "raid" and self.db.profile.events.encounter.wipe.raid) or (groupType == "scenario" and self.db.profile.events.encounter.wipe.scenario))) then
                 self:ScheduleTimer("TimerScreenshotEncounterWipe", self.db.profile.events.encounter.wipe.timer, encounterName, difficultyName)
-                self:PrintDebug("4")
             end
-            self:PrintDebug("5")
         end
     )
 
