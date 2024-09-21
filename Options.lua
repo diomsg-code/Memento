@@ -255,78 +255,162 @@ options.retail.general = {
 					inline = true,
 					order = 1.4,
 					args = {
-						party = {
+						victoryDesc = {
+							name = L["general.options.encounter.victory.desc"],
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 1.40
+						},
+						victoryParty = {
 							type = "toggle",
-							name = L["general.options.encounter.party.name"],
-							desc = L["general.options.encounter.party.desc"],
+							name = L["general.options.encounter.victory.party.name"],
+							desc = L["general.options.encounter.victory.party.desc"],
 							get = function()
-								return Memento.db.profile.events.encounter.party
+								return Memento.db.profile.events.encounter.victory.party
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.party = value
+								Memento.db.profile.events.encounter.victory.party = value
 							end,
 							width = "normal",
 							order = 1.41
 						},
-						raid = {
+						victoryRaid = {
 							type = "toggle",
-							name = L["general.options.encounter.raid.name"],
-							desc = L["general.options.encounter.raid.desc"],
+							name = L["general.options.encounter.victory.raid.name"],
+							desc = L["general.options.encounter.victory.raid.desc"],
 							get = function()
-								return Memento.db.profile.events.encounter.raid
+								return Memento.db.profile.events.encounter.victory.raid
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.raid = value
+								Memento.db.profile.events.encounter.victory.raid = value
 							end,
 							width = "normal",
 							order = 1.42
 						},
-						scenario = {
+						victoryScenario = {
 							type = "toggle",
-							name = L["general.options.encounter.scenario.name"],
-							desc = L["general.options.encounter.scenario.desc"],
+							name = L["general.options.encounter.victory.scenario.name"],
+							desc = L["general.options.encounter.victory.scenario.desc"],
 							get = function()
-								return Memento.db.profile.events.encounter.scenario
+								return Memento.db.profile.events.encounter.victory.scenario
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.scenario = value
+								Memento.db.profile.events.encounter.victory.scenario = value
 							end,
 							width = "normal",
 							order = 1.43
 						},
-						first = {
+						victoryFirst = {
 							type = "toggle",
-							name = L["general.options.encounter.first.name"],
-							desc = L["general.options.encounter.first.desc"],
+							name = L["general.options.encounter.victory.first.name"],
+							desc = L["general.options.encounter.victory.first.desc"],
 							disabled = function()
-								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid) and (not Memento.db.profile.events.encounter.scenario))
+								return ((not Memento.db.profile.events.encounter.victory.party) and (not Memento.db.profile.events.encounter.victory.raid) and (not Memento.db.profile.events.encounter.victory.scenario))
 							end,
 							get = function()
-								return Memento.db.profile.events.encounter.first
+								return Memento.db.profile.events.encounter.victory.first
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.first = value
+								Memento.db.profile.events.encounter.victory.first = value
 							end,
 							width = "double",
 							order = 1.44
 						},
-						timer = {
-							name = L["general.options.encounter.timer.name"],
-							desc = L["general.options.encounter.timer.desc"],
+						victoryTimer = {
+							name = L["general.options.encounter.victory.timer.name"],
+							desc = L["general.options.encounter.victory.timer.desc"],
 							type = "range",
 							min = 0,
 							max = 10,
 							step = 1,
 							disabled = function()
-								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid) and (not Memento.db.profile.events.encounter.scenario))
+								return ((not Memento.db.profile.events.encounter.victory.party) and (not Memento.db.profile.events.encounter.victory.raid) and (not Memento.db.profile.events.encounter.victory.scenario))
 							end,
 							get = function()
-								return Memento.db.profile.events.encounter.timer
+								return Memento.db.profile.events.encounter.victory.timer
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.timer = value
+								Memento.db.profile.events.encounter.victory.timer = value
 							end,
 							order = 1.45
+						},
+						separator = {
+							name = "",
+							type = "header",
+							dialogControl = "SFX-Header",
+							order = 1.46
+						},
+						wipeDesc = {
+							name = L["general.options.encounter.wipe.desc"],
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 1.47
+						},
+						wipeParty = {
+							type = "toggle",
+							name = L["general.options.encounter.wipe.party.name"],
+							desc = L["general.options.encounter.wipe.party.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.party
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.party = value
+							end,
+							width = "normal",
+							order = 1.48
+						},
+						wipeRaid = {
+							type = "toggle",
+							name = L["general.options.encounter.wipe.raid.name"],
+							desc = L["general.options.encounter.wipe.raid.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.raid
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.raid = value
+							end,
+							width = "normal",
+							order = 1.49
+						},
+						wipeScenario = {
+							type = "toggle",
+							name = L["general.options.encounter.wipe.scenario.name"],
+							desc = L["general.options.encounter.wipe.scenario.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.scenario
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.scenario = value
+							end,
+							width = "normal",
+							order = 1.50
+						},
+						space = {
+							name = "",
+							type = "description",
+							width = "double",
+							fontSize = "medium",
+							order = 1.51
+						},
+						wipeTimer = {
+							name = L["general.options.encounter.wipe.timer.name"],
+							desc = L["general.options.encounter.wipe.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.wipe.party) and (not Memento.db.profile.events.encounter.wipe.raid) and (not Memento.db.profile.events.encounter.wipe.scenario))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.timer = value
+							end,
+							order = 1.52
 						},
 					},
 				},
@@ -655,67 +739,138 @@ options.vanilla.general = {
 					name = L["general.options.encounter"],
 					type = "group",
 					inline = true,
-					order = 1.2,
+					order = 1.4,
 					args = {
-						party = {
+						victoryDesc = {
+							name = L["general.options.encounter.victory.desc"],
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 1.40
+						},
+						victoryParty = {
 							type = "toggle",
-							name = L["general.options.encounter.party.name"],
-							desc = L["general.options.encounter.party.desc"],
+							name = L["general.options.encounter.victory.party.name"],
+							desc = L["general.options.encounter.victory.party.desc"],
 							get = function()
-								return Memento.db.profile.events.encounter.party
+								return Memento.db.profile.events.encounter.victory.party
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.party = value
+								Memento.db.profile.events.encounter.victory.party = value
 							end,
 							width = "normal",
-							order = 1.21
+							order = 1.41
 						},
-						raid = {
+						victoryRaid = {
 							type = "toggle",
-							name = L["general.options.encounter.raid.name"],
-							desc = L["general.options.encounter.raid.desc"],
+							name = L["general.options.encounter.victory.raid.name"],
+							desc = L["general.options.encounter.victory.raid.desc"],
 							get = function()
-								return Memento.db.profile.events.encounter.raid
+								return Memento.db.profile.events.encounter.victory.raid
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.raid = value
+								Memento.db.profile.events.encounter.victory.raid = value
 							end,
 							width = "normal",
-							order = 1.22
+							order = 1.42
 						},
-						first = {
+						victoryFirst = {
 							type = "toggle",
-							name = L["general.options.encounter.first.name"],
-							desc = L["general.options.encounter.first.desc"],
+							name = L["general.options.encounter.victory.first.name"],
+							desc = L["general.options.encounter.victory.first.desc"],
 							disabled = function()
-								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+								return ((not Memento.db.profile.events.encounter.victory.party) and (not Memento.db.profile.events.encounter.victory.raid) and (not Memento.db.profile.events.encounter.victory.scenario))
 							end,
 							get = function()
-								return Memento.db.profile.events.encounter.first
+								return Memento.db.profile.events.encounter.victory.first
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.first = value
+								Memento.db.profile.events.encounter.victory.first = value
 							end,
 							width = "double",
-							order = 1.23
+							order = 1.43
 						},
-						timer = {
-							name = L["general.options.encounter.timer.name"],
-							desc = L["general.options.encounter.timer.desc"],
+						victoryTimer = {
+							name = L["general.options.encounter.victory.timer.name"],
+							desc = L["general.options.encounter.victory.timer.desc"],
 							type = "range",
 							min = 0,
 							max = 10,
 							step = 1,
 							disabled = function()
-								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+								return ((not Memento.db.profile.events.encounter.victory.party) and (not Memento.db.profile.events.encounter.victory.raid) and (not Memento.db.profile.events.encounter.victory.scenario))
 							end,
 							get = function()
-								return Memento.db.profile.events.encounter.timer
+								return Memento.db.profile.events.encounter.victory.timer
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.timer = value
+								Memento.db.profile.events.encounter.victory.timer = value
 							end,
-							order = 1.24
+							order = 1.44
+						},
+						separator = {
+							name = "",
+							type = "header",
+							dialogControl = "SFX-Header",
+							order = 1.45
+						},
+						wipeDesc = {
+							name = L["general.options.encounter.wipe.desc"],
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 1.46
+						},
+						wipeParty = {
+							type = "toggle",
+							name = L["general.options.encounter.wipe.party.name"],
+							desc = L["general.options.encounter.wipe.party.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.party
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.party = value
+							end,
+							width = "normal",
+							order = 1.47
+						},
+						wipeRaid = {
+							type = "toggle",
+							name = L["general.options.encounter.wipe.raid.name"],
+							desc = L["general.options.encounter.wipe.raid.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.raid
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.raid = value
+							end,
+							width = "normal",
+							order = 1.48
+						},
+						space = {
+							name = "",
+							type = "description",
+							width = "double",
+							fontSize = "medium",
+							order = 1.49
+						},
+						wipeTimer = {
+							name = L["general.options.encounter.wipe.timer.name"],
+							desc = L["general.options.encounter.wipe.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.wipe.party) and (not Memento.db.profile.events.encounter.wipe.raid) and (not Memento.db.profile.events.encounter.wipe.scenario))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.timer = value
+							end,
+							order = 1.50
 						},
 					},
 				},
@@ -1140,65 +1295,136 @@ options.cata.general = {
 					inline = true,
 					order = 1.4,
 					args = {
-						party = {
+						victoryDesc = {
+							name = L["general.options.encounter.victory.desc"],
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 1.40
+						},
+						victoryParty = {
 							type = "toggle",
-							name = L["general.options.encounter.party.name"],
-							desc = L["general.options.encounter.party.desc"],
+							name = L["general.options.encounter.victory.party.name"],
+							desc = L["general.options.encounter.victory.party.desc"],
 							get = function()
-								return Memento.db.profile.events.encounter.party
+								return Memento.db.profile.events.encounter.victory.party
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.party = value
+								Memento.db.profile.events.encounter.victory.party = value
 							end,
 							width = "normal",
 							order = 1.41
 						},
-						raid = {
+						victoryRaid = {
 							type = "toggle",
-							name = L["general.options.encounter.raid.name"],
-							desc = L["general.options.encounter.raid.desc"],
+							name = L["general.options.encounter.victory.raid.name"],
+							desc = L["general.options.encounter.victory.raid.desc"],
 							get = function()
-								return Memento.db.profile.events.encounter.raid
+								return Memento.db.profile.events.encounter.victory.raid
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.raid = value
+								Memento.db.profile.events.encounter.victory.raid = value
 							end,
 							width = "normal",
 							order = 1.42
 						},
-						first = {
+						victoryFirst = {
 							type = "toggle",
-							name = L["general.options.encounter.first.name"],
-							desc = L["general.options.encounter.first.desc"],
+							name = L["general.options.encounter.victory.first.name"],
+							desc = L["general.options.encounter.victory.first.desc"],
 							disabled = function()
-								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+								return ((not Memento.db.profile.events.encounter.victory.party) and (not Memento.db.profile.events.encounter.victory.raid) and (not Memento.db.profile.events.encounter.victory.scenario))
 							end,
 							get = function()
-								return Memento.db.profile.events.encounter.first
+								return Memento.db.profile.events.encounter.victory.first
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.first = value
+								Memento.db.profile.events.encounter.victory.first = value
 							end,
 							width = "double",
 							order = 1.43
 						},
-						timer = {
-							name = L["general.options.encounter.timer.name"],
-							desc = L["general.options.encounter.timer.desc"],
+						victoryTimer = {
+							name = L["general.options.encounter.victory.timer.name"],
+							desc = L["general.options.encounter.victory.timer.desc"],
 							type = "range",
 							min = 0,
 							max = 10,
 							step = 1,
 							disabled = function()
-								return ((not Memento.db.profile.events.encounter.party) and (not Memento.db.profile.events.encounter.raid))
+								return ((not Memento.db.profile.events.encounter.victory.party) and (not Memento.db.profile.events.encounter.victory.raid) and (not Memento.db.profile.events.encounter.victory.scenario))
 							end,
 							get = function()
-								return Memento.db.profile.events.encounter.timer
+								return Memento.db.profile.events.encounter.victory.timer
 							end,
 							set = function(_, value)
-								Memento.db.profile.events.encounter.timer = value
+								Memento.db.profile.events.encounter.victory.timer = value
 							end,
 							order = 1.44
+						},
+						separator = {
+							name = "",
+							type = "header",
+							dialogControl = "SFX-Header",
+							order = 1.45
+						},
+						wipeDesc = {
+							name = L["general.options.encounter.wipe.desc"],
+							type = "description",
+							width = "full",
+							fontSize = "medium",
+							order = 1.46
+						},
+						wipeParty = {
+							type = "toggle",
+							name = L["general.options.encounter.wipe.party.name"],
+							desc = L["general.options.encounter.wipe.party.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.party
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.party = value
+							end,
+							width = "normal",
+							order = 1.47
+						},
+						wipeRaid = {
+							type = "toggle",
+							name = L["general.options.encounter.wipe.raid.name"],
+							desc = L["general.options.encounter.wipe.raid.desc"],
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.raid
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.raid = value
+							end,
+							width = "normal",
+							order = 1.48
+						},
+						space = {
+							name = "",
+							type = "description",
+							width = "double",
+							fontSize = "medium",
+							order = 1.49
+						},
+						wipeTimer = {
+							name = L["general.options.encounter.wipe.timer.name"],
+							desc = L["general.options.encounter.wipe.timer.desc"],
+							type = "range",
+							min = 0,
+							max = 10,
+							step = 1,
+							disabled = function()
+								return ((not Memento.db.profile.events.encounter.wipe.party) and (not Memento.db.profile.events.encounter.wipe.raid) and (not Memento.db.profile.events.encounter.wipe.scenario))
+							end,
+							get = function()
+								return Memento.db.profile.events.encounter.wipe.timer
+							end,
+							set = function(_, value)
+								Memento.db.profile.events.encounter.wipe.timer = value
+							end,
+							order = 1.50
 						},
 					},
 				},
@@ -1414,11 +1640,19 @@ defaults.retail.options = {
                 },
             },
 			encounter = {
-				party = true,
-				raid = true,
-				scenario = true,
-				first = true,
-				timer = 2
+                victory = {
+					party = true,
+					raid = true,
+					scenario = true,
+					first = true,
+					timer = 2
+                },
+                wipe = {
+					party = true,
+					raid = true,
+					scenario = true,
+					timer = 2
+                },
 			},
             levelUp = {
                 active = true,
@@ -1506,11 +1740,19 @@ defaults.vanilla.options = {
 		},
 		events = {
 			encounter = {
-				party = true,
-				raid = true,
-				scenario = false,
-				first = true,
-				timer = 2
+				victory = {
+					party = true,
+					raid = true,
+					scenario = false,
+					first = true,
+					timer = 2
+				},
+				wipe = {
+					party = true,
+					raid = true,
+					scenario = false,
+					timer = 2
+				},
 			},
             levelUp = {
                 active = true,
@@ -1593,11 +1835,19 @@ defaults.cata.options = {
                 },
             },
 			encounter = {
-				party = true,
-				raid = true,
-				scenario = false,
-				first = true,
-				timer = 2
+				victory = {
+					party = true,
+					raid = true,
+					scenario = false,
+					first = true,
+					timer = 2
+				},
+				wipe = {
+					party = true,
+					raid = true,
+					scenario = false,
+					timer = 2
+				},
 			},
             levelUp = {
                 active = true,

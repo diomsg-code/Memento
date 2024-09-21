@@ -65,32 +65,36 @@ function Memento:TakeScreenshot(event)
     if event == 1 then
         self.dbStatstic.char.events.achievement.personal.count = self.dbStatstic.char.events.achievement.personal.count + 1
         self.dbStatstic.global.events.achievement.personal.count = self.dbStatstic.global.events.achievement.personal.count + 1
-        self:PrintDebug("Event counter for EVENT_ACHIEVEMENT_PERSONAL increased by one.")
+        self:PrintDebug("Counter for \"ACHIEVEMENT_EARNED\" (Personal) increased by one.")
     elseif event == 2 then
         self.dbStatstic.char.events.achievement.guild.count = self.dbStatstic.char.events.achievement.guild.count + 1
         self.dbStatstic.global.events.achievement.guild.count = self.dbStatstic.global.events.achievement.guild.count + 1
-        self:PrintDebug("Event counter for EVENT_ACHIEVEMENT_GUILD increased by one.")
+        self:PrintDebug("Counter for \"ACHIEVEMENT_EARNED\" (Guild) increased by one.")
     elseif event == 3 then
         self.dbStatstic.char.events.encounter.count = self.dbStatstic.char.events.encounter.count + 1
         self.dbStatstic.global.events.encounter.count = self.dbStatstic.global.events.encounter.count + 1
-        self:PrintDebug("Event counter for EVENT_ENCOUNTER increased by one.")
+        self:PrintDebug("Counter for \"ENCOUNTER_END\" (Victory) increased by one.")
     elseif event == 4 then
         self.dbStatstic.char.events.levelUp.count = self.dbStatstic.char.events.levelUp.count + 1
         self.dbStatstic.global.events.levelUp.count = self.dbStatstic.global.events.levelUp.count + 1
-        self:PrintDebug("Event counter for EVENT_LEVEL_UP increased by one.")
+        self:PrintDebug("Counter for \"ENCOUNTER_END\" (Wipe) increased by one.")
     elseif event == 5 then
+        self.dbStatstic.char.events.levelUp.count = self.dbStatstic.char.events.levelUp.count + 1
+        self.dbStatstic.global.events.levelUp.count = self.dbStatstic.global.events.levelUp.count + 1
+        self:PrintDebug("Counter for \"PLAYER_LEVEL_UP\" increased by one.")
+    elseif event == 6 then
         self.dbStatstic.char.events.death.count = self.dbStatstic.char.events.death.count + 1
         self.dbStatstic.global.events.death.count = self.dbStatstic.global.events.death.count + 1
-        self:PrintDebug("Event counter for EVENT_DEATH increased by one.")
-    elseif event == 6 then
+        self:PrintDebug("Counter for \"PLAYER_DEAD\" increased by one.")
+    elseif event == 7 then
         self.dbStatstic.char.events.duel.count = self.dbStatstic.char.events.duel.count + 1
         self.dbStatstic.global.events.duel.count = self.dbStatstic.global.events.duel.count + 1
-        self:PrintDebug("Event counter for EVENT_DUEL increased by one.")
-    elseif event == 7 then
+        self:PrintDebug("Counter for \"DUEL_FINISHED\" increased by one.")
+    elseif event == 8 then
         self.dbStatstic.char.events.login.count = self.dbStatstic.char.events.login.count + 1
         self.dbStatstic.global.events.login.count = self.dbStatstic.global.events.login.count + 1
-        self:PrintDebug("Event counter for EVENT_LOGIN increased by one.")
+        self:PrintDebug("Counter for \"PLAYER_LOGIN\" increased by one.")
     else
-        self:PrintDebug("Event counter for no event was increased.")
+        self:PrintDebug("No Counter was increased.")
     end
 end

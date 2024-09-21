@@ -12,13 +12,14 @@ Memento.gameVersion = GetBuildInfo()
 
 local mediaPath = "Interface\\AddOns\\" .. addonName .. "\\media\\"
 
-local EVENT_ACHIEVEMENT_PERSONAL = 1
-local EVENT_ACHIEVEMENT_GUILD = 2
-local EVENT_ENCOUNTER = 3
-local EVENT_LEVEL_UP = 4
-local EVENT_DEATH = 5
-local EVENT_DUEL = 6
-local EVENT_LOGIN = 7
+local EVENT_ACHIEVEMENT_EARNED_PERSONAL = 1
+local EVENT_ACHIEVEMENT_EARNED_GUILD = 2
+local EVENT_ENCOUNTER_END_VICTORY = 3
+local EVENT_ENCOUNTER_END_WIPE = 4
+local EVENT_PLAYER_LEVEL_UP = 5
+local EVENT_PLAYER_DEAD = 6
+local EVENT_DUEL_FINISHED = 7
+local EVENT_PLAYER_LOGIN = 8
 
 -------------------------
 --- Memento functions ---
@@ -36,6 +37,8 @@ function Memento:OnInitialize()
         self:RegisterEvent(
             "ACHIEVEMENT_EARNED",
             function(_, achievementID, alreadyEarned)
+                self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" fired. Payload: achievementID=" .. achievementID .. ", alreadyEarned=" .. alreadyEarned)
+
                 local isGuildAchievement = select(12, GetAchievementInfo(achievementID))
 
                 if not isGuildAchievement then
@@ -56,23 +59,27 @@ function Memento:OnInitialize()
     self:RegisterEvent(
         "ENCOUNTER_END",
         function(_, encounterID, encounterName, difficultyID, groupSize, success)
-            self:PrintDebug("Event \"ENCOUNTER_END\" fired. encounterID=" .. encounterID .. ", encounterName=" .. encounterName .. ", difficultyID=" .. difficultyID .. ", groupSize=" .. groupSize .. ", success=" .. success)
+            self:PrintDebug("Event \"ENCOUNTER_END\" fired. Payload: encounterID=" .. encounterID .. ", encounterName=" .. encounterName .. ", difficultyID=" .. difficultyID .. ", groupSize=" .. groupSize .. ", success=" .. success)
 
             local difficultyName, groupType = GetDifficultyInfo(difficultyID)
             local difficulty = "D" .. difficultyID
-
-            if (success == 1 and ((groupType == "party" and self.db.profile.events.encounter.party) or (groupType == "raid" and self.db.profile.events.encounter.raid) or (groupType == "scenario" and self.db.profile.events.encounter.scenario))) then 
+            self:PrintDebug("1")
+            if (success == 1 and ((groupType == "party" and self.db.profile.events.encounter.victory.party) or (groupType == "raid" and self.db.profile.events.encounter.victory.raid) or (groupType == "scenario" and self.db.profile.events.encounter.victory.scenario))) then 
                 if (not Memento_DataBossKill[difficulty]) then 
                     Memento_DataBossKill[difficulty] = {}
                 end
-
-                if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.first) then
+                self:PrintDebug("2")
+                if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.victory.first) then
                     self:PrintDebug("Encounter already killed and no screenshot requested.")
                     return
                 end
-
-                self:ScheduleTimer("TimerScreenshotEncounter", self.db.profile.events.encounter.timer, encounterName, difficultyName, difficulty, encounterID)
+                self:PrintDebug("3")
+                self:ScheduleTimer("TimerScreenshotEncounterVictory", self.db.profile.events.encounter.victory.timer, encounterName, difficultyName, difficulty, encounterID)
+            elseif (success == 0 and ((groupType == "party" and self.db.profile.events.encounter.wipe.party) or (groupType == "raid" and self.db.profile.events.encounter.wipe.raid) or (groupType == "scenario" and self.db.profile.events.encounter.wipe.scenario))) then
+                self:ScheduleTimer("TimerScreenshotEncounterWipe", self.db.profile.events.encounter.wipe.timer, encounterName, difficultyName)
+                self:PrintDebug("4")
             end
+            self:PrintDebug("5")
         end
     )
 
@@ -81,6 +88,8 @@ function Memento:OnInitialize()
     self:RegisterEvent(
         "PLAYER_LEVEL_UP",
         function(_, level)
+            self:PrintDebug("Event \"PLAYER_LEVEL_UP\" fired. Payload: level=" .. level)
+
             if self.db.profile.events.levelUp.active then
                 self:ScheduleTimer("TimerScreenshotLevelUp", self.db.profile.events.levelUp.timer, level)
             end
@@ -92,6 +101,8 @@ function Memento:OnInitialize()
     self:RegisterEvent(
         "PLAYER_DEAD",
         function()
+            self:PrintDebug("Event \"PLAYER_DEAD\" fired. No payload.")
+
             if self.db.profile.events.death.active then
                 self:ScheduleTimer("TimerScreenshotDeath", self.db.profile.events.death.timer)
             end
@@ -103,6 +114,8 @@ function Memento:OnInitialize()
     self:RegisterEvent(
         "DUEL_FINISHED",
         function()
+            self:PrintDebug("Event \"DUEL_FINISHED\" fired. No payload.")
+
             if self.db.profile.events.duel.active then
                 self:ScheduleTimer("TimerScreenshotDuel", self.db.profile.events.duel.timer)
             end
@@ -114,6 +127,8 @@ function Memento:OnInitialize()
     self:RegisterEvent(
         "PLAYER_LOGIN",
         function()
+            self:PrintDebug("Event \"PLAYER_LOGIN\" fired. No payload.")
+
             if self.db.profile.events.login.active then
                 self:ScheduleTimer("TimerScreenshotLogin", self.db.profile.events.login.timer)
             end
@@ -134,10 +149,10 @@ function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned
 
     if not alreadyEarned then
         self:PrintMessage(L["chat.events.achievement.personal.new"] .. name)
-        self:TakeScreenshot(EVENT_ACHIEVEMENT_PERSONAL)
+        self:TakeScreenshot(EVENT_ACHIEVEMENT_EARNED_PERSONAL)
     elseif self.db.profile.events.achievement.personal.exist then
         self:PrintMessage(L["chat.events.achievement.personal.exist"] .. name)
-        self:TakeScreenshot(EVENT_ACHIEVEMENT_PERSONAL)
+        self:TakeScreenshot(EVENT_ACHIEVEMENT_EARNED_PERSONAL)
     else
         self:PrintDebug("No screenshot has been taken as the achievement has already been reached by another character: " .. name)
     end
@@ -147,34 +162,39 @@ function Memento:TimerScreenshotGuildAchievement(achievementID)
     local name = select(2, GetAchievementInfo(achievementID))
 
     self:PrintMessage(L["chat.events.achievement.guild.new"] .. name)
-    self:TakeScreenshot(EVENT_ACHIEVEMENT_GUILD)
+    self:TakeScreenshot(EVENT_ACHIEVEMENT_EARNED_GUILD)
 end
 
-function Memento:TimerScreenshotEncounter(encounterName, difficultyName, difficulty, encounterID)
-	self:PrintMessage(L["chat.events.encounter.new"] .. encounterName .. " (" .. difficultyName .. ")")
-    self:TakeScreenshot(EVENT_ENCOUNTER)
+function Memento:TimerScreenshotEncounterVictory(encounterName, difficultyName, difficulty, encounterID)
+	self:PrintMessage(L["chat.events.encounter.victory.new"] .. encounterName .. " (" .. difficultyName .. ")")
+    self:TakeScreenshot(EVENT_ENCOUNTER_END_VICTORY)
 
     Memento_DataBossKill[difficulty][encounterID] = true
 end
 
+function Memento:TimerScreenshotEncounterWipe(encounterName, difficultyName)
+	self:PrintMessage(L["chat.events.encounter.wipe.new"] .. encounterName .. " (" .. difficultyName .. ")")
+    self:TakeScreenshot(EVENT_ENCOUNTER_END_WIPE)
+end
+
 function Memento:TimerScreenshotLevelUp(level)
 	self:PrintMessage(L["chat.events.levelUp.new"] .. level)
-    self:TakeScreenshot(EVENT_LEVEL_UP)
+    self:TakeScreenshot(EVENT_PLAYER_LEVEL_UP)
 end
 
 function Memento:TimerScreenshotDeath()
 	self:PrintMessage(L["chat.events.death.new"])
-    self:TakeScreenshot(EVENT_DEATH)
+    self:TakeScreenshot(EVENT_PLAYER_DEAD)
 end
 
 function Memento:TimerScreenshotDuel()
 	self:PrintMessage(L["chat.events.duel.new"])
-    self:TakeScreenshot(EVENT_DUEL)
+    self:TakeScreenshot(EVENT_DUEL_FINISHED)
 end
 
 function Memento:TimerScreenshotLogin()
 	self:PrintMessage(L["chat.events.login.new"])
-    self:TakeScreenshot(EVENT_LOGIN)
+    self:TakeScreenshot(EVENT_PLAYER_LOGIN)
 end
 
 function Memento:SlashCommand(msg)

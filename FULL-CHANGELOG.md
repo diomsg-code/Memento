@@ -1,3 +1,7 @@
+**1.4.0 (2024-09-21)**
+- Added: New event (Boss wipe) - An automatic screenshot can now be taken when you have wiped (Dungeon, Raid or Scenario)
+- Minor code adjustments
+
 **1.3.1 (2024-09-20)**
 - Fixed: Databasename in TOC
 

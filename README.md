@@ -4,7 +4,7 @@ Memento is an addon that automatically takes screenshots of specific events. The
 
 *   Personal achievement*
 *   Guild achievement*
-*   Boss killing
+*   Boss fight (victory and wipe)
 *   Level-up
 *   Player death
 *   Duel finished
