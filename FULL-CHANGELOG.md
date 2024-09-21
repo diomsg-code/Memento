@@ -1,3 +1,6 @@
+**1.4.1 (2024-09-21)**
+- Fixed: It was no longer possible to create a screenshot for achievements
+
 **1.4.0 (2024-09-21)**
 - Added: New event (Boss wipe) - An automatic screenshot can now be taken when you have wiped (Dungeon, Raid or Scenario)
 - Minor code adjustments

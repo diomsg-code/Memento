@@ -37,17 +37,17 @@ function Memento:OnInitialize()
         self:RegisterEvent(
             "ACHIEVEMENT_EARNED",
             function(_, achievementID, alreadyEarned)
-                self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" fired. Payload: achievementID=" .. achievementID .. ", alreadyEarned=" .. alreadyEarned)
+                self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" fired. Payload: achievementID=" .. achievementID .. ", alreadyEarned=" .. tostring(alreadyEarned))
 
                 local isGuildAchievement = select(12, GetAchievementInfo(achievementID))
 
                 if not isGuildAchievement then
                     if self.db.profile.events.achievement.personal.active then
-                        self:ScheduleTimer("TimerScreenshotPersonalAchievement", self.db.profile.events.achievement.personal.timer, achievementID, alreadyEarned)
+                        self:ScheduleTimer("TimerScreenshotAchievementPersonal", self.db.profile.events.achievement.personal.timer, achievementID, alreadyEarned)
                     end
                 else
                     if self.db.profile.events.achievement.guild.active then
-                        self:ScheduleTimer("TimerScreenshotGuildAchievement", self.db.profile.events.achievement.guild.timer, achievementID)
+                        self:ScheduleTimer("TimerScreenshotAchievementGuild", self.db.profile.events.achievement.guild.timer, achievementID)
                     end
                 end
             end
@@ -142,7 +142,7 @@ function Memento:OnInitialize()
     self:PrintDebug("Addon fully loaded.")
 end
 
-function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned)
+function Memento:TimerScreenshotAchievementPersonal(achievementID, alreadyEarned)
     local name = select(2, GetAchievementInfo(achievementID))
 
     if not alreadyEarned then
@@ -156,7 +156,7 @@ function Memento:TimerScreenshotPersonalAchievement(achievementID, alreadyEarned
     end
 end
 
-function Memento:TimerScreenshotGuildAchievement(achievementID)
+function Memento:TimerScreenshotAchievementGuild(achievementID)
     local name = select(2, GetAchievementInfo(achievementID))
 
     self:PrintMessage(L["chat.events.achievement.guild.new"] .. name)
