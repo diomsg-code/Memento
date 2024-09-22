@@ -1,3 +1,6 @@
+**1.4.2 (2024-09-22)**
+- Updated: deDE, enUS localization
+
 **1.4.1 (2024-09-21)**
 - Fixed: It was no longer possible to create a screenshot for achievements
 

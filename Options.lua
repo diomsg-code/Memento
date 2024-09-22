@@ -1934,7 +1934,7 @@ function Memento:SetupOptions()
 		AceConfig:RegisterOptionsTable(addonName, options.retail.general)
 		self.db = LibStub("AceDB-3.0"):New("Memento_Options", defaults.retail.options, true)
 		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic", defaults.retail.statistic, true)
-        self:PrintDebug("Retail default options and database have been loaded.")
+        self:PrintDebug("Retail default options and database have been loaded." )
 	elseif self.flavor == "Vanilla" then
 		AceConfig:RegisterOptionsTable(addonName, options.vanilla.general)
 		self.db = LibStub("AceDB-3.0"):New("Memento_Options", defaults.vanilla.options, true)

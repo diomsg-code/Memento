@@ -1,6 +1,7 @@
 local addonName, addon = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
+
 Memento = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0")
 
 Memento.addonVersion = C_AddOns.GetAddOnMetadata(addonName, "Version")
@@ -26,7 +27,7 @@ local EVENT_PLAYER_LOGIN = 8
 -------------------------
 function Memento:OnInitialize()
     self:SetupOptions()
-
+    --addon.Options.SetupOptions(self)
     if (not Memento_DataBossKill) then
         Memento_DataBossKill = {}
     end
