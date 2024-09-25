@@ -1,3 +1,6 @@
+**1.4.3 (2024-09-25)**
+- Updated: TOC version for patch 1.15.4 (Classic)
+
 **1.4.2 (2024-09-22)**
 - Updated: deDE, enUS localization
 

@@ -1,5 +1,5 @@
 ## Memento
-### [1.4.2](https://github.com/diomsg-code/Memento/tree/1.4.2) (2024-09-22)
-[Full Changelog](https://github.com/diomsg-code/Memento/compare/1.4.1...1.4.2) - [Previous Releases](https://github.com/diomsg-code/Memento/releases)
+### [1.4.3](https://github.com/diomsg-code/Memento/tree/1.4.3) (2024-09-25)
+[Full Changelog](https://github.com/diomsg-code/Memento/compare/1.4.2...1.4.3) - [Previous Releases](https://github.com/diomsg-code/Memento/releases)
 
-- Updated: deDE, enUS localization
+- Updated: TOC version for patch 1.15.4 (Classic)
