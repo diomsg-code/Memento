@@ -19,6 +19,8 @@ L["general.options.general.notification.desc"] = "Aktiviere oder deaktiviere die
 L["general.options.general.statistic.name"] = "Statistikausgabe"
 L["general.options.general.statistic.desc"] = "Aktiviere oder deaktiviere die Statistikausgabe im Chat, nach dem Login."
 
+L["general.options.achievement"] = "Erfolge"
+
 L["general.options.achievement.personal"] = "persönlicher Erfolg"
 L["general.options.achievement.personal.active.name"] = "Screenshot bei persönlichem Erfolg erstellen"
 L["general.options.achievement.personal.active.desc"] = "Aktiviere oder deaktiviere die automatische Erstellung eines Screenhots, wenn ein persönlicher Erfolg erlangt wurde."

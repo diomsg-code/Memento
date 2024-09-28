@@ -1,3 +1,7 @@
+**1.5.0 (2024-09-28)**
+- Updated: Redesigned the structure of the addon options so that events can be found more quickly
+- Minor code adjustments
+
 **1.4.3 (2024-09-25)**
 - Updated: TOC version for patch 1.15.4 (Classic)
 
