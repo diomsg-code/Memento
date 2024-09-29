@@ -130,7 +130,7 @@ settings.options = {
 						Memento.db.profile.options.notification = value
 					end,
 					width = "full",
-					order = 0.1
+					order = 0.10
 				},
 				statistic = {
 					type = "toggle",
@@ -143,7 +143,26 @@ settings.options = {
 						Memento.db.profile.options.statistic = value
 					end,
 					width = "full",
-					order = 0.2
+					order = 0.11
+				},
+				ui = {
+					type = "toggle",
+					name = L["general.options.general.ui.name"],
+					desc = L["general.options.general.ui.desc"],
+					get = function()
+						return Memento.db.profile.options.ui
+					end,
+					set = function(_, value)
+						Memento.db.profile.options.ui = value
+					end,
+					width = "full",
+					order = 0.12
+				},
+				separator = {
+					name = "",
+					type = "header",
+					dialogControl = "SFX-Header",
+					order = 0.13
 				},
 				debug = {
 					type = "toggle",
@@ -156,7 +175,7 @@ settings.options = {
 						Memento.db.profile.options.debug = value
 					end,
 					width = "full",
-					order = 0.3,
+					order = 0.14
 				},
 			},
 		},
@@ -590,6 +609,7 @@ defaults.retail.options = {
         options = {
             notification = true,
 			statistic = false,
+			ui = false,
 			debug = false
 		},
 		events = {
@@ -701,6 +721,7 @@ defaults.vanilla.options = {
         options = {
             notification = true,
 			statistic = false,
+			ui = false,
 			debug = false
 		},
 		events = {
@@ -785,6 +806,7 @@ defaults.cata.options = {
         options = {
             notification = true,
 			statistic = false,
+			ui = false,
 			debug = false
 		},
 		events = {

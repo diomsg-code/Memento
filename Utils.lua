@@ -21,6 +21,36 @@ local function markOrangeFont(text)
 	return WrapTextInColorCode(text, "FFFF8040")
 end
 
+local function CreateMessageFrame(frame)
+    local font
+
+    frame = CreateFrame("Frame")
+    frame:ClearAllPoints()
+    frame:SetPoint("BOTTOM", 0, 100)
+    frame:SetSize(164, 41)
+
+    frame.background = frame:CreateTexture(nil, "BACKGROUND")
+    frame.background:ClearAllPoints()
+    frame.background:SetAllPoints(frame)
+    frame.background:SetTexture(612384)
+
+    frame.textTop = frame:CreateFontString(nil, "OVERLAY", "GameFontBlackTiny")
+    frame.textTop:ClearAllPoints()
+    frame.textTop:SetPoint("CENTER", 0, 5)
+    font = frame.textTop:GetFont()
+    frame.textTop:SetFont(tostring(font), 7)
+    frame.textTop:SetText(L["message"])
+
+    frame.textBottom = frame:CreateFontString(nil, "OVERLAY", "GameFontWhiteTiny")
+    frame.textBottom:ClearAllPoints()
+    frame.textBottom:SetPoint("CENTER", 0, -6)
+    font = frame.textBottom:GetFont()
+    frame.textBottom:SetFont(tostring(font), 7)
+    frame.textBottom:SetText(tostring(date("%d/%m/%y %H:%M:%S", GetServerTime())))
+
+    return frame
+end
+
 ----------------------
 --- Print funtions ---
 ----------------------
@@ -59,8 +89,24 @@ end
 --- Main funtions ---
 ---------------------
 function Memento:TakeScreenshot(event)
-    Screenshot()
-    self:PrintDebug("Screenshot taken.")
+    if self.db.profile.options.ui and (not InCombatLockdown()) then
+        UIParent:Hide()
+
+        local frame = CreateFrame("Frame")
+        frame = CreateMessageFrame(frame)
+    
+        Screenshot()
+    
+        C_Timer.After(0.01, function()
+            UIParent:Show()
+            frame:Hide()
+        end)
+
+        self:PrintDebug("Screenshot without UI taken.")
+    else
+        Screenshot()
+        self:PrintDebug("Screenshot taken.")
+    end
 
     if event == 1 then
         self.dbStatstic.char.events.achievement.personal.count = self.dbStatstic.char.events.achievement.personal.count + 1

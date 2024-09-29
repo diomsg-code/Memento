@@ -16,6 +16,8 @@ L["general.options.general.notification.name"] = "Chat notification"
 L["general.options.general.notification.desc"] = "Activate or deactivate the notification in the chat when a screenshot has been taken."
 L["general.options.general.statistic.name"] = "Statistics output"
 L["general.options.general.statistic.desc"] = "Activate or deactivate the statistics output in the chat after login."
+L["general.options.general.ui.name"] = "Hide user interface for screenshot"
+L["general.options.general.ui.desc"] = "Activate or deactivate the option to hide the user interface for the screenshot. A small success notification is displayed instead.\n\nNote: The user interface cannot be hidden automatically during a combat. In this case, the screenshot is taken with the user interface."
 
 L["general.options.achievement"] = "Achievements"
 
@@ -105,3 +107,5 @@ L["chat.statistic.levelUp"] = "Level-up"
 L["chat.statistic.death"] = "Player death"
 L["chat.statistic.duel"] = "Duel finished"
 L["chat.statistic.login"] = "Player login"
+
+L["message"] = "Screenshot taken"

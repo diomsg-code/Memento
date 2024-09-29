@@ -1,3 +1,6 @@
+**1.6.0 (2024-09-29)**
+- Added: The user interface can be automatically hidden for the screenshot and a small success notification is displayed instead (Note: The user interface cannot be hidden automatically during a combat and in this case, the screenshot is taken with the user interface)
+
 **1.5.0 (2024-09-28)**
 - Changed: Redesigned the structure of the addon options so that events can be found more quickly
 - Minor code adjustments

@@ -18,6 +18,8 @@ L["general.options.general.notification.name"] = "Chatbenachrichtigung"
 L["general.options.general.notification.desc"] = "Aktiviere oder deaktiviere die Benachrichtung im Chat, wenn ein Screenshot erstellt wurde."
 L["general.options.general.statistic.name"] = "Statistikausgabe"
 L["general.options.general.statistic.desc"] = "Aktiviere oder deaktiviere die Statistikausgabe im Chat, nach dem Login."
+L["general.options.general.ui.name"] = "Benutzeroberfläche für den Screenshot ausblenden"
+L["general.options.general.ui.desc"] = "Aktiviere oder deaktiviere die Option, dass die Benutzeroberfläche für den Screenshot ausgeblendet wird. Eine kleine Erfolgsanzeige wird stattdessen angezeigt.\n\nHinweis: Während eines Kampfs kann die Benutzeroberfläche nicht automatisch ausgeblendet werden. In diesem Fall wird der Screenshot mit der Benutzeroberfläche erstellt."
 
 L["general.options.achievement"] = "Erfolge"
 
@@ -107,3 +109,5 @@ L["chat.statistic.levelUp"] = "Levelaufstieg"
 L["chat.statistic.death"] = "Spielertod"
 L["chat.statistic.duel"] = "Duel beendet"
 L["chat.statistic.login"] = "Spielerlogin"
+
+L["message"] = "Screenshot erstellt"
