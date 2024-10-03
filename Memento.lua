@@ -2,37 +2,23 @@ local addonName, addon = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
-Memento = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0")
+local Memento = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0")
 
 Memento.addonVersion = C_AddOns.GetAddOnMetadata(addonName, "Version")
 Memento.author = C_AddOns.GetAddOnMetadata(addonName, "Author")
 Memento.flavor = C_AddOns.GetAddOnMetadata(addonName, "X-Flavor")
 Memento.buildDate = C_AddOns.GetAddOnMetadata(addonName, "X-BuildDate")
+Memento.eMail = C_AddOns.GetAddOnMetadata(addonName, "X-E-Mail")
+Memento.github = C_AddOns.GetAddOnMetadata(addonName, "X-Github")
 
 Memento.gameVersion = GetBuildInfo()
 
-local mediaPath = "Interface\\AddOns\\" .. addonName .. "\\media\\"
+---------------------
+--- Main funtions ---
+---------------------
 
-local EVENT_ACHIEVEMENT_EARNED_PERSONAL = 1
-local EVENT_ACHIEVEMENT_EARNED_GUILD = 2
-local EVENT_ENCOUNTER_END_VICTORY = 3
-local EVENT_ENCOUNTER_END_WIPE = 4
-local EVENT_PLAYER_LEVEL_UP = 5
-local EVENT_PLAYER_DEAD = 6
-local EVENT_DUEL_FINISHED = 7
-local EVENT_PLAYER_LOGIN = 8
-
--------------------------
---- Memento functions ---
--------------------------
 function Memento:OnInitialize()
-    self:SetupOptions()
-    --addon.Options.SetupOptions(self)
-    if (not Memento_DataBossKill) then
-        Memento_DataBossKill = {}
-    end
-
-	self:RegisterChatCommand("memento", "SlashCommand")
+    self:SetupAddon()
 
     if self.flavor == "Retail" or self.flavor == "Cata" then
         self:RegisterEvent(
@@ -141,65 +127,4 @@ function Memento:OnInitialize()
     end
 
     self:PrintDebug("Addon fully loaded.")
-end
-
-function Memento:TimerScreenshotAchievementPersonal(achievementID, alreadyEarned)
-    local name = select(2, GetAchievementInfo(achievementID))
-
-    if not alreadyEarned then
-        self:PrintMessage(L["chat.events.achievement.personal.new"] .. name)
-        self:TakeScreenshot(EVENT_ACHIEVEMENT_EARNED_PERSONAL)
-    elseif self.db.profile.events.achievement.personal.exist then
-        self:PrintMessage(L["chat.events.achievement.personal.exist"] .. name)
-        self:TakeScreenshot(EVENT_ACHIEVEMENT_EARNED_PERSONAL)
-    else
-        self:PrintDebug("No screenshot has been taken as the achievement has already been reached by another character: " .. name)
-    end
-end
-
-function Memento:TimerScreenshotAchievementGuild(achievementID)
-    local name = select(2, GetAchievementInfo(achievementID))
-
-    self:PrintMessage(L["chat.events.achievement.guild.new"] .. name)
-    self:TakeScreenshot(EVENT_ACHIEVEMENT_EARNED_GUILD)
-end
-
-function Memento:TimerScreenshotEncounterVictory(encounterName, difficultyName, difficulty, encounterID)
-	self:PrintMessage(L["chat.events.encounter.victory.new"] .. encounterName .. " (" .. difficultyName .. ")")
-    self:TakeScreenshot(EVENT_ENCOUNTER_END_VICTORY)
-
-    Memento_DataBossKill[difficulty][encounterID] = true
-end
-
-function Memento:TimerScreenshotEncounterWipe(encounterName, difficultyName)
-	self:PrintMessage(L["chat.events.encounter.wipe.new"] .. encounterName .. " (" .. difficultyName .. ")")
-    self:TakeScreenshot(EVENT_ENCOUNTER_END_WIPE)
-end
-
-function Memento:TimerScreenshotLevelUp(level)
-	self:PrintMessage(L["chat.events.levelUp.new"] .. level)
-    self:TakeScreenshot(EVENT_PLAYER_LEVEL_UP)
-end
-
-function Memento:TimerScreenshotDeath()
-	self:PrintMessage(L["chat.events.death.new"])
-    self:TakeScreenshot(EVENT_PLAYER_DEAD)
-end
-
-function Memento:TimerScreenshotDuel()
-	self:PrintMessage(L["chat.events.duel.new"])
-    self:TakeScreenshot(EVENT_DUEL_FINISHED)
-end
-
-function Memento:TimerScreenshotLogin()
-	self:PrintMessage(L["chat.events.login.new"])
-    self:TakeScreenshot(EVENT_PLAYER_LOGIN)
-end
-
-function Memento:SlashCommand(msg)
-	if not msg or msg:trim() == "" then
-        Settings.OpenToCategory(addonName)
-	else
-        self:PrintDebug("No arguments will be accepted.")
-	end
 end

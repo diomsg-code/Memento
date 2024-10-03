@@ -1,3 +1,8 @@
+**2.0.0 (2024-10-03)**
+- Added: The statistical overview is now available in the addon options
+- Updated: deDE, enUS localization
+- Refactoring of the addon structure and source code
+
 **1.6.0 (2024-09-29)**
 - Added: The user interface can be automatically hidden for the screenshot and a small success notification is displayed instead (Note: The user interface cannot be hidden automatically during a combat and in this case, the screenshot is taken with the user interface)
 

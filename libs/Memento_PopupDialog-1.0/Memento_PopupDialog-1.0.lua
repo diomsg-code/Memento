@@ -10,7 +10,7 @@ StaticPopupDialogs.EXTERNAL_LINK = {
 	text = "%s",
 	button1 = CLOSE,
 	hasEditBox = true,
-	editBoxWidth = 250,
+	editBoxWidth = 300,
 	timeout = 0,
 	whileDead = true,
 	OnShow = function(self)
@@ -23,7 +23,7 @@ StaticPopupDialogs.EXTERNAL_LINK = {
 	end
 }
 
-function lib.ShowDialogExternalLink(text, link)
+function lib.ShowDialogExternalLink(link, text)
     externalLink = link
 
     StaticPopup_Show("EXTERNAL_LINK", text)

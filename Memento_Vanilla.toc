@@ -5,18 +5,20 @@
 ## IconTexture: Interface\AddOns\Memento\media\icon.blp
 ## X-Flavor: Vanilla
 ## X-BuildDate: @build-date@
+## X-E-Mail: feedback@memento-addon.de
+## X-Github: https://github.com/diomsg-code/Memento
 ## Notes: A World of Warcraft addon that automatically takes screenshots of specific events.
 ## Notes-deDE: Ein World of Warcraft Addon, das automatisch Screenshots von bestimmten Ereignissen erstellt.
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## AllowLoadGameType: vanilla
-## SavedVariables: Memento_Options, Memento_Statistic
+## SavedVariables: Memento_Options, Memento_Statistic_v2
 ## SavedVariablesPerCharacter: Memento_DataBossKill
 ## OptionalDeps: Ace3, AceGUI-3.0_SFX-Widgets
 
-embeds.xml
+libs.xml
 localization.xml
 
-Core.lua
-Options.lua
-Utils.lua
+Memento.lua
+
+core_Vanilla.xml
