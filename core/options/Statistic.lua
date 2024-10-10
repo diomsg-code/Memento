@@ -39,7 +39,7 @@ Memento.optionsTable["statistic"] = {
 					hidden = function ()
 						return (Memento.flavor == "Vanilla")
 					end,
-					width = 1,
+					width = 1.2,
 					fontSize = "medium",
 					order = 0.13
 				},
@@ -53,7 +53,7 @@ Memento.optionsTable["statistic"] = {
 					hidden = function ()
 						return (Memento.flavor == "Vanilla")
 					end,
-					width = 2,
+					width = 1,
 					fontSize = "medium",
 					order = 0.14
 				},
@@ -67,15 +67,49 @@ Memento.optionsTable["statistic"] = {
 					fontSize = "medium",
 					order = 0.15
 				},
+				criteriaAchievementName = {
+					name = MementoMarkGoldFont(L["statistic.screenshots.achievement.criteria"]),
+					type = "description",
+					hidden = function ()
+						return (Memento.flavor == "Vanilla" or Memento.flavor == "Cata")
+					end,
+					width = 1.2,
+					fontSize = "medium",
+					order = 0.16
+				},
+				criteriaAchievementCount = {
+					name = function ()
+						if not (Memento.flavor == "Vanilla" or Memento.flavor == "Cata") then
+							return Memento.dbStatstic.global.events.achievement.criteria.count .. " (" .. Memento.dbStatstic.char.events.achievement.criteria.count .. ")"
+						end
+					end,
+					type = "description",
+					hidden = function ()
+						return (Memento.flavor == "Vanilla" or Memento.flavor == "Cata")
+					end,
+					width = 1,
+					fontSize = "medium",
+					order = 0.17
+				},
+				SPACE_2 = {
+					name = "",
+					type = "description",
+					hidden = function ()
+						return (Memento.flavor == "Vanilla" or Memento.flavor == "Cata")
+					end,
+					width = "full",
+					fontSize = "medium",
+					order = 0.18
+				},
 				guildAchievementName = {
 					name = MementoMarkGoldFont(L["statistic.screenshots.achievement.guild"]),
 					type = "description",
 					hidden = function ()
 						return (Memento.flavor == "Vanilla")
 					end,
-					width = 1,
+					width = 1.2,
 					fontSize = "medium",
-					order = 0.16
+					order = 0.19
 				},
 				guildAchievementCount = {
 					name = function ()
@@ -87,11 +121,11 @@ Memento.optionsTable["statistic"] = {
 					hidden = function ()
 						return (Memento.flavor == "Vanilla")
 					end,
-					width = 2,
+					width = 1,
 					fontSize = "medium",
-					order = 0.17
+					order = 0.20
 				},
-				SPACE_2 = {
+				SPACE_3 = {
 					name = "",
 					type = "description",
 					hidden = function ()
@@ -99,47 +133,21 @@ Memento.optionsTable["statistic"] = {
 					end,
 					width = "full",
 					fontSize = "medium",
-					order = 0.18
-				},
-				encounterName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.encounter"]),
-					type = "description",
-					width = 1,
-					fontSize = "medium",
-					order = 0.19
-				},
-				encounterCount = {
-					name = function ()
-						local global = Memento.dbStatstic.global.events.encounter.victory.count + Memento.dbStatstic.global.events.encounter.wipe.count
-						local char = Memento.dbStatstic.char.events.encounter.victory.count + Memento.dbStatstic.char.events.encounter.wipe.count
-
-						return global .. " (" .. char .. ")"
-					end,
-					type = "description",
-					width = 2,
-					fontSize = "medium",
-					order = 0.20
-				},
-				SPACE_3 = {
-					name = "",
-					type = "description",
-					width = "full",
-					fontSize = "medium",
 					order = 0.21
 				},
-				levelUpName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.levelUp"]),
+				encounterVictoryName = {
+					name = MementoMarkGoldFont(L["statistic.screenshots.encounter.victory"]),
 					type = "description",
-					width = 1,
+					width = 1.2,
 					fontSize = "medium",
 					order = 0.22
 				},
-				levelUpCount = {
+				encounterVictoryCount = {
 					name = function ()
-						return Memento.dbStatstic.global.events.levelUp.count .. " (" .. Memento.dbStatstic.char.events.levelUp.count .. ")"
+						return Memento.dbStatstic.global.events.encounter.victory.count .. " (" .. Memento.dbStatstic.char.events.encounter.victory.count .. ")"
 					end,
 					type = "description",
-					width = 2,
+					width = 1,
 					fontSize = "medium",
 					order = 0.23
 				},
@@ -150,19 +158,19 @@ Memento.optionsTable["statistic"] = {
 					fontSize = "medium",
 					order = 0.24
 				},
-				deathName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.death"]),
+				encounterWipeName = {
+					name = MementoMarkGoldFont(L["statistic.screenshots.encounter.wipe"]),
 					type = "description",
-					width = 1,
+					width = 1.2,
 					fontSize = "medium",
 					order = 0.25
 				},
-				deathCount = {
+				encounterWipeCount = {
 					name = function ()
-						return Memento.dbStatstic.global.events.death.count .. " (" .. Memento.dbStatstic.char.events.death.count .. ")"
+						return Memento.dbStatstic.global.events.encounter.wipe.count .. " (" .. Memento.dbStatstic.char.events.encounter.wipe.count .. ")"
 					end,
 					type = "description",
-					width = 2,
+					width = 1,
 					fontSize = "medium",
 					order = 0.26
 				},
@@ -173,19 +181,19 @@ Memento.optionsTable["statistic"] = {
 					fontSize = "medium",
 					order = 0.27
 				},
-				duelName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.duel"]),
+				levelUpName = {
+					name = MementoMarkGoldFont(L["statistic.screenshots.levelUp"]),
 					type = "description",
-					width = 1,
+					width = 1.2,
 					fontSize = "medium",
 					order = 0.28
 				},
-				duelCount = {
+				levelUpCount = {
 					name = function ()
-						return Memento.dbStatstic.global.events.duel.count .. " (" .. Memento.dbStatstic.char.events.duel.count .. ")"
+						return Memento.dbStatstic.global.events.levelUp.count .. " (" .. Memento.dbStatstic.char.events.levelUp.count .. ")"
 					end,
 					type = "description",
-					width = 2,
+					width = 1,
 					fontSize = "medium",
 					order = 0.29
 				},
@@ -196,19 +204,19 @@ Memento.optionsTable["statistic"] = {
 					fontSize = "medium",
 					order = 0.30
 				},
-				loginName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.login"]),
+				deathName = {
+					name = MementoMarkGoldFont(L["statistic.screenshots.death"]),
 					type = "description",
-					width = 1,
+					width = 1.2,
 					fontSize = "medium",
 					order = 0.31
 				},
-				loginCount = {
+				deathCount = {
 					name = function ()
-						return Memento.dbStatstic.global.events.login.count .. " (" .. Memento.dbStatstic.char.events.login.count .. ")"
+						return Memento.dbStatstic.global.events.death.count .. " (" .. Memento.dbStatstic.char.events.death.count .. ")"
 					end,
 					type = "description",
-					width = 2,
+					width = 1,
 					fontSize = "medium",
 					order = 0.32
 				},
@@ -218,6 +226,52 @@ Memento.optionsTable["statistic"] = {
 					width = "full",
 					fontSize = "medium",
 					order = 0.33
+				},
+				duelName = {
+					name = MementoMarkGoldFont(L["statistic.screenshots.duel"]),
+					type = "description",
+					width = 1.2,
+					fontSize = "medium",
+					order = 0.34
+				},
+				duelCount = {
+					name = function ()
+						return Memento.dbStatstic.global.events.duel.count .. " (" .. Memento.dbStatstic.char.events.duel.count .. ")"
+					end,
+					type = "description",
+					width = 1,
+					fontSize = "medium",
+					order = 0.35
+				},
+				SPACE_8 = {
+					name = "",
+					type = "description",
+					width = "full",
+					fontSize = "medium",
+					order = 0.36
+				},
+				loginName = {
+					name = MementoMarkGoldFont(L["statistic.screenshots.login"]),
+					type = "description",
+					width = 1.2,
+					fontSize = "medium",
+					order = 0.37
+				},
+				loginCount = {
+					name = function ()
+						return Memento.dbStatstic.global.events.login.count .. " (" .. Memento.dbStatstic.char.events.login.count .. ")"
+					end,
+					type = "description",
+					width = 2,
+					fontSize = "medium",
+					order = 0.38
+				},
+				SPACE_9 = {
+					name = "",
+					type = "description",
+					width = "full",
+					fontSize = "medium",
+					order = 0.39
 				},
 			},
 		},

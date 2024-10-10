@@ -17,6 +17,10 @@ Memento.defaults["options"] = {
                     exist = false,
                     timer = 2
                 },
+                criteria = {
+                    active = false,
+                    timer = 2
+                },
                 guild = {
                     active = true,
                     timer = 2
@@ -64,6 +68,9 @@ Memento.defaults["statistic"] = {
                 personal = {
                     count = 0
                 },
+                criteria = {
+                    count = 0
+                },
                 guild = {
                     count = 0
                 },
@@ -94,6 +101,9 @@ Memento.defaults["statistic"] = {
 		events = {
             achievement = {
                 personal = {
+                    count = 0
+                },
+                criteria = {
                     count = 0
                 },
                 guild = {

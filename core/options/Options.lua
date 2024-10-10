@@ -18,15 +18,15 @@ Memento.optionsTable["options"] = {
 	childGroups = "tab",
 	args = {
 		general = {
-			name = L["general.options.general"],
+			name = L["options.general"],
 			type = "group",
 			inline = true,
 			order = orderID,
 			args = {
 				notification = {
 					type = "toggle",
-					name = L["general.options.general.notification.name"],
-					desc = L["general.options.general.notification.desc"],
+					name = L["options.general.notification.name"],
+					desc = L["options.general.notification.desc"],
 					get = function()
 						return Memento.db.profile.options.notification
 					end,
@@ -38,8 +38,8 @@ Memento.optionsTable["options"] = {
 				},
 				statistic = {
 					type = "toggle",
-					name = L["general.options.general.statistic.name"],
-					desc = L["general.options.general.statistic.desc"],
+					name = L["options.general.statistic.name"],
+					desc = L["options.general.statistic.desc"],
 					get = function()
 						return Memento.db.profile.options.statistic
 					end,
@@ -51,8 +51,8 @@ Memento.optionsTable["options"] = {
 				},
 				ui = {
 					type = "toggle",
-					name = L["general.options.general.ui.name"],
-					desc = L["general.options.general.ui.desc"],
+					name = L["options.general.ui.name"],
+					desc = L["options.general.ui.desc"],
 					get = function()
 						return Memento.db.profile.options.ui
 					end,
@@ -62,7 +62,7 @@ Memento.optionsTable["options"] = {
 					width = "full",
 					order = 0.13
 				},
-				separator = {
+				SEPARATOR_1 = {
 					name = "",
 					type = "header",
 					dialogControl = "SFX-Header",
@@ -70,8 +70,8 @@ Memento.optionsTable["options"] = {
 				},
 				debug = {
 					type = "toggle",
-					name = L["general.debug.general.active.name"],
-					desc = L["general.debug.general.active.desc"],
+					name = L["options.general.debug.name"],
+					desc = L["options.general.debug.desc"],
 					get = function()
 						return Memento.db.profile.options.debug
 					end,

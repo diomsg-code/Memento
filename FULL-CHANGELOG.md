@@ -1,3 +1,8 @@
+**2.1.0 (2024-10-11)**
+- Added: New event (Achievement criteria earned) - An automatic screenshot can now be taken when you have earned an achievement criteria
+- Changed: In the statistics overview, victories and wipes in boss fights are displayed separately
+- Updated: deDE, enUS localization
+
 **2.0.0 (2024-10-03)**
 - Added: The statistical overview is now available in the addon options
 - Updated: deDE, enUS localization

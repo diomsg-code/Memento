@@ -7,20 +7,26 @@ local orderID = 2.3
 Memento.optionsTable = Memento.optionsTable or {}
 
 Memento.optionsTable["eventEncounter"] = {
-	name = L["general.options.encounter"],
+	name = L["options.event.encounter"],
 	type = "group",
 	order = orderID,
 	args = {
-		victoryDesc = {
-			name = L["general.options.encounter.victory.desc"],
+		SPACE_1 = {
+			name = "",
 			type = "description",
 			width = "full",
 			fontSize = "medium",
 			order = 0.11
 		},
+		SEPARATOR_1 = {
+			name = " " .. L["options.event.encounter.victory"],
+			type = "header",
+			dialogControl = "SFX-Header-II",
+			order = 0.12
+		},
 		victoryParty = {
-			name = L["general.options.encounter.victory.party.name"],
-			desc = L["general.options.encounter.victory.party.desc"],
+			name = L["options.event.encounter.party.name"],
+			desc = L["options.event.encounter.victory.party.desc"],
 			type = "toggle",
 			get = function()
 				return Memento.db.profile.events.encounter.victory.party
@@ -29,11 +35,11 @@ Memento.optionsTable["eventEncounter"] = {
 				Memento.db.profile.events.encounter.victory.party = value
 			end,
 			width = "normal",
-			order = 0.12
+			order = 0.13
 		},
 		victoryRaid = {
-			name = L["general.options.encounter.victory.raid.name"],
-			desc = L["general.options.encounter.victory.raid.desc"],
+			name = L["options.event.encounter.raid.name"],
+			desc = L["options.event.encounter.victory.raid.desc"],
 			type = "toggle",
 			get = function()
 				return Memento.db.profile.events.encounter.victory.raid
@@ -42,15 +48,12 @@ Memento.optionsTable["eventEncounter"] = {
 				Memento.db.profile.events.encounter.victory.raid = value
 			end,
 			width = "normal",
-			order = 0.13
+			order = 0.14
 		},
 		victoryScenario = {
-			name = L["general.options.encounter.victory.scenario.name"],
-			desc = L["general.options.encounter.victory.scenario.desc"],
+			name = L["options.event.encounter.scenario.name"],
+			desc = L["options.event.encounter.victory.scenario.desc"],
 			type = "toggle",
-			hidden = function()
-				return (not (Memento.flavor == "Retail"))
-			end,
 			get = function()
 				return Memento.db.profile.events.encounter.victory.scenario
 			end,
@@ -58,11 +61,11 @@ Memento.optionsTable["eventEncounter"] = {
 				Memento.db.profile.events.encounter.victory.scenario = value
 			end,
 			width = "normal",
-			order = 0.14
+			order = 0.15
 		},
 		victoryFirst = {
-			name = L["general.options.encounter.victory.first.name"],
-			desc = L["general.options.encounter.victory.first.desc"],
+			name = L["options.event.encounter.victory.first.name"],
+			desc = L["options.event.encounter.victory.first.desc"],
 			type = "toggle",
 			disabled = function()
 				return ((not Memento.db.profile.events.encounter.victory.party) and (not Memento.db.profile.events.encounter.victory.raid) and (not Memento.db.profile.events.encounter.victory.scenario))
@@ -73,12 +76,12 @@ Memento.optionsTable["eventEncounter"] = {
 			set = function(_, value)
 				Memento.db.profile.events.encounter.victory.first = value
 			end,
-			width = "double",
-			order = 0.15
+			width = "full",
+			order = 0.16
 		},
 		victoryTimer = {
-			name = L["general.options.encounter.victory.timer.name"],
-			desc = L["general.options.encounter.victory.timer.desc"],
+			name = L["options.event.general.delay.name"],
+			desc = L["options.event.general.delay.desc"]:format(L["options.event.encounter.victory"], 2),
 			type = "range",
 			min = 0,
 			max = 10,
@@ -92,24 +95,24 @@ Memento.optionsTable["eventEncounter"] = {
 			set = function(_, value)
 				Memento.db.profile.events.encounter.victory.timer = value
 			end,
-			order = 0.16
-		},
-		SEPARATOR_1 = {
-			name = "",
-			type = "header",
-			dialogControl = "SFX-Header",
 			order = 0.17
 		},
-		wipeDesc = {
-			name = L["general.options.encounter.wipe.desc"],
+		SPACE_2 = {
+			name = " ",
 			type = "description",
 			width = "full",
 			fontSize = "medium",
 			order = 0.18
 		},
+		SEPARATOR_2 = {
+			name = " " .. L["options.event.encounter.wipe"],
+			type = "header",
+			dialogControl = "SFX-Header-II",
+			order = 0.19
+		},
 		wipeParty = {
-			name = L["general.options.encounter.wipe.party.name"],
-			desc = L["general.options.encounter.wipe.party.desc"],
+			name = L["options.event.encounter.party.name"],
+			desc = L["options.event.encounter.wipe.party.desc"],
 			type = "toggle",
 			get = function()
 				return Memento.db.profile.events.encounter.wipe.party
@@ -118,11 +121,11 @@ Memento.optionsTable["eventEncounter"] = {
 				Memento.db.profile.events.encounter.wipe.party = value
 			end,
 			width = "normal",
-			order = 0.19
+			order = 0.20
 		},
 		wipeRaid = {
-			name = L["general.options.encounter.wipe.raid.name"],
-			desc = L["general.options.encounter.wipe.raid.desc"],
+			name = L["options.event.encounter.raid.name"],
+			desc = L["options.event.encounter.wipe.raid.desc"],
 			type = "toggle",
 			get = function()
 				return Memento.db.profile.events.encounter.wipe.raid
@@ -131,15 +134,12 @@ Memento.optionsTable["eventEncounter"] = {
 				Memento.db.profile.events.encounter.wipe.raid = value
 			end,
 			width = "normal",
-			order = 0.20
+			order = 0.21
 		},
 		wipeScenario = {
-			name = L["general.options.encounter.wipe.scenario.name"],
-			desc = L["general.options.encounter.wipe.scenario.desc"],
+			name = L["options.event.encounter.scenario.name"],
+			desc = L["options.event.encounter.wipe.scenario.desc"],
 			type = "toggle",
-			hidden = function()
-				return (not (Memento.flavor == "Retail"))
-			end,
 			get = function()
 				return Memento.db.profile.events.encounter.wipe.scenario
 			end,
@@ -147,18 +147,11 @@ Memento.optionsTable["eventEncounter"] = {
 				Memento.db.profile.events.encounter.wipe.scenario = value
 			end,
 			width = "normal",
-			order = 0.21
-		},
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "double",
-			fontSize = "medium",
 			order = 0.22
 		},
 		wipeTimer = {
-			name = L["general.options.encounter.wipe.timer.name"],
-			desc = L["general.options.encounter.wipe.timer.desc"],
+			name = L["options.event.general.delay.name"],
+			desc = L["options.event.general.delay.desc"]:format(L["options.event.encounter.wipe"], 2),
 			type = "range",
 			min = 0,
 			max = 10,
@@ -173,6 +166,13 @@ Memento.optionsTable["eventEncounter"] = {
 				Memento.db.profile.events.encounter.wipe.timer = value
 			end,
 			order = 0.23
+		},
+		SPACE_3 = {
+			name = " ",
+			type = "description",
+			width = "full",
+			fontSize = "medium",
+			order = 0.24
 		},
 	},
 }

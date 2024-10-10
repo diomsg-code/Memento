@@ -19,34 +19,49 @@ Memento.gameVersion = GetBuildInfo()
 
 function Memento:OnInitialize()
     self:SetupAddon()
-
-    if self.flavor == "Retail" or self.flavor == "Cata" then
+    Settings.OpenToCategory(addonName)
+    if self.flavor == "Cata" or self.flavor == "Retail" then
         self:RegisterEvent(
             "ACHIEVEMENT_EARNED",
             function(_, achievementID, alreadyEarned)
-                self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" fired. Payload: achievementID=" .. achievementID .. ", alreadyEarned=" .. tostring(alreadyEarned))
+                self:PrintDebug("Event 'ACHIEVEMENT_EARNED' fired. Payload: achievementID=" .. achievementID .. ", alreadyEarned=" .. tostring(alreadyEarned))
 
                 local isGuildAchievement = select(12, GetAchievementInfo(achievementID))
 
                 if not isGuildAchievement then
                     if self.db.profile.events.achievement.personal.active then
-                        self:ScheduleTimer("TimerScreenshotAchievementPersonal", self.db.profile.events.achievement.personal.timer, achievementID, alreadyEarned)
+                        self:ScheduleTimer("AchievementPersonalEventHandler", self.db.profile.events.achievement.personal.timer, achievementID, alreadyEarned)
                     end
                 else
                     if self.db.profile.events.achievement.guild.active then
-                        self:ScheduleTimer("TimerScreenshotAchievementGuild", self.db.profile.events.achievement.guild.timer, achievementID)
+                        self:ScheduleTimer("AchievementGuildEventHandler", self.db.profile.events.achievement.guild.timer, achievementID)
                     end
                 end
             end
         )
 
-        self:PrintDebug("Event \"ACHIEVEMENT_EARNED\" registered. (Retail / Cata)")
+        self:PrintDebug("Event 'ACHIEVEMENT_EARNED' registered. (Retail / Cata)")
+    end
+
+    if self.flavor == "Retail" then
+        self:RegisterEvent(
+            "CRITERIA_EARNED",
+            function(_, achievementID, description)
+                self:PrintDebug("Event 'CRITERIA_EARNED' fired. Payload: achievementID=" .. tostring(achievementID) .. ", description=" .. tostring(description))
+
+                if self.db.profile.events.achievement.criteria.active then
+                    self:ScheduleTimer("CriteriaEventHandler", 2, achievementID, description)
+                end
+            end
+        )
+
+        self:PrintDebug("Event 'CRITERIA_EARNED' registered. (Retail)")
     end
 
     self:RegisterEvent(
         "ENCOUNTER_END",
         function(_, encounterID, encounterName, difficultyID, groupSize, success)
-            self:PrintDebug("Event \"ENCOUNTER_END\" fired. Payload: encounterID=" .. encounterID .. ", encounterName=" .. encounterName .. ", difficultyID=" .. difficultyID .. ", groupSize=" .. groupSize .. ", success=" .. success)
+            self:PrintDebug("Event 'ENCOUNTER_END' fired. Payload: encounterID=" .. encounterID .. ", encounterName=" .. encounterName .. ", difficultyID=" .. difficultyID .. ", groupSize=" .. groupSize .. ", success=" .. success)
 
             local difficultyName, groupType = GetDifficultyInfo(difficultyID)
             local difficulty = "D" .. difficultyID
@@ -61,66 +76,66 @@ function Memento:OnInitialize()
                     return
                 end
 
-                self:ScheduleTimer("TimerScreenshotEncounterVictory", self.db.profile.events.encounter.victory.timer, encounterName, difficultyName, difficulty, encounterID)
+                self:ScheduleTimer("EncounterVictoryEventHandler", self.db.profile.events.encounter.victory.timer, encounterName, difficultyName, difficulty, encounterID)
             elseif (success == 0 and ((groupType == "party" and self.db.profile.events.encounter.wipe.party) or (groupType == "raid" and self.db.profile.events.encounter.wipe.raid) or (groupType == "scenario" and self.db.profile.events.encounter.wipe.scenario))) then
-                self:ScheduleTimer("TimerScreenshotEncounterWipe", self.db.profile.events.encounter.wipe.timer, encounterName, difficultyName)
+                self:ScheduleTimer("EncounterWipeEventHandler", self.db.profile.events.encounter.wipe.timer, encounterName, difficultyName)
             end
         end
     )
 
-    self:PrintDebug("Event \"ENCOUNTER_END\" registered.")
+    self:PrintDebug("Event 'ENCOUNTER_END' registered.")
 
     self:RegisterEvent(
         "PLAYER_LEVEL_UP",
         function(_, level)
-            self:PrintDebug("Event \"PLAYER_LEVEL_UP\" fired. Payload: level=" .. level)
+            self:PrintDebug("Event 'PLAYER_LEVEL_UP' fired. Payload: level=" .. level)
 
             if self.db.profile.events.levelUp.active then
-                self:ScheduleTimer("TimerScreenshotLevelUp", self.db.profile.events.levelUp.timer, level)
+                self:ScheduleTimer("LevelUpEventHandler", self.db.profile.events.levelUp.timer, level)
             end
         end
     )
 
-    self:PrintDebug("Event \"PLAYER_LEVEL_UP\" registered.")
+    self:PrintDebug("Event 'PLAYER_LEVEL_UP' registered.")
 
     self:RegisterEvent(
         "PLAYER_DEAD",
         function()
-            self:PrintDebug("Event \"PLAYER_DEAD\" fired. No payload.")
+            self:PrintDebug("Event 'PLAYER_DEAD' fired. No payload.")
 
             if self.db.profile.events.death.active then
-                self:ScheduleTimer("TimerScreenshotDeath", self.db.profile.events.death.timer)
+                self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
             end
         end
     )
 
-    self:PrintDebug("Event \"PLAYER_DEAD\" registered.")
+    self:PrintDebug("Event 'PLAYER_DEAD' registered.")
 
     self:RegisterEvent(
         "DUEL_FINISHED",
         function()
-            self:PrintDebug("Event \"DUEL_FINISHED\" fired. No payload.")
+            self:PrintDebug("Event 'DUEL_FINISHED' fired. No payload.")
 
             if self.db.profile.events.duel.active then
-                self:ScheduleTimer("TimerScreenshotDuel", self.db.profile.events.duel.timer)
+                self:ScheduleTimer("DuelEventHandler", self.db.profile.events.duel.timer)
             end
         end
     )
 
-    self:PrintDebug("Event \"DUEL_FINISHED\" registered.")
+    self:PrintDebug("Event 'DUEL_FINISHED' registered.")
 
     self:RegisterEvent(
         "PLAYER_LOGIN",
         function()
-            self:PrintDebug("Event \"PLAYER_LOGIN\" fired. No payload.")
+            self:PrintDebug("Event 'PLAYER_LOGIN' fired. No payload.")
 
             if self.db.profile.events.login.active then
-                self:ScheduleTimer("TimerScreenshotLogin", self.db.profile.events.login.timer)
+                self:ScheduleTimer("LoginEventHandler", self.db.profile.events.login.timer)
             end
         end
     )
 
-    self:PrintDebug("Event \"PLAYER_LOGIN\" registered.")
+    self:PrintDebug("Event 'PLAYER_LOGIN' registered.")
 
     if self.db.profile.options.statistic then
         Memento:PrintStatistic()

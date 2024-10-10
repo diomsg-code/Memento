@@ -7,8 +7,7 @@
 
     <Script file="core\options\Info.lua" />
     <Script file="core\options\Options.lua" />
-    <Script file="core\options\EventAchievement.lua" />
-    <Script file="core\options\EventEncounter.lua" />
+    <Script file="core\options\EventEncounter_Vanilla.lua" />
     <Script file="core\options\EventLevelUp.lua" />
     <Script file="core\options\EventDeath.lua" />
     <Script file="core\options\EventDuel.lua" />

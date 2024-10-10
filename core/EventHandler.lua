@@ -6,55 +6,62 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 --- Public functions ---
 ------------------------
 
-function Memento:TimerScreenshotAchievementPersonal(achievementID, alreadyEarned)
+function Memento:AchievementPersonalEventHandler(achievementID, alreadyEarned)
     local name = select(2, GetAchievementInfo(achievementID))
 
     if not alreadyEarned then
-        self:PrintMessage(L["chat.events.achievement.personal.new"] .. name)
+        self:PrintMessage(L["chat.event.achievement.personal.new"]:format(name))
         self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_EARNED_PERSONAL)
     elseif self.db.profile.events.achievement.personal.exist then
-        self:PrintMessage(L["chat.events.achievement.personal.exist"] .. name)
+        self:PrintMessage(L["chat.event.achievement.personal.exist"]:format(name))
         self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_EARNED_PERSONAL)
     else
         self:PrintDebug("No screenshot has been taken as the achievement has already been reached by another character: " .. name)
     end
 end
 
-function Memento:TimerScreenshotAchievementGuild(achievementID)
+function Memento:CriteriaEventHandler(achievementID, description)
     local name = select(2, GetAchievementInfo(achievementID))
 
-    self:PrintMessage(L["chat.events.achievement.guild.new"] .. name)
-    self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_EARNED_GUILD)
+    self:PrintMessage(L["chat.event.achievement.criteria.new"]:format(name, description))
+    self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_CRITERIA_EARNED)
 end
 
-function Memento:TimerScreenshotEncounterVictory(encounterName, difficultyName, difficulty, encounterID)
-	self:PrintMessage(L["chat.events.encounter.victory.new"] .. encounterName .. " (" .. difficultyName .. ")")
+function Memento:AchievementGuildEventHandler(achievementID)
+    local name = select(2, GetAchievementInfo(achievementID))
+
+    self:PrintMessage(L["chat.event.achievement.guild.new"]:format(name))
+    self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_CRITERIA_EARNED)
+end
+
+function Memento:EncounterVictoryEventHandler(encounterName, difficultyName, difficulty, encounterID)
+	self:PrintMessage(L["chat.event.encounter.victory.new"]:format(encounterName, difficultyName))
     self:TakeScreenshot(Memento.EVENT_ENCOUNTER_END_VICTORY)
 
     Memento_DataBossKill[difficulty][encounterID] = true
 end
 
-function Memento:TimerScreenshotEncounterWipe(encounterName, difficultyName)
-	self:PrintMessage(L["chat.events.encounter.wipe.new"] .. encounterName .. " (" .. difficultyName .. ")")
+function Memento:EncounterWipeEventHandler(encounterName, difficultyName)
+	self:PrintMessage(L["chat.event.encounter.wipe.new"]:format(encounterName, difficultyName))
     self:TakeScreenshot(Memento.EVENT_ENCOUNTER_END_WIPE)
 end
 
-function Memento:TimerScreenshotLevelUp(level)
-	self:PrintMessage(L["chat.events.levelUp.new"] .. level)
+function Memento:LevelUpEventHandler(level)
+	self:PrintMessage(L["chat.event.levelUp.new"]:format(level))
     self:TakeScreenshot(Memento.EVENT_PLAYER_LEVEL_UP)
 end
 
-function Memento:TimerScreenshotDeath()
-	self:PrintMessage(L["chat.events.death.new"])
+function Memento:DeathEventHandler()
+	self:PrintMessage(L["chat.event.death.new"])
     self:TakeScreenshot(Memento.EVENT_PLAYER_DEAD)
 end
 
-function Memento:TimerScreenshotDuel()
-	self:PrintMessage(L["chat.events.duel.new"])
+function Memento:DuelEventHandler()
+	self:PrintMessage(L["chat.event.duel.new"])
     self:TakeScreenshot(Memento.EVENT_DUEL_FINISHED)
 end
 
-function Memento:TimerScreenshotLogin()
-	self:PrintMessage(L["chat.events.login.new"])
+function Memento:LoginEventHandler()
+	self:PrintMessage(L["chat.event.login.new"])
     self:TakeScreenshot(Memento.EVENT_PLAYER_LOGIN)
 end

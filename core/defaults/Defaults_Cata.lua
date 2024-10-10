@@ -26,14 +26,12 @@ Memento.defaults["options"] = {
 				victory = {
 					party = true,
 					raid = true,
-					scenario = false,
 					first = true,
 					timer = 2
 				},
 				wipe = {
 					party = true,
 					raid = true,
-					scenario = false,
 					timer = 2
 				},
 			},
