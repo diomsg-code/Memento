@@ -19,7 +19,7 @@ Memento.gameVersion = GetBuildInfo()
 
 function Memento:OnInitialize()
     self:SetupAddon()
-    Settings.OpenToCategory(addonName)
+
     if self.flavor == "Cata" or self.flavor == "Retail" then
         self:RegisterEvent(
             "ACHIEVEMENT_EARNED",
