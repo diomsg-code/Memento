@@ -50,14 +50,14 @@ Memento.optionsTable["info"] = {
 			order = 1.2,
 			args = {
 				build = {
-					name = MementoMarkNormalFont(L["info.about.game-version"] .. ": ") .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
+					name = Memento_MarkGoldFont(L["info.about.game-version"] .. ": ") .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 					type = "description",
 					width = 1.5,
 					fontSize = "medium",
 					order = 0.11
 				},
 				version = {
-					name = MementoMarkNormalFont(L["info.about.addon-version"] .. ": ") .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
+					name = Memento_MarkGoldFont(L["info.about.addon-version"] .. ": ") .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 					type = "description",
 					width = 1.5,
 					fontSize = "medium",
@@ -71,7 +71,7 @@ Memento.optionsTable["info"] = {
 					order = 0.13
 				},
 				author = {
-					name =  MementoMarkNormalFont(L["info.about.author"] .. ": ") .. Memento.author,
+					name =  Memento_MarkGoldFont(L["info.about.author"] .. ": ") .. Memento.author,
 					type = "description",
 					width = "full",
 					fontSize = "medium",

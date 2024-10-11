@@ -7,23 +7,19 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 ------------------------
 
 function Memento:AchievementPersonalEventHandler(achievementID, alreadyEarned)
-    local name = select(2, GetAchievementInfo(achievementID))
-
     if not alreadyEarned then
-        self:PrintMessage(L["chat.event.achievement.personal.new"]:format(name))
+        self:PrintMessage(L["chat.event.achievement.personal.new"]:format(GetAchievementLink(achievementID)))
         self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_EARNED_PERSONAL)
     elseif self.db.profile.events.achievement.personal.exist then
-        self:PrintMessage(L["chat.event.achievement.personal.exist"]:format(name))
+        self:PrintMessage(L["chat.event.achievement.personal.exist"]:format(GetAchievementLink(achievementID)))
         self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_EARNED_PERSONAL)
     else
-        self:PrintDebug("No screenshot has been taken as the achievement has already been reached by another character: " .. name)
+        self:PrintDebug("No screenshot has been taken as the achievement ".. GetAchievementLink(achievementID) .. " has already been reached by another character")
     end
 end
 
 function Memento:CriteriaEventHandler(achievementID, description)
-    local name = select(2, GetAchievementInfo(achievementID))
-
-    self:PrintMessage(L["chat.event.achievement.criteria.new"]:format(name, description))
+    self:PrintMessage(L["chat.event.achievement.criteria.new"]:format(GetAchievementLink(achievementID), description))
     self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_CRITERIA_EARNED)
 end
 
@@ -47,7 +43,7 @@ function Memento:EncounterWipeEventHandler(encounterName, difficultyName)
 end
 
 function Memento:LevelUpEventHandler(level)
-	self:PrintMessage(L["chat.event.levelUp.new"]:format(level))
+	self:PrintMessage(L["chat.event.levelUp.new"]:format(Memento_GetLevelUpLink(level)))
     self:TakeScreenshot(Memento.EVENT_PLAYER_LEVEL_UP)
 end
 

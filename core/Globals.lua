@@ -2,10 +2,10 @@ local addonName, Memento = ...
 
 Memento.MEDIA_PATH = "Interface\\AddOns\\" .. addonName .. "\\media\\"
 
-Memento.COLOR_NORMAL_FONT = "ffffd200"
-Memento.COLOR_WHITE_FONT = "ffffffff"
-Memento.COLOR_ORANGE_FONT = "ffff8040"
-Memento.COLOR_GOLD_FONT = "fff2e699"
+Memento.COLOR_NORMAL_FONT = "ffFFD200"
+Memento.COLOR_WHITE_FONT = "ffFFFFFF"
+Memento.COLOR_ORANGE_FONT = "ffFF8040"
+Memento.COLOR_GOLD_FONT = "ffF2E699"
 
 Memento.EVENT_ACHIEVEMENT_EARNED_PERSONAL = 1
 Memento.EVENT_ACHIEVEMENT_CRITERIA_EARNED = 2

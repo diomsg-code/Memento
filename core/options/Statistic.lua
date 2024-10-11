@@ -34,7 +34,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.12
 				},
 				personalAchievementName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.achievement.personal"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.achievement.personal"]),
 					type = "description",
 					hidden = function ()
 						return (Memento.flavor == "Vanilla")
@@ -68,7 +68,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.15
 				},
 				criteriaAchievementName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.achievement.criteria"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.achievement.criteria"]),
 					type = "description",
 					hidden = function ()
 						return (Memento.flavor == "Vanilla" or Memento.flavor == "Cata")
@@ -102,7 +102,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.18
 				},
 				guildAchievementName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.achievement.guild"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.achievement.guild"]),
 					type = "description",
 					hidden = function ()
 						return (Memento.flavor == "Vanilla")
@@ -136,7 +136,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.21
 				},
 				encounterVictoryName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.encounter.victory"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.encounter.victory"]),
 					type = "description",
 					width = 1.2,
 					fontSize = "medium",
@@ -159,7 +159,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.24
 				},
 				encounterWipeName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.encounter.wipe"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.encounter.wipe"]),
 					type = "description",
 					width = 1.2,
 					fontSize = "medium",
@@ -182,7 +182,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.27
 				},
 				levelUpName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.levelUp"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.levelUp"]),
 					type = "description",
 					width = 1.2,
 					fontSize = "medium",
@@ -205,7 +205,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.30
 				},
 				deathName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.death"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.death"]),
 					type = "description",
 					width = 1.2,
 					fontSize = "medium",
@@ -228,7 +228,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.33
 				},
 				duelName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.duel"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.duel"]),
 					type = "description",
 					width = 1.2,
 					fontSize = "medium",
@@ -251,7 +251,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.36
 				},
 				loginName = {
-					name = MementoMarkGoldFont(L["statistic.screenshots.login"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.login"]),
 					type = "description",
 					width = 1.2,
 					fontSize = "medium",
