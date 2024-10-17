@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 0
 
       # CourseForge
-      - name: Package and release for CourseForge
+      - name: Package and publish for CourseForge
         uses: BigWigsMods/packager@master
         with:
           args: -p 1099991 -n "{package-name}-{project-version}{nolib}{classic}:{package-name}-{project-version}{classic}{nolib}.zip"
