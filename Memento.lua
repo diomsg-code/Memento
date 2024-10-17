@@ -43,7 +43,7 @@ function Memento:OnInitialize()
         self:PrintDebug("Event 'ACHIEVEMENT_EARNED' registered. (Retail / Cata)")
     end
 
-    if self.flavor == "Retail" then
+    if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
         self:RegisterEvent(
             "CRITERIA_EARNED",
             function(_, achievementID, description)
@@ -98,7 +98,7 @@ function Memento:OnInitialize()
 
     self:PrintDebug("Event 'DUEL_FINISHED' registered.")
 
-    if self.flavor == "Retail" then
+    if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
         self:RegisterEvent(
             "PVP_MATCH_COMPLETE",
             function(_, winner, duration)
