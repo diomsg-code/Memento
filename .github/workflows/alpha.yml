@@ -1,9 +1,9 @@
-name: Package and release Memento
+name: Package and publish Memento (Alpha)
 
 on:
   push:
     tags:
-      - '*-alpha'
+      - "**-alpha**"
 
 jobs:
   github-release:
