@@ -21,4 +21,4 @@ localization.xml
 
 Memento.lua
 
-core_Vanilla.xml
+core.xml

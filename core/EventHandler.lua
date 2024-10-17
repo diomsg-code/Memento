@@ -37,6 +37,25 @@ function Memento:EncounterVictoryEventHandler(encounterName, difficultyName, dif
     Memento_DataBossKill[difficulty][encounterID] = true
 end
 
+function Memento:PvPDuelEventHandler()
+	self:PrintMessage(L["chat.event.duel.new"])
+    self:TakeScreenshot(Memento.EVENT_DUEL_FINISHED)
+end
+
+function Memento:PvPArenaEventHandler()
+    local playerFaction = UnitFactionGroup("player")
+ 
+	self:PrintMessage(L["chat.event.pvp.arena.new"])
+    self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_ARENA)
+end
+
+function Memento:PvPBattlegroundEventHandler()
+    local playerFaction = UnitFactionGroup("player")
+
+	self:PrintMessage(L["chat.event.pvp.battleground.new"])
+    self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_BATTLEGROUND)
+end
+
 function Memento:EncounterWipeEventHandler(encounterName, difficultyName)
 	self:PrintMessage(L["chat.event.encounter.wipe.new"]:format(encounterName, difficultyName))
     self:TakeScreenshot(Memento.EVENT_ENCOUNTER_END_WIPE)
@@ -50,11 +69,6 @@ end
 function Memento:DeathEventHandler()
 	self:PrintMessage(L["chat.event.death.new"])
     self:TakeScreenshot(Memento.EVENT_PLAYER_DEAD)
-end
-
-function Memento:DuelEventHandler()
-	self:PrintMessage(L["chat.event.duel.new"])
-    self:TakeScreenshot(Memento.EVENT_DUEL_FINISHED)
 end
 
 function Memento:LoginEventHandler()

@@ -1,17 +1,17 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\..\FrameXML\UI.xsd">
-    <Script file="core\defaults\Defaults_Mainline.lua" />
+    <Script file="core\options\Defaults.lua" />
 
     <Script file="core\Globals.lua" />
     <Script file="core\Utils.lua" />
 
     <Script file="core\options\Info.lua" />
     <Script file="core\options\Options.lua" />
-    <Script file="core\options\EventAchievement_Mainline.lua" />
-    <Script file="core\options\EventEncounter_Mainline.lua" />
+    <Script file="core\options\EventAchievement.lua" />
+    <Script file="core\options\EventEncounter.lua" />
+    <Script file="core\options\EventPvP.lua" />
     <Script file="core\options\EventLevelUp.lua" />
     <Script file="core\options\EventDeath.lua" />
-    <Script file="core\options\EventDuel.lua" />
     <Script file="core\options\EventLogin.lua" />
     <Script file="core\options\Statistic.lua" />    
 

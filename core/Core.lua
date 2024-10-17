@@ -81,6 +81,18 @@ function Memento:TakeScreenshot(event)
         self.dbStatstic.char.events.encounter.wipe.count = self.dbStatstic.char.events.encounter.wipe.count + 1
         self.dbStatstic.global.events.encounter.wipe.count = self.dbStatstic.global.events.encounter.wipe.count + 1
         self:PrintDebug("Counter for 'ENCOUNTER_END' (Wipe) increased by one.")
+    elseif event == Memento.EVENT_DUEL_FINISHED then
+        self.dbStatstic.char.events.pvp.duel.count = self.dbStatstic.char.events.pvp.duel.count + 1
+        self.dbStatstic.global.events.pvp.duel.count = self.dbStatstic.global.events.pvp.duel.count + 1
+        self:PrintDebug("Counter for 'DUEL_FINISHED' increased by one.")
+    elseif event == Memento.PVP_MATCH_COMPLETE_ARENA then
+        self.dbStatstic.char.events.pvp.arena.count = self.dbStatstic.char.events.pvp.arena.count + 1
+        self.dbStatstic.global.events.pvp.arena.count = self.dbStatstic.global.events.pvp.arena.count + 1
+        self:PrintDebug("Counter for 'PVP_MATCH_COMPLETE' (Arena) increased by one.")
+    elseif event == Memento.PVP_MATCH_COMPLETE_BATTLEGROUND then
+        self.dbStatstic.char.events.pvp.battleground.count = self.dbStatstic.char.events.pvp.battleground.count + 1
+        self.dbStatstic.global.events.pvp.battleground.count = self.dbStatstic.global.events.pvp.battleground.count + 1
+        self:PrintDebug("Counter for 'PVP_MATCH_COMPLETE' (Battleground) increased by one.")
     elseif event == Memento.EVENT_PLAYER_LEVEL_UP then
         self.dbStatstic.char.events.levelUp.count = self.dbStatstic.char.events.levelUp.count + 1
         self.dbStatstic.global.events.levelUp.count = self.dbStatstic.global.events.levelUp.count + 1
@@ -89,10 +101,6 @@ function Memento:TakeScreenshot(event)
         self.dbStatstic.char.events.death.count = self.dbStatstic.char.events.death.count + 1
         self.dbStatstic.global.events.death.count = self.dbStatstic.global.events.death.count + 1
         self:PrintDebug("Counter for 'PLAYER_DEAD' increased by one.")
-    elseif event == Memento.EVENT_DUEL_FINISHED then
-        self.dbStatstic.char.events.duel.count = self.dbStatstic.char.events.duel.count + 1
-        self.dbStatstic.global.events.duel.count = self.dbStatstic.global.events.duel.count + 1
-        self:PrintDebug("Counter for 'DUEL_FINISHED' increased by one.")
     elseif event == Memento.EVENT_PLAYER_LOGIN then
         self.dbStatstic.char.events.login.count = self.dbStatstic.char.events.login.count + 1
         self.dbStatstic.global.events.login.count = self.dbStatstic.global.events.login.count + 1

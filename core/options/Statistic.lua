@@ -236,7 +236,7 @@ Memento.optionsTable["statistic"] = {
 				},
 				duelCount = {
 					name = function ()
-						return Memento.dbStatstic.global.events.duel.count .. " (" .. Memento.dbStatstic.char.events.duel.count .. ")"
+						return Memento.dbStatstic.global.events.pvp.duel.count .. " (" .. Memento.dbStatstic.char.events.pvp.duel.count .. ")"
 					end,
 					type = "description",
 					width = 1,

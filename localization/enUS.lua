@@ -65,9 +65,13 @@ L["options.event.encounter.wipe.party.desc"] = "Activate or deactivate the autom
 L["options.event.encounter.wipe.raid.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have wiped at a raid boss."
 L["options.event.encounter.wipe.scenario.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have wwiped at a scenario or delves boss."
 
+L["options.event.pvp"] = "Player vs. Player"
+L["options.event.pvp.duel"] = "Duel finished"
+L["options.event.pvp.arena"] = "Arena completed"
+L["options.event.pvp.battleground"] = "Battleground completed"
+
 L["options.event.levelUp"] = "Level-up"
 L["options.event.death"] = "Player death"
-L["options.event.duel"] = "Duel finished"
 L["options.event.login"] = "Player login"
 
 L["profiles"] = "Profiles"
@@ -92,7 +96,9 @@ L["chat.event.achievement.criteria.new"] = "Screenshot taken - |c" .. eventColor
 L["chat.event.achievement.guild.new"] = "Screenshot taken - |c" .. eventColor .. "Guild achievement|r - %s"
 L["chat.event.encounter.victory.new"] = "Screenshot taken - |c" .. eventColor .. "Boss fight (Victory)|r - %s (%s)"
 L["chat.event.encounter.wipe.new"] = "Screenshot taken - |c" .. eventColor .. "Boss fight (Wipe)|r - %s (%s)"
+L["chat.event.pvp.duel.new"] = "Screenshot erstellt - |c" .. eventColor .. "Duel finished|r"
+L["chat.event.pvp.arena.new"] = "Screenshot erstellt - |c" .. eventColor .. "Arena completed|r"
+L["chat.event.pvp.battleground.new"] = "Screenshot erstellt - |c" .. eventColor .. "Battleground completed|r"
 L["chat.event.levelUp.new"] = "Screenshot taken - |c" .. eventColor .. "Level-up|r - %s"
 L["chat.event.death.new"] = "Screenshot taken - |c" .. eventColor .. "Player death|r"
-L["chat.event.duel.new"] = "Screenshot taken - |c" .. eventColor .. "Duel finished|r"
 L["chat.event.login.new"] = "Screenshot taken - |c" .. eventColor .. "Player login|r"

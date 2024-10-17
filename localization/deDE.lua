@@ -67,9 +67,13 @@ L["options.event.encounter.wipe.party.desc"] = "Aktiviere oder deaktiviere die a
 L["options.event.encounter.wipe.raid.desc"] = "Aktiviere oder deaktiviere die automatische Erstellung eines Screenhots, wenn bei einem Raid-Boss eine Niederlage stattgefunden hat."
 L["options.event.encounter.wipe.scenario.desc"] = "Aktiviere oder deaktiviere die automatische Erstellung eines Screenhots, wenn bei einem Szenario- oder Tiefen-Boss eine Niederlage stattgefunden hat."
 
+L["options.event.pvp"] = "Spieler vs. Spieler"
+L["options.event.pvp.duel"] = "Duell beendet"
+L["options.event.pvp.arena"] = "Arena abgeschlossen"
+L["options.event.pvp.battleground"] = "Schlachtfeld abgeschlossen"
+
 L["options.event.levelUp"] = "Stufenaufstieg"
 L["options.event.death"] = "Spielertod"
-L["options.event.duel"] = "Duell beendet"
 L["options.event.login"] = "Spielerlogin"
 
 L["profiles"] = "Profile"
@@ -94,7 +98,9 @@ L["chat.event.achievement.criteria.new"] = "Screenshot erstellt - |c" .. eventCo
 L["chat.event.achievement.guild.new"] = "Screenshot erstellt - |c" .. eventColor .. "Gildenerfolg|r: %s"
 L["chat.event.encounter.victory.new"] = "Screenshot erstellt - |c" .. eventColor .. "Bosskampf (Sieg)|r - %s (%s)"
 L["chat.event.encounter.wipe.new"] = "Screenshot erstellt - |c" .. eventColor .. "Bosskampf (Niederlage)|r - %s (%s)"
+L["chat.event.pvp.duel.new"] = "Screenshot erstellt - |c" .. eventColor .. "Duell beendet|r"
+L["chat.event.pvp.arena.new"] = "Screenshot erstellt - |c" .. eventColor .. "Arena abgeschlossen|r"
+L["chat.event.pvp.battleground.new"] = "Screenshot erstellt - |c" .. eventColor .. "Schlachtfeld abgeschlossen|r"
 L["chat.event.levelUp.new"] = "Screenshot erstellt - |c" .. eventColor .. "Stufenaufstieg|r - %s"
 L["chat.event.death.new"] = "Screenshot erstellt - |c" .. eventColor .. "Spielertod|r"
-L["chat.event.duel.new"] = "Screenshot erstellt - |c" .. eventColor .. "Duell beendet|r"
 L["chat.event.login.new"] = "Screenshot erstellt - |c" .. eventColor .. "Spielerlogin|r"

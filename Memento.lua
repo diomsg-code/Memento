@@ -86,6 +86,41 @@ function Memento:OnInitialize()
     self:PrintDebug("Event 'ENCOUNTER_END' registered.")
 
     self:RegisterEvent(
+        "DUEL_FINISHED",
+        function()
+            self:PrintDebug("Event 'DUEL_FINISHED' fired. No payload.")
+
+            if self.db.profile.events.duel.active then
+                self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.duel.timer)
+            end
+        end
+    )
+
+    self:PrintDebug("Event 'DUEL_FINISHED' registered.")
+
+    if self.flavor == "Retail" then
+        self:RegisterEvent(
+            "PVP_MATCH_COMPLETE",
+            function(_, winner, duration)
+                self:PrintDebug("Event \"PVP_MATCH_COMPLETE\" fired. Payload: winner=" .. tostring(winner) .. ", duration=" .. tostring(duration))
+
+                local isArena = C_PvP.IsArena()
+                local isBattleground = C_PvP.IsBattleground()
+
+                if self.db.profile.events.pvp.arena.active and isArena then
+                    self:ScheduleTimer("PvPArenaEventHandler", self.db.profile.events.pvp.battleground.timer)
+                elseif self.db.profile.events.pvp.battleground.active and isBattleground then
+                    self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                else
+                    self:PrintDebug("Unknown PvP Event completed.")
+                end
+            end
+        )
+
+        self:PrintDebug("Event 'PVP_MATCH_COMPLETE' registered. (Retail)")
+    end
+
+    self:RegisterEvent(
         "PLAYER_LEVEL_UP",
         function(_, level)
             self:PrintDebug("Event 'PLAYER_LEVEL_UP' fired. Payload: level=" .. level)
@@ -110,19 +145,6 @@ function Memento:OnInitialize()
     )
 
     self:PrintDebug("Event 'PLAYER_DEAD' registered.")
-
-    self:RegisterEvent(
-        "DUEL_FINISHED",
-        function()
-            self:PrintDebug("Event 'DUEL_FINISHED' fired. No payload.")
-
-            if self.db.profile.events.duel.active then
-                self:ScheduleTimer("DuelEventHandler", self.db.profile.events.duel.timer)
-            end
-        end
-    )
-
-    self:PrintDebug("Event 'DUEL_FINISHED' registered.")
 
     self:RegisterEvent(
         "PLAYER_LOGIN",
