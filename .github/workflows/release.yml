@@ -3,7 +3,8 @@ name: Package and release Memento
 on:
   push:
     tags:
-      - '*'
+      - "*"
+      - "!**-alpha**"
 
 jobs:
   github-release:
