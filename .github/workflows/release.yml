@@ -2,6 +2,8 @@ name: Package and publish Memento (Release)
 
 on:
   push:
+    branches:
+      - main
     tags:
       - "*"
       - "!**-alpha**"
