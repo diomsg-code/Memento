@@ -37,11 +37,60 @@ Memento.optionsTable["info"] = {
 				LINE_1 = Memento_GetStyleLineSmall(0.13),
 			},
 		},
+		help = {
+			name = L["info.help"],
+			type = "group",
+			inline = true,
+			order = 1.2,
+			args = {
+				description = {
+					name = L["info.help.description"],
+					type = "description",
+					width = "full",
+					fontSize = "medium",
+					order = 0.11
+				},
+				SEPARATOR_1 = Memento_GetStyleSeparator(0.12),
+				options = {
+					name = L["info.help.options.name"],
+					type = "execute",
+					width = 1.2,
+					desc = L["info.help.options.desc"],
+					confirm = true,
+					confirmText = L["info.help.options.confirmText"],
+					func = function()
+						Memento.db:ResetDB()
+						Memento:PrintMessage(L["chat.reset.options.success"])
+					end,
+					order = 0.13
+				},
+				SPACE_1 = {
+					name = "",
+					type = "description",
+					width = 0.2,
+					fontSize = "medium",
+					order = 0.14
+				},
+				statistic = {
+					name = L["info.help.statistic.name"],
+					type = "execute",
+					width = 1.2,
+					desc = L["info.help.statistic.desc"],
+					confirm = true,
+					confirmText = L["info.help.statistic.confirmText"],
+					func = function()
+						Memento.dbStatstic:ResetDB()
+						Memento:PrintMessage(L["chat.reset.statistic.success"])
+					end,
+					order = 0.15
+				},
+			},
+		},
 		about = {
 			name = L["info.about"],
 			type = "group",
 			inline = true,
-			order = 1.2,
+			order = 1.3,
 			args = {
 				build = {
 					name = Memento_MarkGoldFont(L["info.about.game-version"] .. ": ") .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
@@ -77,7 +126,7 @@ Memento.optionsTable["info"] = {
 				email = {
 					name = L["info.about.email.name"],
 					type = "execute",
-					width = 1.0,
+					width = 1.2,
 					desc = L["info.about.email.desc"],
 					func = function()
 						LibStub("Memento_PopupDialog-1.0").ShowDialogExternalLink(Memento.eMail, L["info.about.email.popup"])
@@ -87,14 +136,14 @@ Memento.optionsTable["info"] = {
 				SPACE_1 = {
 					name = "",
 					type = "description",
-					width = 0.5,
+					width = 0.2,
 					fontSize = "medium",
 					order = 0.19
 				},
 				github = {
 					name = L["info.about.github.name"],
 					type = "execute",
-					width = 1.0,
+					width = 1.2,
 					desc = L["info.about.github.desc"],
 					func = function()
 						LibStub("Memento_PopupDialog-1.0").ShowDialogExternalLink(Memento.github, L["info.about.github.popup"])

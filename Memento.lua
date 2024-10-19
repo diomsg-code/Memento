@@ -90,8 +90,8 @@ function Memento:OnInitialize()
         function()
             self:PrintDebug("Event 'DUEL_FINISHED' fired. No payload.")
 
-            if self.db.profile.events.duel.active then
-                self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.duel.timer)
+            if self.db.profile.events.pvp.duel.active then
+                self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.pvp.duel.timer)
             end
         end
     )
