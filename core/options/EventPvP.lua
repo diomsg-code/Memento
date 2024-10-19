@@ -11,19 +11,8 @@ Memento.optionsTable["eventPvP-mainline"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.pvp.duel"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1 = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.pvp.duel"]),
 		duelActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.pvp.duel"]),
@@ -55,19 +44,8 @@ Memento.optionsTable["eventPvP-mainline"] = {
 			end,
 			order = 0.14
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.15
-		},
-		SEPARATOR_2 = {
-			name = " " .. L["options.event.pvp.arena"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.16
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.15),
+		SEPARATOR_2 = Memento_GetStyleSeparatorText(0.16, " " .. L["options.event.pvp.arena"]),
 		arenaActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.pvp.arena"]),
@@ -99,19 +77,8 @@ Memento.optionsTable["eventPvP-mainline"] = {
 			end,
 			order = 0.18
 		},
-		SPACE_3 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.19
-		},
-		SEPARATOR_3 = {
-			name = " " .. L["options.event.pvp.battleground"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.20
-		},
+		LINE_3 = Memento_GetStyleLineNormal(0.19),
+		SEPARATOR_3 = Memento_GetStyleSeparatorText(0.20, " " .. L["options.event.pvp.battleground"]),
 		battlegroundActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.pvp.battleground"]),
@@ -143,13 +110,7 @@ Memento.optionsTable["eventPvP-mainline"] = {
 			end,
 			order = 0.22
 		},
-		SPACE_4 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.23
-		},
+		LINE_4 = Memento_GetStyleLineNormal(0.23),
 	},
 }
 
@@ -158,19 +119,8 @@ Memento.optionsTable["eventPvP-cata"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.pvp.duel"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1 = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.pvp.duel"]),
 		duelActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.pvp.duel"]),
@@ -202,13 +152,7 @@ Memento.optionsTable["eventPvP-cata"] = {
 			end,
 			order = 0.14
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.15
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.15),
 	},
 }
 
@@ -217,19 +161,8 @@ Memento.optionsTable["eventPvP-vanilla"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.pvp.duel"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1 = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.pvp.duel"]),
 		duelActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.pvp.duel"]),
@@ -261,12 +194,6 @@ Memento.optionsTable["eventPvP-vanilla"] = {
 			end,
 			order = 0.14
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.15
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.15),
 	},
 }

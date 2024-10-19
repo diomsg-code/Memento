@@ -11,19 +11,8 @@ Memento.optionsTable["eventAchievement-mainline"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.achievement.personal"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1  = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.achievement.personal"]),
 		personalActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.achievement.personal"]),
@@ -71,19 +60,8 @@ Memento.optionsTable["eventAchievement-mainline"] = {
 			end,
 			order = 0.15
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.16
-		},
-		SEPARATOR_2 = {
-			name = " " .. L["options.event.achievement.criteria"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.17
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.16),
+		SEPARATOR_2 = Memento_GetStyleSeparatorText(0.17, " " .. L["options.event.achievement.criteria"]),
 		criteriaActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.achievement.criteria"]),
@@ -115,19 +93,8 @@ Memento.optionsTable["eventAchievement-mainline"] = {
 			end,
 			order = 0.19
 		},
-		SPACE_3 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.20
-		},
-		SEPARATOR_3 = {
-			name = " " .. L["options.event.achievement.guild"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.21
-		},
+		LINE_3 = Memento_GetStyleLineNormal(0.20),
+		SEPARATOR_3 = Memento_GetStyleSeparatorText(0.21, " " .. L["options.event.achievement.guild"]),
 		guildActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.achievement.guild"]),
@@ -159,13 +126,7 @@ Memento.optionsTable["eventAchievement-mainline"] = {
 			end,
 			order = 0.23
 		},
-		SPACE_4 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.24
-		},
+		LINE_4 = Memento_GetStyleLineNormal(0.24)
 	},
 }
 
@@ -174,19 +135,8 @@ Memento.optionsTable["eventAchievement-cata"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.achievement.personal"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1  = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.achievement.personal"]),
 		personalActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.achievement.personal"]),
@@ -234,19 +184,8 @@ Memento.optionsTable["eventAchievement-cata"] = {
 			end,
 			order = 0.15
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.16
-		},
-		SEPARATOR_2 = {
-			name = " " .. L["options.event.achievement.guild"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.17
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.16),
+		SEPARATOR_2  = Memento_GetStyleSeparatorText(0.17, " " .. L["options.event.achievement.guild"]),
 		guildActive = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.achievement.guild"]),
@@ -258,7 +197,7 @@ Memento.optionsTable["eventAchievement-cata"] = {
 				Memento.db.profile.events.achievement.guild.active = value
 			end,
 			width = "full",
-			order = 0.22
+			order = 0.18
 		},
 		guildTimer = {
 			name = L["options.event.general.delay.name"],
@@ -276,14 +215,8 @@ Memento.optionsTable["eventAchievement-cata"] = {
 			set = function(_, value)
 				Memento.db.profile.events.achievement.guild.timer = value
 			end,
-			order = 0.23
+			order = 0.19
 		},
-		SPACE_4 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.24
-		},
+		LINE_4 = Memento_GetStyleLineNormal(0.20),
 	},
 }

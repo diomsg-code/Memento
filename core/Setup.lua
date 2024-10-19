@@ -28,7 +28,15 @@ local function SetupOptions(self)
 	local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 
 	local info = Memento.optionsTable["info"]
-	local statistic = Memento.optionsTable["statistic"]
+	local statistic
+
+	if Memento.FLAVOR_IS_MAINLINE then
+		statistic = Memento.optionsTable["statistic-mainline"]
+	elseif Memento.FLAVOR_IS_CATA then
+		statistic = Memento.optionsTable["statistic-cata"]
+	elseif Memento.FLAVOR_IS_VANILLA then
+		statistic = Memento.optionsTable["statistic-vanilla"]
+	end
 
 	local options = Memento.optionsTable["options"]
 

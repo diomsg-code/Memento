@@ -34,13 +34,7 @@ Memento.optionsTable["info"] = {
 					fontSize = "small",
 					order = 0.12
 				},
-				SPACE_1 = {
-					name = "",
-					type = "description",
-					width = "full",
-					fontSize = "medium",
-					order = 0.13
-				},
+				LINE_1 = Memento_GetStyleLineSmall(0.13),
 			},
 		},
 		about = {
@@ -52,24 +46,18 @@ Memento.optionsTable["info"] = {
 				build = {
 					name = Memento_MarkGoldFont(L["info.about.game-version"] .. ": ") .. Memento.gameVersion .. " (".. Memento.flavor .. ")",
 					type = "description",
-					width = 1.5,
+					width = "full",
 					fontSize = "medium",
 					order = 0.11
 				},
 				version = {
 					name = Memento_MarkGoldFont(L["info.about.addon-version"] .. ": ") .. Memento.addonVersion .. " (".. Memento.buildDate .. ")",
 					type = "description",
-					width = 1.5,
+					width = "full",
 					fontSize = "medium",
 					order = 0.12
 				},
-				SPACE_1 = {
-					name = " ",
-					type = "description",
-					width = "full",
-					fontSize = "medium",
-					order = 0.13
-				},
+				LINE_1 = Memento_GetStyleLineNormal(0.13),
 				author = {
 					name =  Memento_MarkGoldFont(L["info.about.author"] .. ": ") .. Memento.author,
 					type = "description",
@@ -77,12 +65,7 @@ Memento.optionsTable["info"] = {
 					fontSize = "medium",
 					order = 0.14
 				},
-				SEPARATOR_1 = {
-					name = "",
-					type = "header",
-					dialogControl = "SFX-Header",
-					order = 0.15
-				},
+				SEPARATOR_1 = Memento_GetStyleSeparator(0.15),
 				feedback = {
 					name = L["info.about.feedback"],
 					type = "description",
@@ -90,13 +73,7 @@ Memento.optionsTable["info"] = {
 					fontSize = "small",
 					order = 0.16
 				},
-				SPACE_2 = {
-					name = "",
-					type = "description",
-					width = "full",
-					fontSize = "medium",
-					order = 0.17
-				},
+				LINE_2 = Memento_GetStyleLineSmall(0.17),
 				email = {
 					name = L["info.about.email.name"],
 					type = "execute",
@@ -107,7 +84,7 @@ Memento.optionsTable["info"] = {
 					end,
 					order = 0.18
 				},
-				SPACE_3 = {
+				SPACE_1 = {
 					name = "",
 					type = "description",
 					width = 0.5,

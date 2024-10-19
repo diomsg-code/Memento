@@ -62,12 +62,7 @@ Memento.optionsTable["options"] = {
 					width = "full",
 					order = 0.13
 				},
-				SEPARATOR_1 = {
-					name = "",
-					type = "header",
-					dialogControl = "SFX-Header",
-					order = 0.14
-				},
+				SEPARATOR_1 = Memento_GetStyleSeparator(0.14),
 				debug = {
 					type = "toggle",
 					name = L["options.general.debug.name"],

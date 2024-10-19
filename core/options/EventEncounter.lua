@@ -11,19 +11,8 @@ Memento.optionsTable["eventEncounter-mainline"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.encounter.victory"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1 = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.encounter.victory"]),
 		victoryParty = {
 			name = L["options.event.encounter.party.name"],
 			desc = L["options.event.encounter.victory.party.desc"],
@@ -97,19 +86,8 @@ Memento.optionsTable["eventEncounter-mainline"] = {
 			end,
 			order = 0.17
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.18
-		},
-		SEPARATOR_2 = {
-			name = " " .. L["options.event.encounter.wipe"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.19
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.18),
+		SEPARATOR_2 = Memento_GetStyleSeparatorText(0.19, " " .. L["options.event.encounter.wipe"]),
 		wipeParty = {
 			name = L["options.event.encounter.party.name"],
 			desc = L["options.event.encounter.wipe.party.desc"],
@@ -167,13 +145,7 @@ Memento.optionsTable["eventEncounter-mainline"] = {
 			end,
 			order = 0.23
 		},
-		SPACE_3 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.24
-		},
+		LINE_3 = Memento_GetStyleLineNormal(0.24),
 	},
 }
 
@@ -182,19 +154,8 @@ Memento.optionsTable["eventEncounter-cata"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.encounter.victory"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1 = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.encounter.victory"]),
 		victoryParty = {
 			name = L["options.event.encounter.party.name"],
 			desc = L["options.event.encounter.victory.party.desc"],
@@ -255,19 +216,8 @@ Memento.optionsTable["eventEncounter-cata"] = {
 			end,
 			order = 0.16
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.17
-		},
-		SEPARATOR_2 = {
-			name = " " .. L["options.event.encounter.wipe"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.18
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.17),
+		SEPARATOR_2 = Memento_GetStyleSeparatorText(0.18, " " .. L["options.event.encounter.wipe"]),
 		wipeParty = {
 			name = L["options.event.encounter.party.name"],
 			desc = L["options.event.encounter.wipe.party.desc"],
@@ -312,13 +262,7 @@ Memento.optionsTable["eventEncounter-cata"] = {
 			end,
 			order = 0.21
 		},
-		SPACE_3 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.22
-		},
+		LINE_3 = Memento_GetStyleLineNormal(0.22),
 	},
 }
 
@@ -327,19 +271,8 @@ Memento.optionsTable["eventEncounter-vanilla"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
-		SEPARATOR_1 = {
-			name = " " .. L["options.event.encounter.victory"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.12
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
+		SEPARATOR_1 = Memento_GetStyleSeparatorText(0.12, " " .. L["options.event.encounter.victory"]),
 		victoryParty = {
 			name = L["options.event.encounter.party.name"],
 			desc = L["options.event.encounter.victory.party.desc"],
@@ -400,19 +333,8 @@ Memento.optionsTable["eventEncounter-vanilla"] = {
 			end,
 			order = 0.16
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.17
-		},
-		SEPARATOR_2 = {
-			name = " " .. L["options.event.encounter.wipe"],
-			type = "header",
-			dialogControl = "SFX-Header-II",
-			order = 0.18
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.17),
+		SEPARATOR_2 = Memento_GetStyleSeparatorText(0.18, " " .. L["options.event.encounter.wipe"]),
 		wipeParty = {
 			name = L["options.event.encounter.party.name"],
 			desc = L["options.event.encounter.wipe.party.desc"],
@@ -457,12 +379,6 @@ Memento.optionsTable["eventEncounter-vanilla"] = {
 			end,
 			order = 0.21
 		},
-		SPACE_3 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.22
-		},
+		LINE_3 = Memento_GetStyleLineNormal(0.22),
 	},
 }
