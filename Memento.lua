@@ -20,7 +20,7 @@ Memento.gameVersion = GetBuildInfo()
 function Memento:OnInitialize()
     self:SetupAddon()
 
-    if self.flavor == "Cata" or self.flavor == "Retail" then
+    if Memento.FLAVOR_IS_MAINLINE or Memento.FLAVOR_IS_CATA then
         self:RegisterEvent(
             "ACHIEVEMENT_EARNED",
             function(_, achievementID, alreadyEarned)
@@ -43,7 +43,7 @@ function Memento:OnInitialize()
         self:PrintDebug("Event 'ACHIEVEMENT_EARNED' registered. (Retail / Cata)")
     end
 
-    if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+    if Memento.FLAVOR_IS_MAINLINE then
         self:RegisterEvent(
             "CRITERIA_EARNED",
             function(_, achievementID, description)
@@ -98,7 +98,7 @@ function Memento:OnInitialize()
 
     self:PrintDebug("Event 'DUEL_FINISHED' registered.")
 
-    if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+    if Memento.FLAVOR_IS_MAINLINE then
         self:RegisterEvent(
             "PVP_MATCH_COMPLETE",
             function(_, winner, duration)

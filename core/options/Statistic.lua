@@ -6,7 +6,7 @@ Memento.optionsTable = Memento.optionsTable or {}
 
 Memento.optionsTable["statistic"] = {
 	name =  function()
-		if Memento.flavor == "Retail" then
+		if Memento.FLAVOR_IS_MAINLINE then
 			return "|T" .. Memento.MEDIA_PATH .. "icon_options.blp:0:0:0:1|t  " .. addonName .. " - " .. L["statistic"]
 		else
 			return "|T" .. Memento.MEDIA_PATH .. "icon_options.blp:0:0:0:2|t  " .. addonName .. " - " .. L["statistic"]
@@ -37,7 +37,7 @@ Memento.optionsTable["statistic"] = {
 					name = Memento_MarkGoldFont(L["statistic.screenshots.achievement.personal"]),
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla")
+						return Memento.FLAVOR_IS_VANILLA
 					end,
 					width = 1.2,
 					fontSize = "medium",
@@ -45,13 +45,13 @@ Memento.optionsTable["statistic"] = {
 				},
 				personalAchievementCount = {
 					name = function ()
-						if not (Memento.flavor == "Vanilla") then
+						if not Memento.FLAVOR_IS_VANILLA then
 							return Memento.dbStatstic.global.events.achievement.personal.count .. " (" .. Memento.dbStatstic.char.events.achievement.personal.count .. ")"
 						end
 					end,
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla")
+						return Memento.FLAVOR_IS_VANILLA
 					end,
 					width = 1,
 					fontSize = "medium",
@@ -61,7 +61,7 @@ Memento.optionsTable["statistic"] = {
 					name = "",
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla")
+						return Memento.FLAVOR_IS_VANILLA
 					end,
 					width = "full",
 					fontSize = "medium",
@@ -71,7 +71,7 @@ Memento.optionsTable["statistic"] = {
 					name = Memento_MarkGoldFont(L["statistic.screenshots.achievement.criteria"]),
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla" or Memento.flavor == "Cata")
+						return (Memento.FLAVOR_IS_CATA or Memento.FLAVOR_IS_VANILLA)
 					end,
 					width = 1.2,
 					fontSize = "medium",
@@ -79,13 +79,13 @@ Memento.optionsTable["statistic"] = {
 				},
 				criteriaAchievementCount = {
 					name = function ()
-						if not (Memento.flavor == "Vanilla" or Memento.flavor == "Cata") then
+						if not (Memento.FLAVOR_IS_CATA or Memento.FLAVOR_IS_VANILLA) then
 							return Memento.dbStatstic.global.events.achievement.criteria.count .. " (" .. Memento.dbStatstic.char.events.achievement.criteria.count .. ")"
 						end
 					end,
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla" or Memento.flavor == "Cata")
+						return (Memento.FLAVOR_IS_CATA or Memento.FLAVOR_IS_VANILLA)
 					end,
 					width = 1,
 					fontSize = "medium",
@@ -95,7 +95,7 @@ Memento.optionsTable["statistic"] = {
 					name = "",
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla" or Memento.flavor == "Cata")
+						return (Memento.FLAVOR_IS_CATA or Memento.FLAVOR_IS_VANILLA)
 					end,
 					width = "full",
 					fontSize = "medium",
@@ -105,7 +105,7 @@ Memento.optionsTable["statistic"] = {
 					name = Memento_MarkGoldFont(L["statistic.screenshots.achievement.guild"]),
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla")
+						return Memento.FLAVOR_IS_VANILLA
 					end,
 					width = 1.2,
 					fontSize = "medium",
@@ -113,13 +113,13 @@ Memento.optionsTable["statistic"] = {
 				},
 				guildAchievementCount = {
 					name = function ()
-						if not (Memento.flavor == "Vanilla") then
+						if not Memento.FLAVOR_IS_VANILLA then
 							return Memento.dbStatstic.global.events.achievement.guild.count .. " (" .. Memento.dbStatstic.char.events.achievement.guild.count .. ")"
 						end
 					end,
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla")
+						return Memento.FLAVOR_IS_VANILLA
 					end,
 					width = 1,
 					fontSize = "medium",
@@ -129,7 +129,7 @@ Memento.optionsTable["statistic"] = {
 					name = "",
 					type = "description",
 					hidden = function ()
-						return (Memento.flavor == "Vanilla")
+						return Memento.FLAVOR_IS_VANILLA
 					end,
 					width = "full",
 					fontSize = "medium",
@@ -228,7 +228,7 @@ Memento.optionsTable["statistic"] = {
 					order = 0.33
 				},
 				duelName = {
-					name = Memento_MarkGoldFont(L["statistic.screenshots.duel"]),
+					name = Memento_MarkGoldFont(L["statistic.screenshots.pvp.duel"]),
 					type = "description",
 					width = 1.2,
 					fontSize = "medium",

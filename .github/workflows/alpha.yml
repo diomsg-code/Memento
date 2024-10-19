@@ -12,13 +12,13 @@ jobs:
       GITHUB_OAUTH: ${{ secrets.G_TOKEN }}  
     steps:
       - name: Clone project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       # Github
       - name: Package and release for Github
-        uses: BigWigsMods/packager@v2
+        uses: BigWigsMods/packager@master
 
   repository-release:
     runs-on: ubuntu-latest

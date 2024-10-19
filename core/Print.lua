@@ -36,21 +36,27 @@ function Memento:PrintStatistic()
     if self.db.profile.options.notification then
         local msg = Memento_MarkNormalFont("Memento: ") .. L["statistic.screenshots.description"] .. "\n"
 
-        if Memento.flavor == "Retail" or Memento.flavor == "Cata" then
+        if Memento.FLAVOR_IS_MAINLINE or Memento.FLAVOR_IS_CATA then
             msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.achievement.personal"] .. ": ") .. self.dbStatstic.global.events.achievement.personal.count .. " (" .. self.dbStatstic.char.events.achievement.personal.count .. ")\n"
         end
 
-        if Memento.flavor == "Retail" then
+        if Memento.FLAVOR_IS_MAINLINE then
             msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.achievement.criteria"] .. ": ") .. self.dbStatstic.global.events.achievement.criteria.count .. " (" .. self.dbStatstic.char.events.achievement.criteria.count .. ")\n"
         end
 
-        if Memento.flavor == "Retail" or Memento.flavor == "Cata" then
+        if Memento.FLAVOR_IS_MAINLINE or Memento.FLAVOR_IS_CATA then
             msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.achievement.guild"] .. ": ") .. self.dbStatstic.global.events.achievement.guild.count .. " (" .. self.dbStatstic.char.events.achievement.guild.count .. ")\n"
         end
 
         msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.encounter.victory"] .. ": ") .. self.dbStatstic.global.events.encounter.victory.count .. " (" .. self.dbStatstic.char.events.encounter.victory.count .. ")\n"
         msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.encounter.wipe"] .. ": ") .. self.dbStatstic.global.events.encounter.wipe.count .. " (" .. self.dbStatstic.char.events.encounter.wipe.count .. ")\n"
-        msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.duel"] .. ": ") .. self.dbStatstic.global.events.pvp.duel.count .. " (" .. self.dbStatstic.char.events.pvp.duel.count .. ")\n"
+        msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.pvp.duel"] .. ": ") .. self.dbStatstic.global.events.pvp.duel.count .. " (" .. self.dbStatstic.char.events.pvp.duel.count .. ")\n"
+
+        if Memento.FLAVOR_IS_MAINLINE then
+            msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.pvp.arena"] .. ": ") .. self.dbStatstic.global.events.pvp.arena.count .. " (" .. self.dbStatstic.char.events.pvp.arena.count .. ")\n"
+            msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.pvp.battleground"] .. ": ") .. self.dbStatstic.global.events.pvp.battleground.count .. " (" .. self.dbStatstic.char.events.pvp.battleground.count .. ")\n"
+        end
+
         msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.levelUp"] .. ": ") .. self.dbStatstic.global.events.levelUp.count .. " (" .. self.dbStatstic.char.events.levelUp.count .. ")\n"
         msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.death"] .. ": ") .. self.dbStatstic.global.events.death.count .. " (" .. self.dbStatstic.char.events.death.count .. ")\n"
         msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.login"] .. ": ") .. self.dbStatstic.global.events.login.count .. " (" .. self.dbStatstic.char.events.login.count .. ")"

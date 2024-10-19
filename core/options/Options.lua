@@ -8,7 +8,7 @@ Memento.optionsTable = Memento.optionsTable or {}
 
 Memento.optionsTable["options"] = {
 	name =  function()
-		if Memento.flavor == "Retail" then
+		if Memento.FLAVOR_IS_MAINLINE then
 			return "|T" .. Memento.MEDIA_PATH .. "icon_options.blp:0:0:0:1|t  " .. addonName .. " - " .. L["options"]
 		else
 			return "|T" .. Memento.MEDIA_PATH .. "icon_options.blp:0:0:0:2|t  " .. addonName .. " - " .. L["options"]
