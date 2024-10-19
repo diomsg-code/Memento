@@ -11,7 +11,7 @@ Memento is an addon that automatically takes screenshots of specific events. The
 
 *\* Achievements are not available in 'Classic'*
 
-## Features
+### Features
 
 *   Each event can be activated separately
 *   The user interface can be automatically hidden for the screenshot and a small success notification is displayed instead (Note: The user interface cannot be hidden automatically during a combat and in this case, the screenshot is taken with the user interface)
@@ -22,6 +22,6 @@ Memento is an addon that automatically takes screenshots of specific events. The
 *   Supported languages: English, German
 *   Supported versions: 'Classic', 'Cataclysm Classic' and 'Retail'
 
-## Quick Start
+### Quick Start
 
 To open the addon option window, type `/memento` into your chat and hit enter.
