@@ -1,4 +1,4 @@
-name: Package and release Memento (Alpha)
+name: Package and release Memento (Alpha)a
 
 on:
   push:
