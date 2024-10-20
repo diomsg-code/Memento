@@ -17,7 +17,7 @@
 ## OptionalDeps: Ace3, AceGUI-3.0_SFX-Widgets
 
 libs.xml
-localization.xml
+locals.xml
 
 Memento.lua
 
