@@ -20,7 +20,7 @@ Memento.gameVersion = GetBuildInfo()
 function Memento:OnInitialize()
     self:SetupAddon()
 
-    if self.flavor == "Cata" or self.flavor == "Retail" then
+    if Memento.FLAVOR_IS_MAINLINE or Memento.FLAVOR_IS_CATA then
         self:RegisterEvent(
             "ACHIEVEMENT_EARNED",
             function(_, achievementID, alreadyEarned)
@@ -43,7 +43,7 @@ function Memento:OnInitialize()
         self:PrintDebug("Event 'ACHIEVEMENT_EARNED' registered. (Retail / Cata)")
     end
 
-    if self.flavor == "Retail" then
+    if Memento.FLAVOR_IS_MAINLINE then
         self:RegisterEvent(
             "CRITERIA_EARNED",
             function(_, achievementID, description)
@@ -90,15 +90,15 @@ function Memento:OnInitialize()
         function()
             self:PrintDebug("Event 'DUEL_FINISHED' fired. No payload.")
 
-            if self.db.profile.events.duel.active then
-                self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.duel.timer)
+            if self.db.profile.events.pvp.duel.active then
+                self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.pvp.duel.timer)
             end
         end
     )
 
     self:PrintDebug("Event 'DUEL_FINISHED' registered.")
 
-    if self.flavor == "Retail" then
+    if Memento.FLAVOR_IS_MAINLINE then
         self:RegisterEvent(
             "PVP_MATCH_COMPLETE",
             function(_, winner, duration)

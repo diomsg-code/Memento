@@ -38,19 +38,19 @@ function Memento:EncounterVictoryEventHandler(encounterName, difficultyName, dif
 end
 
 function Memento:PvPDuelEventHandler()
-	self:PrintMessage(L["chat.event.duel.new"])
+	self:PrintMessage(L["chat.event.pvp.duel.new"])
     self:TakeScreenshot(Memento.EVENT_DUEL_FINISHED)
 end
 
 function Memento:PvPArenaEventHandler()
-    local playerFaction = UnitFactionGroup("player")
- 
+    --local playerFaction = UnitFactionGroup("player")
+
 	self:PrintMessage(L["chat.event.pvp.arena.new"])
     self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_ARENA)
 end
 
 function Memento:PvPBattlegroundEventHandler()
-    local playerFaction = UnitFactionGroup("player")
+    --local playerFaction = UnitFactionGroup("player")
 
 	self:PrintMessage(L["chat.event.pvp.battleground.new"])
     self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_BATTLEGROUND)

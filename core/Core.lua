@@ -24,7 +24,7 @@ local function createMessageFrame(frame)
     frame.textTop:SetPoint("CENTER", 0, 5)
     font = frame.textTop:GetFont()
     frame.textTop:SetFont(tostring(font), 7)
-    frame.textTop:SetText(L["message"])
+    frame.textTop:SetText(L["screen.message"])
 
     frame.textBottom = frame:CreateFontString(nil, "OVERLAY", "GameFontWhiteTiny")
     frame.textBottom:ClearAllPoints()
@@ -85,11 +85,11 @@ function Memento:TakeScreenshot(event)
         self.dbStatstic.char.events.pvp.duel.count = self.dbStatstic.char.events.pvp.duel.count + 1
         self.dbStatstic.global.events.pvp.duel.count = self.dbStatstic.global.events.pvp.duel.count + 1
         self:PrintDebug("Counter for 'DUEL_FINISHED' increased by one.")
-    elseif event == Memento.PVP_MATCH_COMPLETE_ARENA then
+    elseif event == Memento.EVENT_PVP_MATCH_COMPLETE_ARENA then
         self.dbStatstic.char.events.pvp.arena.count = self.dbStatstic.char.events.pvp.arena.count + 1
         self.dbStatstic.global.events.pvp.arena.count = self.dbStatstic.global.events.pvp.arena.count + 1
         self:PrintDebug("Counter for 'PVP_MATCH_COMPLETE' (Arena) increased by one.")
-    elseif event == Memento.PVP_MATCH_COMPLETE_BATTLEGROUND then
+    elseif event == Memento.EVENT_PVP_MATCH_COMPLETE_BATTLEGROUND then
         self.dbStatstic.char.events.pvp.battleground.count = self.dbStatstic.char.events.pvp.battleground.count + 1
         self.dbStatstic.global.events.pvp.battleground.count = self.dbStatstic.global.events.pvp.battleground.count + 1
         self:PrintDebug("Counter for 'PVP_MATCH_COMPLETE' (Battleground) increased by one.")

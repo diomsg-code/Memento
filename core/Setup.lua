@@ -7,13 +7,13 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 -----------------------
 
 local function SetupDatabase(self)
-	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	if Memento.FLAVOR_IS_MAINLINE then
 		self.db = LibStub("AceDB-3.0"):New("Memento_Options", Memento.defaults["options-mainline"], true)
 		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic_v2", Memento.defaults["statistic-mainline"], true)
-	elseif WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC then
+	elseif Memento.FLAVOR_IS_CATA then
 		self.db = LibStub("AceDB-3.0"):New("Memento_Options", Memento.defaults["options-cata"], true)
 		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic_v2", Memento.defaults["statistic-cata"], true)
-	elseif WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+	elseif Memento.FLAVOR_IS_VANILLA then
 		self.db = LibStub("AceDB-3.0"):New("Memento_Options", Memento.defaults["options-vanilla"], true)
 		self.dbStatstic = LibStub("AceDB-3.0"):New("Memento_Statistic_v2", Memento.defaults["statistic-vanilla"], true)
 	end
@@ -28,19 +28,27 @@ local function SetupOptions(self)
 	local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 
 	local info = Memento.optionsTable["info"]
-	local statistic = Memento.optionsTable["statistic"]
+	local statistic
+
+	if Memento.FLAVOR_IS_MAINLINE then
+		statistic = Memento.optionsTable["statistic-mainline"]
+	elseif Memento.FLAVOR_IS_CATA then
+		statistic = Memento.optionsTable["statistic-cata"]
+	elseif Memento.FLAVOR_IS_VANILLA then
+		statistic = Memento.optionsTable["statistic-vanilla"]
+	end
 
 	local options = Memento.optionsTable["options"]
 
-	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	if Memento.FLAVOR_IS_MAINLINE then
 		options.args.achievement =  Memento.optionsTable["eventAchievement-mainline"]
 		options.args.encounter = Memento.optionsTable["eventEncounter-mainline"]
 		options.args.pvp = Memento.optionsTable["eventPvP-mainline"]
-	elseif WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC then
+	elseif Memento.FLAVOR_IS_CATA then
 		options.args.achievement =  Memento.optionsTable["eventAchievement-cata"]
 		options.args.encounter = Memento.optionsTable["eventEncounter-cata"]
 		options.args.pvp = Memento.optionsTable["eventPvP-cata"]
-	elseif WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+	elseif Memento.FLAVOR_IS_VANILLA then
 		options.args.encounter = Memento.optionsTable["eventEncounter-vanilla"]
 		options.args.pvp = Memento.optionsTable["eventPvP-vanilla"]
 	end
@@ -52,7 +60,7 @@ local function SetupOptions(self)
 	local profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db)
 	profiles.confirm = true
 
-	if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+	if Memento.FLAVOR_IS_MAINLINE then
 		profiles.name = "|T" .. Memento.MEDIA_PATH .. "icon_options.blp:0:0:0:1|t  " .. addonName .. " - " .. L["profiles"]
 	else
 		profiles.name = "|T" .. Memento.MEDIA_PATH .. "icon_options.blp:0:0:0:2|t  " .. addonName .. " - " .. L["profiles"]

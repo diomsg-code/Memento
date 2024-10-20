@@ -11,13 +11,7 @@ Memento.optionsTable["eventLogin"] = {
 	type = "group",
 	order = orderID,
 	args = {
-		SPACE_1 = {
-			name = "",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.11
-		},
+		LINE_1 = Memento_GetStyleLineSmall(0.11),
 		active = {
 			type = "toggle",
 			name = L["options.event.general.active.name"]:format(L["options.event.login"]),
@@ -49,12 +43,6 @@ Memento.optionsTable["eventLogin"] = {
 			end,
 			order = 0.13
 		},
-		SPACE_2 = {
-			name = " ",
-			type = "description",
-			width = "full",
-			fontSize = "medium",
-			order = 0.14
-		},
+		LINE_2 = Memento_GetStyleLineNormal(0.14),
 	},
 }

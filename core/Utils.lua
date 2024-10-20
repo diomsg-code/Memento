@@ -29,3 +29,53 @@ end
 function Memento_GetLevelUpLink(level)
     return "|cffFF4E00|Hlevelup:" .. level .. ":LEVEL_UP_TYPE_CHARACTER|h[" .. L["chat.level.name"] .. " " .. level .. "]|h|r"
 end
+
+-----------------------
+--- Style functions ---
+-----------------------
+
+function Memento_GetStyleLineSmall(order)
+	local table = {
+		name = "",
+		type = "description",
+		width = "full",
+		fontSize = "medium",
+		order = order
+	}
+
+	return table
+end
+
+function Memento_GetStyleLineNormal(order)
+	local table = {
+		name = " ",
+		type = "description",
+		width = "full",
+		fontSize = "medium",
+		order = order
+	}
+
+	return table
+end
+
+function Memento_GetStyleSeparator(order)
+	local table = {
+		name = "",
+		type = "header",
+		dialogControl = "SFX-Header",
+		order = order
+	}
+
+	return table
+end
+
+function Memento_GetStyleSeparatorText(order, name)
+	local table = {
+		name = name,
+		type = "header",
+		dialogControl = "SFX-Header-II",
+		order = order
+	}
+
+	return table
+end
