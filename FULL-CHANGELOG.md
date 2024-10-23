@@ -1,3 +1,6 @@
+**2.2.2 (2024-10-23)**
+- Updated: TOC version for patch 11.0.5 (Retail)
+
 **2.2.1 (2024-10-20)**
 - Updated: deDE, enUS localization
 - Minor code adjustments

@@ -19,8 +19,8 @@ function Memento:PrintDebug(msg)
         for i = 1, NUM_CHAT_WINDOWS do 
             local name, _, _, _, _, _, shown, locked, docked, uni = GetChatWindowInfo(i)
 
-            if name == addonName and docked ~= nil then
-                _G['ChatFrame' .. i]:AddMessage(msg)
+            if name == "Debug" and docked ~= nil then
+                _G['ChatFrame' .. i]:AddMessage(Memento_MarkOrangeFont("Memento: ") .. msg)
                 notfound = false
                 break
             end
