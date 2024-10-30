@@ -1,3 +1,6 @@
+**2.2.3 (2024-10-30)**
+- Updated: TOC version for patch 4.4.1 (Cata)
+
 **2.2.2 (2024-10-23)**
 - Updated: TOC version for patch 11.0.5 (Retail)
 
