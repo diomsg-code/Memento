@@ -72,7 +72,7 @@ function Memento:OnInitialize()
                 end
 
                 if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.victory.first) then
-                    self:PrintDebug("Encounter already killed and no screenshot requested.")
+                    self:PrintDebug("Encounter already killed. No screenshot requested.")
                     return
                 end
 
@@ -112,7 +112,7 @@ function Memento:OnInitialize()
                 elseif self.db.profile.events.pvp.battleground.active and isBattleground then
                     self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
                 else
-                    self:PrintDebug("Unknown PvP Event completed.")
+                    self:PrintDebug("Unknown PvP Event completed. No screenshot requested.")
                 end
             end
         )
@@ -139,7 +139,17 @@ function Memento:OnInitialize()
             self:PrintDebug("Event 'PLAYER_DEAD' fired. No payload.")
 
             if self.db.profile.events.death.active then
-                self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
+                local inInstance, instanceType = IsInInstance()
+
+                if self.db.profile.events.death.instance == 0 then
+                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
+                elseif inInstance and self.db.profile.events.death.instance == 1 then
+                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
+                elseif not inInstance and self.db.profile.events.death.instance == 2 then
+                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
+                else
+                    self:PrintDebug("Player died in the wrong area. No screenshot requested.")
+                end
             end
         end
     )

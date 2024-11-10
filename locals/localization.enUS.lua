@@ -80,7 +80,14 @@ L["options.event.pvp.arena"] = "PvP - Arena completed"
 L["options.event.pvp.battleground"] = "PvP - Battleground completed"
 
 L["options.event.levelUp"] = "Level-up"
+
 L["options.event.death"] = "Player death"
+L["options.event.death.instance.name"] = "Screenshot behavior in instances"
+L["options.event.death.instance.desc"] = "Screenshots are only created inside and / or outside an instance, depending on the following settings for |c" .. eventColor .. "player death|r.\n\nAn instance includes arenas, battlegrounds, raids or dungeons."
+L["options.event.death.instance.option.0"] = "inside and outside of instances"
+L["options.event.death.instance.option.1"] = "only inside of instances"
+L["options.event.death.instance.option.2"] = "only outside of instances"
+
 L["options.event.login"] = "Player login"
 
 L["profiles"] = "Profiles"

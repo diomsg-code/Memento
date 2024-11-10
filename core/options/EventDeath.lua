@@ -25,6 +25,27 @@ Memento.optionsTable["eventDeath"] = {
 			width = "full",
 			order = 0.12
 		},
+		instance = {
+			type = "select",
+			name = L["options.event.death.instance.name"],
+			desc = L["options.event.death.instance.desc"],
+			values = {
+				[0] = L["options.event.death.instance.option.0"],
+				[1] = L["options.event.death.instance.option.1"],
+				[2] = L["options.event.death.instance.option.2"]
+			},
+			disabled = function()
+				return not Memento.db.profile.events.death.active
+			end,
+			get = function()
+				return Memento.db.profile.events.death.instance
+			end,
+			set = function(_, value)
+				Memento.db.profile.events.death.instance = value
+			end,
+			width = 1.5,
+			order = 0.13
+		},
 		timer = {
 			name = L["options.event.general.delay.name"],
 			desc = L["options.event.general.delay.desc"]:format(L["options.event.death"], 1),
@@ -41,7 +62,7 @@ Memento.optionsTable["eventDeath"] = {
 			set = function(_, value)
 				Memento.db.profile.events.death.timer = value
 			end,
-			order = 0.13
+			order = 0.14
 		},
 		LINE_2 = Memento_GetStyleLineNormal(0.14),
 	},

@@ -82,7 +82,14 @@ L["options.event.pvp.arena"] = "PvP - Arena abgeschlossen"
 L["options.event.pvp.battleground"] = "PvP - Schlachtfeld abgeschlossen"
 
 L["options.event.levelUp"] = "Stufenaufstieg"
+
 L["options.event.death"] = "Spielertod"
+L["options.event.death.instance.name"] = "Screenshotverhalten in Instanzen"
+L["options.event.death.instance.desc"] = "Screenshots werden unter Berücksichtigung der folgenden Einstellungen für den |c" .. eventColor .. "Spielertod|r nur innerhalb und / oder außerhalb einer Instanz erstellt.\n\nZu einer Instanz zählen u.a. Arenen, Schlachtfelder, Raids oder Dungeons."
+L["options.event.death.instance.option.0"] = "in- und außerhalb von Instanzen"
+L["options.event.death.instance.option.1"] = "nur innerhalb von Instanzen"
+L["options.event.death.instance.option.2"] = "nur außerhalb von Instanzen"
+
 L["options.event.login"] = "Spielerlogin"
 
 L["profiles"] = "Profile"

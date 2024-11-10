@@ -61,6 +61,7 @@ Memento.defaults["options-mainline"] = {
             },
             death = {
                 active = true,
+                instance = 0,
                 timer = 1
             },
 			login = {
@@ -205,6 +206,7 @@ Memento.defaults["options-cata"] = {
             },
             death = {
                 active = true,
+                instance = 0,
                 timer = 1
             },
 			login = {
@@ -320,6 +322,7 @@ Memento.defaults["options-vanilla"] = {
             },
             death = {
                 active = true,
+                instance = 0,
                 timer = 1
             },
 			login = {
