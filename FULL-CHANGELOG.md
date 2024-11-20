@@ -1,3 +1,7 @@
+**2.2.5 (2024-11-20)**
+- Changed: Small logo / icon modifications
+- Updated: TOC version for patch 1.15.5 (Classic)
+
 **2.2.4 (2024-11-10)**
 - Updated: For the 'Player death' event, you can now decide whether the screenshots should only be taken inside or outside of an instance (or still everywhere)
 
