@@ -15,7 +15,7 @@ end
 function Memento:PrintDebug(msg)
     if self.db.profile.options.debug then
         local notfound = true
-        
+
         for i = 1, NUM_CHAT_WINDOWS do 
             local name, _, _, _, _, _, shown, locked, docked, uni = GetChatWindowInfo(i)
 
@@ -55,6 +55,7 @@ function Memento:PrintStatistic()
         if Memento.FLAVOR_IS_MAINLINE then
             msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.pvp.arena"] .. ": ") .. self.dbStatstic.global.events.pvp.arena.count .. " (" .. self.dbStatstic.char.events.pvp.arena.count .. ")\n"
             msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.pvp.battleground"] .. ": ") .. self.dbStatstic.global.events.pvp.battleground.count .. " (" .. self.dbStatstic.char.events.pvp.battleground.count .. ")\n"
+            msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.pvp.brawl"] .. ": ") .. self.dbStatstic.global.events.pvp.brawl.count .. " (" .. self.dbStatstic.char.events.pvp.brawl.count .. ")\n"
         end
 
         msg = msg .. Memento_MarkGoldFont(L["statistic.screenshots.levelUp"] .. ": ") .. self.dbStatstic.global.events.levelUp.count .. " (" .. self.dbStatstic.char.events.levelUp.count .. ")\n"

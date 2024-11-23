@@ -14,7 +14,7 @@ function Memento:AchievementPersonalEventHandler(achievementID, alreadyEarned)
         self:PrintMessage(L["chat.event.achievement.personal.exist"]:format(GetAchievementLink(achievementID)))
         self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_EARNED_PERSONAL)
     else
-        self:PrintDebug("No screenshot has been taken as the achievement ".. GetAchievementLink(achievementID) .. " has already been reached by another character")
+        self:PrintDebug("The achievement ".. GetAchievementLink(achievementID) .. " has already been reached by another character. No screenshot requested.")
     end
 end
 
@@ -54,6 +54,13 @@ function Memento:PvPBattlegroundEventHandler()
 
 	self:PrintMessage(L["chat.event.pvp.battleground.new"])
     self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_BATTLEGROUND)
+end
+
+function Memento:PvPBrawlEventHandler()
+    --local playerFaction = UnitFactionGroup("player")
+
+	self:PrintMessage(L["chat.event.pvp.brawl.new"])
+    self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_BRAWL)
 end
 
 function Memento:EncounterWipeEventHandler(encounterName, difficultyName)

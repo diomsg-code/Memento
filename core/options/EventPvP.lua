@@ -111,6 +111,39 @@ Memento.optionsTable["eventPvP-mainline"] = {
 			order = 0.22
 		},
 		LINE_4 = Memento_GetStyleLineNormal(0.23),
+		SEPARATOR_4 = Memento_GetStyleSeparatorText(0.24, " " .. L["options.event.pvp.brawl"]),
+		brawlActive = {
+			type = "toggle",
+			name = L["options.event.general.active.name"]:format(L["options.event.pvp.brawl"]),
+			desc = L["options.event.general.active.desc"]:format(L["options.event.pvp.brawl"]),
+			get = function()
+				return Memento.db.profile.events.pvp.brawl.active
+			end,
+			set = function(_, value)
+				Memento.db.profile.events.pvp.brawl.active = value
+			end,
+			width = "full",
+			order = 0.25
+		},
+		brawlTimer = {
+			name = L["options.event.general.delay.name"],
+			desc = L["options.event.general.delay.desc"]:format(L["options.event.pvp.brawl"], 3),
+			type = "range",
+			min = 0,
+			max = 10,
+			step = 1,
+			disabled = function()
+				return not Memento.db.profile.events.pvp.brawl.active
+			end,
+			get = function()
+				return Memento.db.profile.events.pvp.brawl.timer
+			end,
+			set = function(_, value)
+				Memento.db.profile.events.pvp.brawl.timer = value
+			end,
+			order = 0.26
+		},
+		LINE_5 = Memento_GetStyleLineNormal(0.27),
 	},
 }
 

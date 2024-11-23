@@ -31,10 +31,14 @@ function Memento:OnInitialize()
                 if not isGuildAchievement then
                     if self.db.profile.events.achievement.personal.active then
                         self:ScheduleTimer("AchievementPersonalEventHandler", self.db.profile.events.achievement.personal.timer, achievementID, alreadyEarned)
+                    else
+                        self:PrintDebug("Event 'ACHIEVEMENT_EARNED' (Personal) completed. No screenshot requested.")
                     end
                 else
                     if self.db.profile.events.achievement.guild.active then
                         self:ScheduleTimer("AchievementGuildEventHandler", self.db.profile.events.achievement.guild.timer, achievementID)
+                    else
+                        self:PrintDebug("Event 'ACHIEVEMENT_EARNED' (Guild) completed. No screenshot requested.")
                     end
                 end
             end
@@ -51,6 +55,8 @@ function Memento:OnInitialize()
 
                 if self.db.profile.events.achievement.criteria.active then
                     self:ScheduleTimer("CriteriaEventHandler", 2, achievementID, description)
+                else
+                    self:PrintDebug("Event 'CRITERIA_EARNED' completed. No screenshot requested.")
                 end
             end
         )
@@ -66,19 +72,30 @@ function Memento:OnInitialize()
             local difficultyName, groupType = GetDifficultyInfo(difficultyID)
             local difficulty = "D" .. difficultyID
 
-            if (success == 1 and ((groupType == "party" and self.db.profile.events.encounter.victory.party) or (groupType == "raid" and self.db.profile.events.encounter.victory.raid) or (groupType == "scenario" and self.db.profile.events.encounter.victory.scenario))) then 
-                if (not Memento_DataBossKill[difficulty]) then 
-                    Memento_DataBossKill[difficulty] = {}
-                end
+            if groupType == "party" or groupType == "raid" or groupType == "scenario" then
+                if success == 1 then
+                    if ((groupType == "party" and self.db.profile.events.encounter.victory.party) or (groupType == "raid" and self.db.profile.events.encounter.victory.raid) or (groupType == "scenario" and self.db.profile.events.encounter.victory.scenario)) then
+                        if (not Memento_DataBossKill[difficulty]) then
+                            Memento_DataBossKill[difficulty] = {}
+                        end
 
-                if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.victory.first) then
-                    self:PrintDebug("Encounter already killed. No screenshot requested.")
-                    return
+                        if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.victory.first) then
+                            self:PrintDebug("Encounter already killed. No screenshot requested.")
+                        else
+                            self:ScheduleTimer("EncounterVictoryEventHandler", self.db.profile.events.encounter.victory.timer, encounterName, difficultyName, difficulty, encounterID)
+                        end
+                    else
+                        self:PrintDebug("Event 'ENCOUNTER_END' (Victory) completed. No screenshot requested.")
+                    end
+                else
+                    if((groupType == "party" and self.db.profile.events.encounter.wipe.party) or (groupType == "raid" and self.db.profile.events.encounter.wipe.raid) or (groupType == "scenario" and self.db.profile.events.encounter.wipe.scenario)) then
+                        self:ScheduleTimer("EncounterWipeEventHandler", self.db.profile.events.encounter.wipe.timer, encounterName, difficultyName)
+                    else
+                        self:PrintDebug("Event 'ENCOUNTER_END' (Wipe) completed. No screenshot requested.")
+                    end
                 end
-
-                self:ScheduleTimer("EncounterVictoryEventHandler", self.db.profile.events.encounter.victory.timer, encounterName, difficultyName, difficulty, encounterID)
-            elseif (success == 0 and ((groupType == "party" and self.db.profile.events.encounter.wipe.party) or (groupType == "raid" and self.db.profile.events.encounter.wipe.raid) or (groupType == "scenario" and self.db.profile.events.encounter.wipe.scenario))) then
-                self:ScheduleTimer("EncounterWipeEventHandler", self.db.profile.events.encounter.wipe.timer, encounterName, difficultyName)
+            else
+                self:PrintDebug("Unknown groupType '" .. tostring(groupType) .. "'. No screenshot requested.")
             end
         end
     )
@@ -92,6 +109,8 @@ function Memento:OnInitialize()
 
             if self.db.profile.events.pvp.duel.active then
                 self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.pvp.duel.timer)
+            else
+                self:PrintDebug("Event 'DUEL_FINISHED' completed. No screenshot requested.")
             end
         end
     )
@@ -106,13 +125,28 @@ function Memento:OnInitialize()
 
                 local isArena = C_PvP.IsArena()
                 local isBattleground = C_PvP.IsBattleground()
+                local isInBrawl = C_PvP.IsInBrawl()
 
-                if self.db.profile.events.pvp.arena.active and isArena then
-                    self:ScheduleTimer("PvPArenaEventHandler", self.db.profile.events.pvp.battleground.timer)
-                elseif self.db.profile.events.pvp.battleground.active and isBattleground then
-                    self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                if isArena then
+                    if self.db.profile.events.pvp.arena.active then
+                        self:ScheduleTimer("PvPArenaEventHandler", self.db.profile.events.pvp.battleground.timer)
+                    else
+                        self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Arean) completed. No screenshot requested.")
+                    end
+                elseif isBattleground then
+                    if self.db.profile.events.pvp.battleground.active then
+                        self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                    else
+                        self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Battleground) completed. No screenshot requested.")
+                    end
+                elseif isInBrawl then
+                    if self.db.profile.events.pvp.brawl.active then
+                        self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer)
+                    else
+                        self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Brawl) completed. No screenshot requested.")
+                    end
                 else
-                    self:PrintDebug("Unknown PvP Event completed. No screenshot requested.")
+                    self:PrintDebug("Unknown PvP Event. No screenshot requested.")
                 end
             end
         )
@@ -127,6 +161,8 @@ function Memento:OnInitialize()
 
             if self.db.profile.events.levelUp.active then
                 self:ScheduleTimer("LevelUpEventHandler", self.db.profile.events.levelUp.timer, level)
+            else
+                self:PrintDebug("Event 'PLAYER_LEVEL_UP' completed. No screenshot requested.")
             end
         end
     )
@@ -150,6 +186,8 @@ function Memento:OnInitialize()
                 else
                     self:PrintDebug("Player died in the wrong area. No screenshot requested.")
                 end
+            else
+                self:PrintDebug("Event 'PLAYER_DEAD' completed. No screenshot requested.")
             end
         end
     )
@@ -163,6 +201,8 @@ function Memento:OnInitialize()
 
             if self.db.profile.events.login.active then
                 self:ScheduleTimer("LoginEventHandler", self.db.profile.events.login.timer)
+            else
+                self:PrintDebug("Event 'PLAYER_LOGIN' completed. No screenshot requested.")
             end
         end
     )

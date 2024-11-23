@@ -1,3 +1,8 @@
+**2.3.0 (2024-10-23)**
+- Added: New event 'Brawl completed' - An automatic screenshot can now be taken when you have completed a brawl
+- Changed: Debug mode extended by additional checks
+- Updated: deDE, enUS localization
+
 **2.2.5 (2024-11-20)**
 - Changed: Small logo / icon modifications
 - Updated: TOC version for patch 1.15.5 (Classic)

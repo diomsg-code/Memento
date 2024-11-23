@@ -41,20 +41,39 @@ end
 -----------------------
 
 function Memento:TakeScreenshot(event)
-    if self.db.profile.options.ui and (not InCombatLockdown()) then
-        UIParent:Hide()
+    if self.db.profile.options.ui then
+        if not InCombatLockdown() then
+            local frame = CreateFrame("Frame")
 
-        local frame = CreateFrame("Frame")
-        frame = createMessageFrame(frame)
+            local status, err = pcall(function ()
+                UIParent:Hide()
 
-        Screenshot()
+                frame = createMessageFrame(frame)
 
-        C_Timer.After(0.01, function()
-            UIParent:Show()
-            frame:Hide()
-        end)
+                Screenshot()
 
-        self:PrintDebug("Screenshot without UI taken.")
+                C_Timer.After(0.01, function()
+                    UIParent:Show()
+                    frame:Hide()
+                end)
+
+                self:PrintDebug("Screenshot without UI taken.")
+            end)
+
+            if not status then
+                UIParent:Show()
+                frame:Hide()
+
+                self:PrintDebug("Method TakeScreenshot() (without UI) aborted with exception: " .. err)
+
+                Screenshot()
+
+                self:PrintDebug("Screenshot taken.")
+            end
+        else
+            self:PrintDebug("No screenshot is possible in combat without ui.")
+            self:PrintDebug("Screenshot taken.")
+        end
     else
         Screenshot()
 
@@ -93,6 +112,10 @@ function Memento:TakeScreenshot(event)
         self.dbStatstic.char.events.pvp.battleground.count = self.dbStatstic.char.events.pvp.battleground.count + 1
         self.dbStatstic.global.events.pvp.battleground.count = self.dbStatstic.global.events.pvp.battleground.count + 1
         self:PrintDebug("Counter for 'PVP_MATCH_COMPLETE' (Battleground) increased by one.")
+    elseif event == Memento.EVENT_PVP_MATCH_COMPLETE_BRAWL then
+        self.dbStatstic.char.events.pvp.brawl.count = self.dbStatstic.char.events.pvp.brawl.count + 1
+        self.dbStatstic.global.events.pvp.brawl.count = self.dbStatstic.global.events.pvp.brawl.count + 1
+        self:PrintDebug("Counter for 'PVP_MATCH_COMPLETE' (Brawl) increased by one.")
     elseif event == Memento.EVENT_PLAYER_LEVEL_UP then
         self.dbStatstic.char.events.levelUp.count = self.dbStatstic.char.events.levelUp.count + 1
         self.dbStatstic.global.events.levelUp.count = self.dbStatstic.global.events.levelUp.count + 1

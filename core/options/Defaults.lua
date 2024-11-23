@@ -24,7 +24,7 @@ Memento.defaults["options-mainline"] = {
                 guild = {
                     active = true,
                     timer = 2
-                },
+                }
             },
 			encounter = {
                 victory = {
@@ -39,7 +39,7 @@ Memento.defaults["options-mainline"] = {
 					raid = true,
 					scenario = true,
 					timer = 2
-                },
+                }
 			},
             pvp = {
                 duel = {
@@ -54,6 +54,10 @@ Memento.defaults["options-mainline"] = {
                     active = true,
                     timer = 3
                 },
+                brawl = {
+                    active = true,
+                    timer = 3
+                }
             },
             levelUp = {
                 active = true,
@@ -84,7 +88,7 @@ Memento.defaults["statistic-mainline"] = {
                 },
                 guild = {
                     count = 0
-                },
+                }
             },
 			encounter = {
 				victory = {
@@ -92,7 +96,7 @@ Memento.defaults["statistic-mainline"] = {
 				},
 				wipe = {
 					count = 0
-				},
+				}
             },
             pvp = {
                 duel = {
@@ -104,6 +108,9 @@ Memento.defaults["statistic-mainline"] = {
                 battleground = {
                     count = 0
                 },
+                brawl = {
+                    count = 0
+                }
             },
             levelUp = {
 				count = 0
@@ -127,7 +134,7 @@ Memento.defaults["statistic-mainline"] = {
                 },
                 guild = {
                     count = 0
-                },
+                }
             },
 			encounter = {
 				victory = {
@@ -135,7 +142,7 @@ Memento.defaults["statistic-mainline"] = {
 				},
 				wipe = {
 					count = 0
-				},
+				}
             },
             pvp = {
                 duel = {
@@ -147,6 +154,9 @@ Memento.defaults["statistic-mainline"] = {
                 battleground = {
                     count = 0
                 },
+                brawl = {
+                    count = 0
+                }
             },
             levelUp = {
 				count = 0
@@ -179,7 +189,7 @@ Memento.defaults["options-cata"] = {
                 guild = {
                     active = true,
                     timer = 2
-                },
+                }
             },
 			encounter = {
 				victory = {
@@ -192,13 +202,13 @@ Memento.defaults["options-cata"] = {
 					party = true,
 					raid = true,
 					timer = 2
-				},
+				}
 			},
 			pvp = {
                 duel = {
                     active = true,
                     timer = 1
-                },
+                }
             },
             levelUp = {
                 active = true,
@@ -226,7 +236,7 @@ Memento.defaults["statistic-cata"] = {
                 },
                 guild = {
                     count = 0
-                },
+                }
             },
 			encounter = {
 				victory = {
@@ -234,12 +244,12 @@ Memento.defaults["statistic-cata"] = {
 				},
 				wipe = {
 					count = 0
-				},
+				}
             },
 			pvp = {
                 duel = {
                     count = 0
-                },
+                }
             },
             levelUp = {
 				count = 0
@@ -260,7 +270,7 @@ Memento.defaults["statistic-cata"] = {
                 },
                 guild = {
                     count = 0
-                },
+                }
             },
 			encounter = {
 				victory = {
@@ -268,12 +278,12 @@ Memento.defaults["statistic-cata"] = {
 				},
 				wipe = {
 					count = 0
-				},
+				}
             },
 			pvp = {
                 duel = {
                     count = 0
-                },
+                }
             },
             levelUp = {
 				count = 0
@@ -308,13 +318,13 @@ Memento.defaults["options-vanilla"] = {
 					party = true,
 					raid = true,
 					timer = 2
-				},
+				}
 			},
 			pvp = {
                 duel = {
                     active = true,
                     timer = 1
-                },
+                }
             },
             levelUp = {
                 active = true,
@@ -342,12 +352,12 @@ Memento.defaults["statistic-vanilla"] = {
 				},
 				wipe = {
 					count = 0
-				},
+				}
             },
 			pvp = {
                 duel = {
                     count = 0
-                },
+                }
             },
             levelUp = {
 				count = 0
@@ -368,12 +378,12 @@ Memento.defaults["statistic-vanilla"] = {
 				},
 				wipe = {
 					count = 0
-				},
+				}
             },
 			pvp = {
                 duel = {
                     count = 0
-                },
+                }
             },
             levelUp = {
 				count = 0

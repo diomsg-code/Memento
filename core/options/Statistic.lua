@@ -157,13 +157,30 @@ Memento.optionsTable["statistic-mainline"] = {
 					fontSize = "medium",
 					order = 0.35
 				},
-				LINE_8 = Memento_GetStyleLineNormal(0.36),
+				LINE_8 = Memento_GetStyleLineSmall(0.36),
+				pvpBrawlName = {
+					name = Memento_MarkGoldFont(L["statistic.screenshots.pvp.brawl"]),
+					type = "description",
+					width = 1.25,
+					fontSize = "medium",
+					order = 0.37
+				},
+				pvpBrawlCount = {
+					name = function ()
+						return Memento.dbStatstic.global.events.pvp.brawl.count .. " (" .. Memento.dbStatstic.char.events.pvp.brawl.count .. ")"
+					end,
+					type = "description",
+					width = 1,
+					fontSize = "medium",
+					order = 0.38
+				},
+				LINE_9 = Memento_GetStyleLineNormal(0.39),
 				levelUpName = {
 					name = Memento_MarkGoldFont(L["statistic.screenshots.levelUp"]),
 					type = "description",
 					width = 1.25,
 					fontSize = "medium",
-					order = 0.37
+					order = 0.40
 				},
 				levelUpCount = {
 					name = function ()
@@ -172,15 +189,15 @@ Memento.optionsTable["statistic-mainline"] = {
 					type = "description",
 					width = 1,
 					fontSize = "medium",
-					order = 0.38
+					order = 0.41
 				},
-				LINE_9 = Memento_GetStyleLineSmall(0.39),
+				LINE_10 = Memento_GetStyleLineSmall(0.42),
 				deathName = {
 					name = Memento_MarkGoldFont(L["statistic.screenshots.death"]),
 					type = "description",
 					width = 1.25,
 					fontSize = "medium",
-					order = 0.40
+					order = 0.43
 				},
 				deathCount = {
 					name = function ()
@@ -189,15 +206,15 @@ Memento.optionsTable["statistic-mainline"] = {
 					type = "description",
 					width = 1,
 					fontSize = "medium",
-					order = 0.41
+					order = 0.44
 				},
-				LINE_10 = Memento_GetStyleLineSmall(0.42),
+				LINE_11 = Memento_GetStyleLineSmall(0.45),
 				loginName = {
 					name = Memento_MarkGoldFont(L["statistic.screenshots.login"]),
 					type = "description",
 					width = 1.25,
 					fontSize = "medium",
-					order = 0.43
+					order = 0.46
 				},
 				loginCount = {
 					name = function ()
@@ -206,9 +223,9 @@ Memento.optionsTable["statistic-mainline"] = {
 					type = "description",
 					width = 1,
 					fontSize = "medium",
-					order = 0.44
+					order = 0.47
 				},
-				LINE_11 = Memento_GetStyleLineSmall(0.45),
+				LINE_12 = Memento_GetStyleLineSmall(0.48),
 			},
 		},
 	},
