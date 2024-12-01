@@ -1,4 +1,7 @@
-**2.3.0 (2024-10-23)**
+**2.3.1 (2024-12-01)**
+- Fixed: The statistic for the event 'Guild achievement' was not recorded correctly
+
+**2.3.0 (2024-11-23)**
 - Added: New event 'Brawl completed' - An automatic screenshot can now be taken when you have completed a brawl
 - Changed: Debug mode extended by additional checks
 - Updated: deDE, enUS localization

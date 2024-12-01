@@ -27,7 +27,7 @@ function Memento:AchievementGuildEventHandler(achievementID)
     local name = select(2, GetAchievementInfo(achievementID))
 
     self:PrintMessage(L["chat.event.achievement.guild.new"]:format(name))
-    self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_CRITERIA_EARNED)
+    self:TakeScreenshot(Memento.EVENT_ACHIEVEMENT_EARNED_GUILD)
 end
 
 function Memento:EncounterVictoryEventHandler(encounterName, difficultyName, difficulty, encounterID)
@@ -35,6 +35,11 @@ function Memento:EncounterVictoryEventHandler(encounterName, difficultyName, dif
     self:TakeScreenshot(Memento.EVENT_ENCOUNTER_END_VICTORY)
 
     Memento_DataBossKill[difficulty][encounterID] = true
+end
+
+function Memento:EncounterWipeEventHandler(encounterName, difficultyName)
+	self:PrintMessage(L["chat.event.encounter.wipe.new"]:format(encounterName, difficultyName))
+    self:TakeScreenshot(Memento.EVENT_ENCOUNTER_END_WIPE)
 end
 
 function Memento:PvPDuelEventHandler()
@@ -61,11 +66,6 @@ function Memento:PvPBrawlEventHandler()
 
 	self:PrintMessage(L["chat.event.pvp.brawl.new"])
     self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_BRAWL)
-end
-
-function Memento:EncounterWipeEventHandler(encounterName, difficultyName)
-	self:PrintMessage(L["chat.event.encounter.wipe.new"]:format(encounterName, difficultyName))
-    self:TakeScreenshot(Memento.EVENT_ENCOUNTER_END_WIPE)
 end
 
 function Memento:LevelUpEventHandler(level)
