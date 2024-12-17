@@ -1,3 +1,6 @@
+**2.3.2 (2024-12-17)**
+- Updated: TOC version for patch 11.0.7 (Retail)
+
 **2.3.1 (2024-12-01)**
 - Fixed: The statistic for the event 'Guild achievement' was not recorded correctly
 
