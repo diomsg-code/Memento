@@ -48,22 +48,16 @@ function Memento:PvPDuelEventHandler()
 end
 
 function Memento:PvPArenaEventHandler()
-    --local playerFaction = UnitFactionGroup("player")
-
 	self:PrintMessage(L["chat.event.pvp.arena.new"])
     self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_ARENA)
 end
 
 function Memento:PvPBattlegroundEventHandler()
-    --local playerFaction = UnitFactionGroup("player")
-
 	self:PrintMessage(L["chat.event.pvp.battleground.new"])
     self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_BATTLEGROUND)
 end
 
 function Memento:PvPBrawlEventHandler()
-    --local playerFaction = UnitFactionGroup("player")
-
 	self:PrintMessage(L["chat.event.pvp.brawl.new"])
     self:TakeScreenshot(Memento.EVENT_PVP_MATCH_COMPLETE_BRAWL)
 end

@@ -1,3 +1,7 @@
+**2.3.3 (2024-12-26)**
+- Changed: For the 'Battleground completed' event, you can now decide whether the screenshots should only be taken in the event of a victory
+- Changed: For the 'Brawl completed' event, you can now decide whether the screenshots should only be taken in the event of a victory
+
 **2.3.2 (2024-12-17)**
 - Updated: TOC version for patch 11.0.7 (Retail)
 
@@ -14,7 +18,7 @@
 - Updated: TOC version for patch 1.15.5 (Classic)
 
 **2.2.4 (2024-11-10)**
-- Updated: For the 'Player death' event, you can now decide whether the screenshots should only be taken inside or outside of an instance (or still everywhere)
+- Changed: For the 'Player death' event, you can now decide whether the screenshots should only be taken inside or outside of an instance (or still everywhere)
 
 **2.2.3 (2024-10-30)**
 - Updated: TOC version for patch 4.4.1 (Cata)

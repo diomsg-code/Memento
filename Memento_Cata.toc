@@ -5,7 +5,7 @@
 ## IconTexture: Interface\AddOns\Memento\media\icon.blp
 ## X-Flavor: Cata
 ## X-BuildDate: @build-date@
-## X-E-Mail: feedback@memento-addon.de
+## X-E-Mail: feedback@wow-addon.dev
 ## X-Github: https://github.com/diomsg-code/Memento
 ## Notes: A World of Warcraft addon that automatically takes screenshots of specific events.
 ## Notes-deDE: Ein World of Warcraft Addon, das automatisch Screenshots von bestimmten Ereignissen erstellt.

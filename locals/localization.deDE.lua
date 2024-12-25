@@ -82,6 +82,9 @@ L["options.event.pvp.arena"] = "PvP - Arena abgeschlossen"
 L["options.event.pvp.battleground"] = "PvP - Schlachtfeld abgeschlossen"
 L["options.event.pvp.brawl"] = "PvP - Rauferei abgeschlossen"
 
+L["options.event.pvp.victory.name"] = "nur bei Sieg"
+L["options.event.pvp.victory.desc"] = "Aktiviere oder deaktiviere die automatische Erstellung eines Screenshots, wenn Du das PVP-Match gewonnen hast."
+
 L["options.event.levelUp"] = "Stufenaufstieg"
 
 L["options.event.death"] = "Spielertod"

@@ -127,6 +127,9 @@ function Memento:OnInitialize()
                 local isBattleground = C_PvP.IsBattleground()
                 local isInBrawl = C_PvP.IsInBrawl()
 
+                local playerFaction = UnitFactionGroup("player")
+                self:PrintDebug(tostring(playerFaction))
+
                 if isArena then
                     if self.db.profile.events.pvp.arena.active then
                         self:ScheduleTimer("PvPArenaEventHandler", self.db.profile.events.pvp.battleground.timer)
@@ -135,13 +138,30 @@ function Memento:OnInitialize()
                     end
                 elseif isBattleground then
                     if self.db.profile.events.pvp.battleground.active then
-                        self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                        if self.db.profile.events.pvp.battleground.victory then
+                            if (playerFaction == "Alliance" and winner == 1) or (playerFaction == "Horde" and winner == 0) then
+                                self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                            else
+                                self:PrintDebug("Player faction has lost the battleground. No screenshot requested.")
+                            end
+                        else
+                            self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                        end
                     else
                         self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Battleground) completed. No screenshot requested.")
                     end
                 elseif isInBrawl then
                     if self.db.profile.events.pvp.brawl.active then
-                        self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer)
+                        if self.db.profile.events.pvp.brawl.victory then
+                            if (playerFaction == "Alliance" and winner == 1) or (playerFaction == "Horde" and winner == 0) then
+                                self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer)
+                                self:PrintDebug(tostring(playerFaction .. " - WON"))
+                            else
+                                self:PrintDebug("Player faction has lost the brawl. No screenshot requested.")
+                            end
+                        else
+                            self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer)
+                        end
                     else
                         self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Brawl) completed. No screenshot requested.")
                     end

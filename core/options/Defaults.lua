@@ -52,10 +52,12 @@ Memento.defaults["options-mainline"] = {
                 },
                 battleground = {
                     active = true,
+                    victory = false,
                     timer = 3
                 },
                 brawl = {
                     active = true,
+                    victory = false,
                     timer = 3
                 }
             },

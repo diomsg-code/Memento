@@ -72,7 +72,7 @@ L["options.event.encounter.victory.first.name"] = "only on the first kill per di
 L["options.event.encounter.victory.first.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have already killed a boss. This option applies separately for each difficulty."
 L["options.event.encounter.wipe.party.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have wiped at a dungeon boss."
 L["options.event.encounter.wipe.raid.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have wiped at a raid boss."
-L["options.event.encounter.wipe.scenario.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have wwiped at a scenario or delves boss."
+L["options.event.encounter.wipe.scenario.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have wiped at a scenario or delves boss."
 
 L["options.event.pvp"] = "Player vs. Player"
 L["options.event.pvp.duel"] = "PvP - Duel finished"
@@ -88,6 +88,9 @@ L["options.event.death.instance.desc"] = "Screenshots are only created inside an
 L["options.event.death.instance.option.0"] = "inside and outside of instances"
 L["options.event.death.instance.option.1"] = "only inside of instances"
 L["options.event.death.instance.option.2"] = "only outside of instances"
+
+L["options.event.pvp.victory.name"] = "only in the event of a victory"
+L["options.event.pvp.victory.desc"] = "Activate or deactivate the automatic creation of a screenshot when you have won the PVP match."
 
 L["options.event.login"] = "Player login"
 
