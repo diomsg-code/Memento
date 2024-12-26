@@ -155,7 +155,6 @@ function Memento:OnInitialize()
                         if self.db.profile.events.pvp.brawl.victory then
                             if (playerFaction == "Alliance" and winner == 1) or (playerFaction == "Horde" and winner == 0) then
                                 self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer)
-                                self:PrintDebug(tostring(playerFaction .. " - WON"))
                             else
                                 self:PrintDebug("Player faction has lost the brawl. No screenshot requested.")
                             end
