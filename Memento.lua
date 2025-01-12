@@ -126,9 +126,7 @@ function Memento:OnInitialize()
                 local isArena = C_PvP.IsArena()
                 local isBattleground = C_PvP.IsBattleground()
                 local isInBrawl = C_PvP.IsInBrawl()
-
                 local playerFaction = UnitFactionGroup("player")
-                self:PrintDebug(tostring(playerFaction))
 
                 if isArena then
                     if self.db.profile.events.pvp.arena.active then

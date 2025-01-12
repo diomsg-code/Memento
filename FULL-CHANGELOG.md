@@ -1,3 +1,6 @@
+**2.3.4 (2025-01-12)**
+- Minor code adjustments
+
 **2.3.3 (2024-12-26)**
 - Changed: For the 'Battleground completed' event, you can now decide whether the screenshots should only be taken in the event of a victory
 - Changed: For the 'Brawl completed' event, you can now decide whether the screenshots should only be taken in the event of a victory
