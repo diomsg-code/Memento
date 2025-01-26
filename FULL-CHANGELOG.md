@@ -1,3 +1,7 @@
+**2.3.5 (2025-01-26)**
+- Added: TOC version for patch 11.1.0 (Retail)
+- Updated: License
+
 **2.3.4 (2025-01-12)**
 - Minor code adjustments
 
