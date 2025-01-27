@@ -1,3 +1,8 @@
+**2.3.6 (@build-date@)**
+- Added: TOC version for patch 1.15.6 (Classic)
+- Added: TOC version for patch 4.4.2 (Cata)
+- Minor code adjustments
+
 **2.3.5 (2025-01-26)**
 - Added: TOC version for patch 11.1.0 (Retail)
 - Updated: License
