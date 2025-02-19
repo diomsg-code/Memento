@@ -1,6 +1,6 @@
 **2.3.7 (@build-date@)**
 - Removed: TOC version for patch 1.15.5 (Classic)
-- Removed: TOC version for patch 4.4.2 (Cata)
+- Removed: TOC version for patch 4.4.1 (Cata)
 
 **2.3.6 (2025-01-28)**
 - Added: TOC version for patch 1.15.6 (Classic)
