@@ -25,7 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Clone project
@@ -39,8 +38,8 @@ jobs:
         with:
           args: -p 1099991 -n "{package-name}-{project-version}{nolib}{classic}:{package-name}-{project-version}{classic}{nolib}.zip"
 
-      # WoWInterface and Wago
-      - name: Package and publish for WoWInterface and Wago
+      # Wago
+      - name: Package and publish for Wago
         uses: BigWigsMods/packager@master
         with:
-          args: -w 26848 -a QKywRlN7
+          args: -a QKywRlN7
