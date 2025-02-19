@@ -3,4 +3,4 @@
 [Full Changelog](https://github.com/diomsg-code/Memento/compare/2.3.6...2.3.7) - [Previous Releases](https://github.com/diomsg-code/Memento/releases)
 
 - Removed: TOC version for patch 1.15.5 (Classic)
-- Removed: TOC version for patch 4.4.2 (Cata)
+- Removed: TOC version for patch 4.4.1 (Cata)
