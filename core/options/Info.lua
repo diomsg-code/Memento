@@ -123,7 +123,7 @@ Memento.optionsTable["info"] = {
 					order = 0.16
 				},
 				LINE_2 = Memento_GetStyleLineSmall(0.17),
-				email = {
+				--[[email = {
 					name = L["info.about.email.name"],
 					type = "execute",
 					width = 1.2,
@@ -139,7 +139,7 @@ Memento.optionsTable["info"] = {
 					width = 0.2,
 					fontSize = "medium",
 					order = 0.19
-				},
+				}, ]]
 				github = {
 					name = L["info.about.github.name"],
 					type = "execute",

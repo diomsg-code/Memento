@@ -1,4 +1,7 @@
-**2.3.8 (@build-date@)**
+**2.3.9 (@build-date@)**
+- Minor code adjustments
+
+**2.3.8 (2025-02-27)**
 - Removed: TOC version for patch 11.0.7 (Retail)
 
 **2.3.7 (2025-02-19)**
