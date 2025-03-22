@@ -1,4 +1,7 @@
-**2.3.9 (@build-date@)**
+**2.3.10 (@build-date@)**
+- Minor code adjustments
+
+**2.3.9 (2025-03-21)**
 - Minor code adjustments
 
 **2.3.8 (2025-02-27)**
