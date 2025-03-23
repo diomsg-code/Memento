@@ -1,4 +1,7 @@
-**2.3.10 (@build-date@)**
+**2.3.11 (@build-date@)**
+- Updated: deDE localization
+
+**2.3.10 (2025-03-22)**
 - Minor code adjustments
 
 **2.3.9 (2025-03-21)**

@@ -14,6 +14,7 @@ L["info.description.content_1"] = "Memento is an addon that automatically takes 
                                 .. "  • |c" .. eventColor .. "Player death|r\n"
                                 .. "  • |c" .. eventColor .. "Player login|r\n\n"
 L["info.description.content_2"] = "* Achievements are not available in 'Classic' and arena & battleground screenshots are currently only implemented for 'Retail'"
+
 L["info.about"] = "About"
 L["info.about.addon-version"] = "Addon version"
 L["info.about.game-version"] = "Game version"

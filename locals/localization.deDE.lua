@@ -16,6 +16,7 @@ L["info.description.content_1"] = "Memento ist ein Addon, welches bei bestimmten
                                 .. "  • |c" .. eventColor .. "Spielertod|r\n"
                                 .. "  • |c" .. eventColor .. "Spielerlogin|r\n\n"
 L["info.description.content_2"] = "* Erfolge gibt es in 'Classic' nicht und Arena & Schlachtfeld Screenshots sind aktuell nur für 'Retail' umgesetzt"
+
 L["info.about"] = "Über"
 L["info.about.addon-version"] = "Addonversion"
 L["info.about.game-version"] = "Spielversion"
@@ -106,7 +107,7 @@ L["statistic.screenshots.achievement.criteria"] = "persönliches Erfolgskriteriu
 L["statistic.screenshots.achievement.guild"] = "Gildenerfolg"
 L["statistic.screenshots.encounter.victory"] = "Bosskampf - Sieg"
 L["statistic.screenshots.encounter.wipe"] = "Bosskampf - Niederlage"
-L["statistic.screenshots.pvp.duel"] = "PvP - Duel beendet"
+L["statistic.screenshots.pvp.duel"] = "PvP - Duell beendet"
 L["statistic.screenshots.pvp.arena"] = "PvP - Arena abgeschlossen"
 L["statistic.screenshots.pvp.battleground"] = "PvP - Schlachtfeld abgeschlossen"
 L["statistic.screenshots.pvp.brawl"] = "PvP - Rauferei abgeschlossen"
