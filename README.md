@@ -2,7 +2,7 @@
 
 [![GitHub Release](https://img.shields.io/github/v/release/diomsg-code/Memento?logo=github&cacheSeconds=600)](https://github.com/diomsg-code/Memento/releases)
 [![GitHub Release Date](https://img.shields.io/github/release-date/diomsg-code/Memento?logo=github&cacheSeconds=600)](https://github.com/diomsg-code/Memento/releases)
-[![Crowdin](https://badges.crowdin.net/wow-addon-memento/localized.svg)](https://crowdin.com/project/wow-addon-memento)
+[![Crowdin](https://badges.crowdin.net/wow-addon-memento/localized.svg&cacheSeconds=600)](https://crowdin.com/project/wow-addon-memento)
 
 Memento is an addon that automatically takes screenshots of specific events. The following events are currently supported (more events are planned):
 
