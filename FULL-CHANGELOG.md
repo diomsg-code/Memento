@@ -1,4 +1,8 @@
-**2.3.11 (@build-date@)**
+**2.3.12 (@build-date@)**
+- Added: TOC version for patch 1.15.7 (Classic)
+- Added: TOC version for patch 11.1.5 (Retail)
+
+**2.3.11 (2025-03-30))**
 - Updated: deDE localization
 
 **2.3.10 (2025-03-22)**
