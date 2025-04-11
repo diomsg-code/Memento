@@ -1,4 +1,8 @@
-**2.3.12 (@build-date@)**
+**2.4.0 (@build-date@)**
+- Added: When a screenshot is taken, the current class and total time played can also be displayed in the chat (#4)
+- Fixed: The time delay for the event 'Achievement criteria earned' was not taken into account
+
+**2.3.12 (2025-04-06)**
 - Added: TOC version for patch 1.15.7 (Classic)
 - Added: TOC version for patch 11.1.5 (Retail)
 

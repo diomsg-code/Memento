@@ -28,14 +28,47 @@ Memento.optionsTable["options"] = {
 					name = L["options.general.notification.name"],
 					desc = L["options.general.notification.desc"],
 					get = function()
-						return Memento.db.profile.options.notification
+						return Memento.db.profile.options.notification.active
 					end,
 					set = function(_, value)
-						Memento.db.profile.options.notification = value
+						Memento.db.profile.options.notification.active = value
 					end,
 					width = "full",
 					order = 0.11
 				},
+				class = {
+					type = "toggle",
+					name = L["options.general.notification.class.name"],
+					desc = L["options.general.notification.class.desc"],
+					disabled = function()
+						return not Memento.db.profile.options.notification.active
+					end,
+					get = function()
+						return Memento.db.profile.options.notification.class
+					end,
+					set = function(_, value)
+						Memento.db.profile.options.notification.class = value
+					end,
+					width = "full",
+					order = 0.12
+				},
+				timePlayed = {
+					type = "toggle",
+					name = L["options.general.notification.timePlayed.name"],
+					desc = L["options.general.notification.timePlayed.desc"],
+					disabled = function()
+						return not Memento.db.profile.options.notification.active
+					end,
+					get = function()
+						return Memento.db.profile.options.notification.timePlayed
+					end,
+					set = function(_, value)
+						Memento.db.profile.options.notification.timePlayed = value
+					end,
+					width = "full",
+					order = 0.13
+				},
+				SEPARATOR_2 = Memento_GetStyleSeparator(0.14),
 				statistic = {
 					type = "toggle",
 					name = L["options.general.statistic.name"],
@@ -47,7 +80,7 @@ Memento.optionsTable["options"] = {
 						Memento.db.profile.options.statistic = value
 					end,
 					width = "full",
-					order = 0.12
+					order = 0.15
 				},
 				ui = {
 					type = "toggle",
@@ -60,9 +93,9 @@ Memento.optionsTable["options"] = {
 						Memento.db.profile.options.ui = value
 					end,
 					width = "full",
-					order = 0.13
+					order = 0.16
 				},
-				SEPARATOR_1 = Memento_GetStyleSeparator(0.14),
+				SEPARATOR_1 = Memento_GetStyleSeparator(0.17),
 				debug = {
 					type = "toggle",
 					name = L["options.general.debug.name"],
@@ -74,7 +107,7 @@ Memento.optionsTable["options"] = {
 						Memento.db.profile.options.debug = value
 					end,
 					width = "full",
-					order = 0.15
+					order = 0.18
 				},
 			},
 		},

@@ -13,12 +13,51 @@ Memento.github = C_AddOns.GetAddOnMetadata(addonName, "X-Github")
 
 Memento.gameVersion = GetBuildInfo()
 
+Memento.totalTimePlayed = 0
+Memento.timePlayedThisLevel = 0
+
+local fixDelay = 0.1
+local requestTimePlayed
+local orignalChatFrame = ChatFrame_DisplayTimePlayed
+
+ChatFrame_DisplayTimePlayed = function(...)
+	if requestTimePlayed then
+		requestTimePlayed = false
+	else
+		orignalChatFrame(...)
+	end
+end
+
+-----------------------
+--- Local functions ---
+-----------------------
+
+local function TimePlayed()
+    requestTimePlayed = true
+
+    RequestTimePlayed()
+end
+
 ---------------------
 --- Main funtions ---
 ---------------------
 
 function Memento:OnInitialize()
     self:SetupAddon()
+
+    self:RegisterEvent(
+        "TIME_PLAYED_MSG",
+        function(_, totalTimePlayed, timePlayedThisLevel)
+            self:PrintDebug("Event 'TIME_PLAYED_MSG' fired. Payload: totalTimePlayed=" .. tostring(totalTimePlayed) .. ", timePlayedThisLevel=" .. tostring(timePlayedThisLevel))
+
+            Memento.totalTimePlayed = totalTimePlayed
+            Memento.timePlayedThisLevel = timePlayedThisLevel
+
+            self:PrintDebug("Event 'TIME_PLAYED_MSG' completed.")
+        end
+    )
+
+    self:PrintDebug("Event 'TIME_PLAYED_MSG' registered.")
 
     if Memento.FLAVOR_IS_MAINLINE or Memento.FLAVOR_IS_CATA then
         self:RegisterEvent(
@@ -30,13 +69,17 @@ function Memento:OnInitialize()
 
                 if not isGuildAchievement then
                     if self.db.profile.events.achievement.personal.active then
-                        self:ScheduleTimer("AchievementPersonalEventHandler", self.db.profile.events.achievement.personal.timer, achievementID, alreadyEarned)
+                        TimePlayed()
+
+                        self:ScheduleTimer("AchievementPersonalEventHandler", self.db.profile.events.achievement.personal.timer + fixDelay, achievementID, alreadyEarned)
                     else
                         self:PrintDebug("Event 'ACHIEVEMENT_EARNED' (Personal) completed. No screenshot requested.")
                     end
                 else
                     if self.db.profile.events.achievement.guild.active then
-                        self:ScheduleTimer("AchievementGuildEventHandler", self.db.profile.events.achievement.guild.timer, achievementID)
+                        TimePlayed()
+
+                        self:ScheduleTimer("AchievementGuildEventHandler", self.db.profile.events.achievement.guild.timer + fixDelay, achievementID)
                     else
                         self:PrintDebug("Event 'ACHIEVEMENT_EARNED' (Guild) completed. No screenshot requested.")
                     end
@@ -54,7 +97,9 @@ function Memento:OnInitialize()
                 self:PrintDebug("Event 'CRITERIA_EARNED' fired. Payload: achievementID=" .. tostring(achievementID) .. ", description=" .. tostring(description))
 
                 if self.db.profile.events.achievement.criteria.active then
-                    self:ScheduleTimer("CriteriaEventHandler", 2, achievementID, description)
+                    TimePlayed()
+
+                    self:ScheduleTimer("CriteriaEventHandler", self.db.profile.events.achievement.criteria.timer + fixDelay, achievementID, description)
                 else
                     self:PrintDebug("Event 'CRITERIA_EARNED' completed. No screenshot requested.")
                 end
@@ -82,14 +127,18 @@ function Memento:OnInitialize()
                         if (Memento_DataBossKill[difficulty][encounterID] and self.db.profile.events.encounter.victory.first) then
                             self:PrintDebug("Encounter already killed. No screenshot requested.")
                         else
-                            self:ScheduleTimer("EncounterVictoryEventHandler", self.db.profile.events.encounter.victory.timer, encounterName, difficultyName, difficulty, encounterID)
+                            TimePlayed()
+                            
+                            self:ScheduleTimer("EncounterVictoryEventHandler", self.db.profile.events.encounter.victory.timer + fixDelay, encounterName, difficultyName, difficulty, encounterID)
                         end
                     else
                         self:PrintDebug("Event 'ENCOUNTER_END' (Victory) completed. No screenshot requested.")
                     end
                 else
                     if((groupType == "party" and self.db.profile.events.encounter.wipe.party) or (groupType == "raid" and self.db.profile.events.encounter.wipe.raid) or (groupType == "scenario" and self.db.profile.events.encounter.wipe.scenario)) then
-                        self:ScheduleTimer("EncounterWipeEventHandler", self.db.profile.events.encounter.wipe.timer, encounterName, difficultyName)
+                        TimePlayed()
+                        
+                        self:ScheduleTimer("EncounterWipeEventHandler", self.db.profile.events.encounter.wipe.timer + fixDelay, encounterName, difficultyName)
                     else
                         self:PrintDebug("Event 'ENCOUNTER_END' (Wipe) completed. No screenshot requested.")
                     end
@@ -108,7 +157,9 @@ function Memento:OnInitialize()
             self:PrintDebug("Event 'DUEL_FINISHED' fired. No payload.")
 
             if self.db.profile.events.pvp.duel.active then
-                self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.pvp.duel.timer)
+                TimePlayed()
+
+                self:ScheduleTimer("PvPDuelEventHandler", self.db.profile.events.pvp.duel.timer + fixDelay)
             else
                 self:PrintDebug("Event 'DUEL_FINISHED' completed. No screenshot requested.")
             end
@@ -130,7 +181,9 @@ function Memento:OnInitialize()
 
                 if isArena then
                     if self.db.profile.events.pvp.arena.active then
-                        self:ScheduleTimer("PvPArenaEventHandler", self.db.profile.events.pvp.battleground.timer)
+                        TimePlayed()
+
+                        self:ScheduleTimer("PvPArenaEventHandler", self.db.profile.events.pvp.battleground.timer + fixDelay)
                     else
                         self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Arean) completed. No screenshot requested.")
                     end
@@ -138,12 +191,16 @@ function Memento:OnInitialize()
                     if self.db.profile.events.pvp.battleground.active then
                         if self.db.profile.events.pvp.battleground.victory then
                             if (playerFaction == "Alliance" and winner == 1) or (playerFaction == "Horde" and winner == 0) then
-                                self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                                TimePlayed()
+
+                                self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer + fixDelay)
                             else
                                 self:PrintDebug("Player faction has lost the battleground. No screenshot requested.")
                             end
                         else
-                            self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer)
+                            TimePlayed()
+
+                            self:ScheduleTimer("PvPBattlegroundEventHandler", self.db.profile.events.pvp.battleground.timer + fixDelay)
                         end
                     else
                         self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Battleground) completed. No screenshot requested.")
@@ -152,12 +209,16 @@ function Memento:OnInitialize()
                     if self.db.profile.events.pvp.brawl.active then
                         if self.db.profile.events.pvp.brawl.victory then
                             if (playerFaction == "Alliance" and winner == 1) or (playerFaction == "Horde" and winner == 0) then
-                                self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer)
+                                TimePlayed()
+
+                                self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer + fixDelay)
                             else
                                 self:PrintDebug("Player faction has lost the brawl. No screenshot requested.")
                             end
                         else
-                            self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer)
+                            TimePlayed()
+
+                            self:ScheduleTimer("PvPBrawlEventHandler", self.db.profile.events.pvp.brawl.timer + fixDelay)
                         end
                     else
                         self:PrintDebug("Event 'PVP_MATCH_COMPLETE' (Brawl) completed. No screenshot requested.")
@@ -177,7 +238,9 @@ function Memento:OnInitialize()
             self:PrintDebug("Event 'PLAYER_LEVEL_UP' fired. Payload: level=" .. level)
 
             if self.db.profile.events.levelUp.active then
-                self:ScheduleTimer("LevelUpEventHandler", self.db.profile.events.levelUp.timer, level)
+                TimePlayed()
+
+                self:ScheduleTimer("LevelUpEventHandler", self.db.profile.events.levelUp.timer + fixDelay, level)
             else
                 self:PrintDebug("Event 'PLAYER_LEVEL_UP' completed. No screenshot requested.")
             end
@@ -192,14 +255,16 @@ function Memento:OnInitialize()
             self:PrintDebug("Event 'PLAYER_DEAD' fired. No payload.")
 
             if self.db.profile.events.death.active then
+                TimePlayed()
+
                 local inInstance, instanceType = IsInInstance()
 
                 if self.db.profile.events.death.instance == 0 then
-                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
+                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer + fixDelay)
                 elseif inInstance and self.db.profile.events.death.instance == 1 then
-                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
+                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer + fixDelay)
                 elseif not inInstance and self.db.profile.events.death.instance == 2 then
-                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer)
+                    self:ScheduleTimer("DeathEventHandler", self.db.profile.events.death.timer + fixDelay)
                 else
                     self:PrintDebug("Player died in the wrong area. No screenshot requested.")
                 end
@@ -217,7 +282,9 @@ function Memento:OnInitialize()
             self:PrintDebug("Event 'PLAYER_LOGIN' fired. No payload.")
 
             if self.db.profile.events.login.active then
-                self:ScheduleTimer("LoginEventHandler", self.db.profile.events.login.timer)
+                TimePlayed()
+
+                self:ScheduleTimer("LoginEventHandler", self.db.profile.events.login.timer + fixDelay)
             else
                 self:PrintDebug("Event 'PLAYER_LOGIN' completed. No screenshot requested.")
             end
@@ -227,7 +294,7 @@ function Memento:OnInitialize()
     self:PrintDebug("Event 'PLAYER_LOGIN' registered.")
 
     if self.db.profile.options.statistic then
-        Memento:PrintStatistic()
+        self:PrintStatistic()
     end
 
     self:PrintDebug("Addon fully loaded.")
