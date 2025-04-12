@@ -36,7 +36,7 @@ end
 local function TimePlayed()
     local currentTime = GetTime()
 
-    if currentTime - lastEventTime >= 2 and (Memento.db.profile.options.notification.class or Memento.db.profile.options.notification.timePlayed) then
+    if currentTime - lastEventTime >= 5 and (Memento.db.profile.options.notification.class or Memento.db.profile.options.notification.timePlayed) then
         lastEventTime = currentTime
         requestTimePlayed = true
 
