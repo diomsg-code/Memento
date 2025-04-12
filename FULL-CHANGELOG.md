@@ -1,4 +1,7 @@
-**2.4.0 (@build-date@)**
+**2.4.1 (@build-date@)**
+- Minor code adjustments
+
+**2.4.0 (2025-04-11)**
 - Added: When a screenshot is taken, the current class and total time played can also be displayed in the chat (#4)
 - Fixed: The time delay for the event 'Achievement criteria earned' was not taken into account
 

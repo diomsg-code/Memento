@@ -17,6 +17,7 @@ Memento.totalTimePlayed = 0
 Memento.timePlayedThisLevel = 0
 
 local fixDelay = 0.1
+local lastEventTime = 0
 local requestTimePlayed
 local orignalChatFrame = ChatFrame_DisplayTimePlayed
 
@@ -33,9 +34,14 @@ end
 -----------------------
 
 local function TimePlayed()
-    requestTimePlayed = true
+    local currentTime = GetTime()
 
-    RequestTimePlayed()
+    if currentTime - lastEventTime >= 2 and (Memento.db.profile.options.notification.class or Memento.db.profile.options.notification.timePlayed) then
+        lastEventTime = currentTime
+        requestTimePlayed = true
+
+        RequestTimePlayed()
+    end
 end
 
 ---------------------
