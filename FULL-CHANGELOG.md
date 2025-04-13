@@ -1,4 +1,7 @@
-**2.4.1 (@build-date@)**
+**2.4.2 (@build-date@)**
+- Removed: TOC version for patch 1.15.6 (Classic)
+
+**2.4.1 (2025-04-13)**
 - Minor code adjustments
 
 **2.4.0 (2025-04-11)**
