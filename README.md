@@ -29,6 +29,6 @@ Memento is an addon that automatically takes screenshots of specific events. The
 
 To open the addon option window, type `/memento` into your chat and hit enter.
 
-### Translation support
+### Translation Support
 
 If you would like to help me with the translation, I would be very pleased.
