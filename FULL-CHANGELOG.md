@@ -1,5 +1,5 @@
 **2.5.0 (@build-date@)**
-- Added: ruRU localization (#1 - Thanks to Hubbotu)
+- Added: ruRU localization (#5 - Thanks to Hubbotu)
 - Removed: TOC version for patch 11.1.0 (Retail)
 
 **2.4.2 (2025-04-17)**
