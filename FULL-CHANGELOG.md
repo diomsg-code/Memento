@@ -1,7 +1,4 @@
-**2.5.1 (@build-date@)**
-- Fixed: If the user interface was hidden, the small success notification was not fully displayed
-
-**2.5.0 (2025-04-23)**
+**2.5.0 (@build-date@)**
 - Added: ruRU localization (#1 - Thanks to Hubbotu)
 - Removed: TOC version for patch 11.1.0 (Retail)
 
