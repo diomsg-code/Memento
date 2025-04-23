@@ -49,10 +49,13 @@ function Memento:TakeScreenshot(event)
                 UIParent:Hide()
 
                 frame = createMessageFrame(frame)
+                frame:Show()
 
-                Screenshot()
+                C_Timer.After(0.1, function()
+                    Screenshot()
+                end)
 
-                C_Timer.After(0.01, function()
+                C_Timer.After(0.2, function()
                     UIParent:Show()
                     frame:Hide()
                 end)
