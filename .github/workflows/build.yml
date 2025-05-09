@@ -198,7 +198,7 @@ jobs:
       - name: Prepare TOC for Retail
         run: |
           rm -f Memento_Vanilla.toc Memento_Cata.toc
-          mv Memento_Mainline.toc MyAddon.toc
+          mv Memento_Mainline.toc Memento.toc
 
       - name: Replace @old-project-version@ in CHANGELOG.md
         run: |
@@ -220,6 +220,12 @@ jobs:
         uses: BigWigsMods/packager@v2
         with:
           args: -a ${{ vars.WAGO_ID }} -g retail -m .pkgmeta_mainline
+
+      - name: Package and publish for CourseForge and Wago (Release)
+        if: github.event.inputs.releaseType != 'Alpha'  
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_classic
 
 
   build-classic:
@@ -246,7 +252,7 @@ jobs:
       - name: Prepare TOC for Classic
         run: |
           rm -f Memento_Mainline.toc Memento_Cata.toc
-          mv Memento_Vanilla.toc MyAddon.toc
+          mv Memento_Vanilla.toc Memento.toc
 
       - name: Replace @old-project-version@ in CHANGELOG.md
         run: |
@@ -293,7 +299,7 @@ jobs:
       - name: Prepare TOC for Cata
         run: |
           rm -f Memento_Mainline.toc Memento_Vanilla.toc
-          mv Memento_Cata.toc MyAddon.toc
+          mv Memento_Cata.toc Memento.toc
 
       - name: Replace @old-project-version@ in CHANGELOG.md
         run: |
