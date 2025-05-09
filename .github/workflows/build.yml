@@ -171,6 +171,8 @@ jobs:
       - name: Package and publish for Github (Release)
         if: github.event.inputs.releaseType != 'Alpha' 
         uses: BigWigsMods/packager@v2
+        with:
+          args: -g retail -m .pkgmeta_mainline
 
   build-retail:
     name: Build Retail
