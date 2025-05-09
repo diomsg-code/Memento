@@ -221,13 +221,6 @@ jobs:
         with:
           args: -a ${{ vars.WAGO_ID }} -g retail -m .pkgmeta_mainline
 
-      - name: Package and publish for CourseForge and Wago (Release)
-        if: github.event.inputs.releaseType != 'Alpha'  
-        uses: BigWigsMods/packager@v2
-        with:
-          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_classic
-
-
   build-classic:
     name: Build Classic
     if: github.event.inputs.buildClassic == 'true'
@@ -267,13 +260,13 @@ jobs:
         if: github.event.inputs.releaseType == 'Alpha'    
         uses: BigWigsMods/packager@v2
         with:
-          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_classic
+          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_vanilla
 
       - name: Package and publish for CourseForge and Wago (Release)
         if: github.event.inputs.releaseType != 'Alpha'  
         uses: BigWigsMods/packager@v2
         with:
-          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_classic
+          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_vanilla
 
   build-cata:
     name: Build Cata
