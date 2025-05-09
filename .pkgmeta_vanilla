@@ -2,6 +2,8 @@ package-as: Memento
 
 ignore:
   - README.md
+  - Memento.toc
+  - Memento_Cata.toc
 
 manual-changelog:
   filename: CHANGELOG.md

@@ -1,0 +1,10 @@
+package-as: Memento
+
+ignore:
+  - README.md
+  - Memento.toc
+  - Memento_Vanilla.toc
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
