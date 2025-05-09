@@ -23,6 +23,16 @@ on:
         required: false
         default: true
         type: boolean
+      buildClassic:
+        description: 'Classic-Version'
+        required: false
+        default: true
+        type: boolean
+      buildCata:
+        description: 'Cata-Version'
+        required: false
+        default: true
+        type: boolean
       createChangelog:
         description: 'vollständiges Changelog'
         required: false
@@ -183,6 +193,11 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
 
+      - name: Prepare TOC for Retail
+        run: |
+          rm -f Memento_Vanilla.toc Memento_Cata.toc
+          mv Memento_Mainline.toc MyAddon.toc
+
       - name: Replace @old-project-version@ in CHANGELOG.md
         run: |
           last_release_tag=${{ needs.build-changelog-github.outputs.last-release-tag }}
@@ -196,10 +211,105 @@ jobs:
         if: github.event.inputs.releaseType == 'Alpha'    
         uses: BigWigsMods/packager@v2
         with:
-          args: -p ${{ vars.CF_ID }} -a ${{ vars.WAGO_ID }}
+          args: -a ${{ vars.WAGO_ID }} -g retail -m .pkgmeta_mainline
 
       - name: Package and publish for CourseForge and Wago (Release)
         if: github.event.inputs.releaseType != 'Alpha'  
         uses: BigWigsMods/packager@v2
         with:
-          args: -p ${{ vars.CF_ID }} -a ${{ vars.WAGO_ID }}
+          args: -a ${{ vars.WAGO_ID }} -g retail -m .pkgmeta_mainline
+
+
+  build-classic:
+    name: Build Classic
+    if: github.event.inputs.buildClassic == 'true'
+    needs: 
+      - build-changelog-github
+    runs-on: ubuntu-latest
+    env:
+        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get the latest version of main from the repository
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Prepare TOC for Classic
+        run: |
+          rm -f Memento_Mainline.toc Memento_Cata.toc
+          mv Memento_Vanilla.toc MyAddon.toc
+
+      - name: Replace @old-project-version@ in CHANGELOG.md
+        run: |
+          last_release_tag=${{ needs.build-changelog-github.outputs.last-release-tag }}
+          sed -i "s/@old-project-version@/$last_release_tag/g" CHANGELOG.md
+
+      - name: Get current tags
+        run: |
+          git fetch --tags
+
+      - name: Package and publish for CourseForge and Wago (Alpha)
+        if: github.event.inputs.releaseType == 'Alpha'    
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_classic
+
+      - name: Package and publish for CourseForge and Wago (Release)
+        if: github.event.inputs.releaseType != 'Alpha'  
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -a ${{ vars.WAGO_ID }} -g classic -m .pkgmeta_classic
+
+  build-cata:
+    name: Build Cata
+    if: github.event.inputs.buildCata == 'true'
+    needs: 
+      - build-changelog-github
+    runs-on: ubuntu-latest
+    env:
+        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get the latest version of main from the repository
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Prepare TOC for Cata
+        run: |
+          rm -f Memento_Mainline.toc Memento_Vanilla.toc
+          mv Memento_Cata.toc MyAddon.toc
+
+      - name: Replace @old-project-version@ in CHANGELOG.md
+        run: |
+          last_release_tag=${{ needs.build-changelog-github.outputs.last-release-tag }}
+          sed -i "s/@old-project-version@/$last_release_tag/g" CHANGELOG.md
+
+      - name: Get current tags
+        run: |
+          git fetch --tags
+
+      - name: Package and publish for CourseForge and Wago (Alpha)
+        if: github.event.inputs.releaseType == 'Alpha'    
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -a ${{ vars.WAGO_ID }} -g cata -m .pkgmeta_cata
+
+      - name: Package and publish for CourseForge and Wago (Release)
+        if: github.event.inputs.releaseType != 'Alpha'  
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -a ${{ vars.WAGO_ID }} -g cata -m .pkgmeta_cata
