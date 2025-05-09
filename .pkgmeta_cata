@@ -2,7 +2,7 @@ package-as: Memento
 
 ignore:
   - README.md
-  - Memento.toc
+  - Memento_Mainline.toc
   - Memento_Vanilla.toc
 
 manual-changelog:
