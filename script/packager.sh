@@ -27,17 +27,10 @@ done
 echo "🚀 Klone BigWigs-Packager..."
 git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
 
-echo "📁 Verzeichnisinhalt:"
+echo "📁 Verzeichnisinhalt-1:"
 find . -type f
 
-# release_type kommt aus Aufruf, z. B. "Release" oder "Alpha"
-RELEASE_TYPE="${RELEASE_TYPE:-Release}"
-
-# 📦 Tags berechnen über Python-Skript
-eval $(python3 script/tag.py "$RELEASE_TYPE")
-
-echo "📌 Neuer Tag gesetzt: $NEW_TAG"
-echo "⬅️  Letzter Release-Tag war: $LAST_RELEASE_TAG"
-echo "⬅️  Letzter Tag war: $LAST_TAG"
-
 python3 script/build.py --version "$NEW_TAG" --game "$GAME"
+
+echo "📁 Verzeichnisinhalt-2:"
+find . -type f
