@@ -52,10 +52,9 @@ def main():
         # 3) Packager-Aufruf
         cmd = [
             "bash", os.path.join(PACKAGER_DIR, "release.sh"),
-            "--version", args.version,
             "-g", game,
             "-m", cfg["meta"],
-            "-n", zip_name,
+            "-n", f"{args.version}:{zip_name}",
         ]
         # Optional: IDs anhängen
         #if CF_ID:
