@@ -2,15 +2,24 @@
 import argparse
 import subprocess
 import os
-import sys
+import shutil
 
 ADDON_NAME = "Memento"
 PACKAGER_DIR = os.path.join("vendor", "packager")
 
 GAME_SETTINGS = {
-    "retail":  {"meta": "pkgmeta.retail.yml"},
-    "classic": {"meta": "pkgmeta.classic.yml"},
-    "cata":    {"meta": "pkgmeta.cata.yml"},
+    "retail": {
+        "meta": "pkgmeta.retail.yaml",
+        "toc":  "Memento_Mainline.toc"
+    },
+    "classic": {
+        "meta": "pkgmeta.classic.yaml",
+        "toc":  "Memento_Vanilla.toc"
+    },
+    "cata": {
+        "meta": "pkgmeta.cata.yaml",
+        "toc":  "Memento_Cata.toc"
+    },
 }
 
 CF_ID = os.getenv("CF_PROJECT_ID", "")
@@ -24,28 +33,27 @@ def parse_args():
 
 def main():
     args = parse_args()
+    game = args.game
+    version = args.version
 
-    cfg = GAME_SETTINGS.get(args.game)
+    cfg = GAME_SETTINGS.get(game)
     if not cfg:
-        print(f"⚠️ Unbekannte Spielversion '{args.game}' – übersprungen.")
+        print(f"⚠️ Unbekannte Spielversion '{game}' – übersprungen.")
 
-    toc_src = f"{ADDON_NAME}_Mainline.toc" if args.game == "retail" else f"{ADDON_NAME}_{args.game.capitalize()}.toc"
+    toc_src = cfg["toc"]
     if not os.path.isfile(toc_src):
         print(f"❌ Fehlende TOC: {toc_src} – übersprungen.")
 
-    # 1) TOC ins Arbeitsverzeichnis kopieren
-    subprocess.run(["cp", toc_src, f"{ADDON_NAME}.toc"], check=True)
+    shutil.copyfile(toc_src, f"{ADDON_NAME}.toc")
 
-    # 2) ZIP-Name zusammenstellen
-    suffix = "" if args.game == "retail" else f"-{args.game}"
-    zip_name = f"{ADDON_NAME}-{args.version}{suffix}"
+    suffix = "" if game == "retail" else f"-{game}"
+    zip_name = f"{ADDON_NAME}-{version}{suffix}"
 
-    # 3) Packager-Aufruf
     cmd = [
         "bash", os.path.join(PACKAGER_DIR, "release.sh"),
-        "-g", args.game,
+        "-g", game,
         "-m", cfg["meta"],
-        "-n", f"{zip_name}:{args.version}",
+        "-n", f"{zip_name}:{version}",
     ]
 
     #if CF_ID:
