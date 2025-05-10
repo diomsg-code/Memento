@@ -76,11 +76,19 @@ jobs:
         run: |
           bash script/packager.sh --version v100 --game retail
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Package Classic
         if: github.event.inputs.buildClassic == 'true'
         run: |
           bash script/packager.sh --version v100 --game classic
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Package Cata
         if: github.event.inputs.buildCata == 'true'
         run: |
