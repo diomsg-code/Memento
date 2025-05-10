@@ -1,0 +1,58 @@
+name: Publish 'Memento' Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseType:
+        description: 'Art des Releases'
+        required: true
+        default: 'release'
+        type: choice
+        options:
+          - Release
+          - Alpha
+      newVersionTag:
+        description: 'Optional: neuer Tag'
+        required: false
+      oldVersionTag:
+        description: 'Optional: alter Tag'
+        required: false
+      buildRetail:
+        description: 'Retail-Version'
+        required: false
+        default: true
+        type: boolean
+      buildClassic:
+        description: 'Classic-Version'
+        required: false
+        default: true
+        type: boolean
+      buildCata:
+        description: 'Cata-Version'
+        required: false
+        default: true
+        type: boolean
+      createChangelog:
+        description: 'vollständiges Changelog'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        game: [retail, classic, cata]
+        do_build: [true, true, true]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Hybrid-Packager
+        if: matrix.do_build
+        run: |
+          bash script/packager.sh \
+            --version "${{ inputs.newVersionTag }}" \
+            --games "${{ matrix.game }}"
+        env:
+          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+          WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
