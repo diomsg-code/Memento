@@ -43,13 +43,15 @@ if [[ -z "${G_TOKEN:-}" ]]; then
 fi
 
 # ✳️ Remote-URL mit Token zusammenbauen
-REPO_URL="https://x-access-token:${G_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+REPO_URL="https://x-access-token:${G_TOKEN}@github.com/${GITHUB_REPOSITORY}"
 
 # ✳️ Tag setzen, falls nicht vorhanden
 if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
   echo "🔁 Tag '$NEW_TAG' existiert bereits."
 else
   echo "🏷 Setze neuen Tag: $NEW_TAG"
+  git config user.name "github-actions"
+  git config user.email "actions@github.com"
   git tag "$NEW_TAG"
   git push "$REPO_URL" "refs/tags/$NEW_TAG"
 fi
