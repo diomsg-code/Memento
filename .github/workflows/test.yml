@@ -43,10 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        game: [retail, classic, cata]
-        do_build: [true, false, false]
+        game: [retail]
+        do_build: [true]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run Hybrid-Packager
         if: matrix.do_build
         run: |
