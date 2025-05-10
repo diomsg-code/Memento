@@ -24,10 +24,7 @@ def parse_args():
         description="Package und upload mehrere WoW-Versionen"
     )
     parser.add_argument("--version", required=True, help="Addon-Version, z.B. 1.2.0")
-    parser.add_argument(
-        "--games", requi3red=True,
-        help="Kommaseparierte Liste: retail,classic,cata"
-    )
+    parser.add_argument("--games", required=True, help="Kommaseparierte Liste: retail,classic,cata")
     return parser.parse_args()
 
 def main():
