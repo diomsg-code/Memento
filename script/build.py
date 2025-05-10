@@ -4,27 +4,22 @@ import subprocess
 import os
 import sys
 
-# === Konfiguration ===
 ADDON_NAME = "Memento"
 PACKAGER_DIR = os.path.join("vendor", "packager")
 
-# Mapping: Spielversion → pkgmeta-Datei
 GAME_SETTINGS = {
     "retail":  {"meta": "pkgmeta.retail.yaml"},
     "classic": {"meta": "pkgmeta.classic.yaml"},
     "cata":    {"meta": "pkgmeta.cata.yaml"},
 }
 
-# Env-IDs (aus GitHub-Workflow)
-#CF_ID = os.getenv("CF_PROJECT_ID", "")
+CF_ID = os.getenv("CF_PROJECT_ID", "")
 WAGO_ID = os.getenv("WAGO_PROJECT_ID", "")
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Package und upload mehrere WoW-Versionen"
-    )
-    parser.add_argument("--version", required=True, help="Addon-Version, z.B. 1.2.0")
-    parser.add_argument("--games", required=True, help="Kommaseparierte Liste: retail,classic,cata")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--version", required=True)
+    parser.add_argument("--game", required=True)
     return parser.parse_args()
 
 def main():
