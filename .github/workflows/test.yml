@@ -84,16 +84,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Erstelle Memento.toc
-        run: |
-          cat <<EOF > Memento.toc
-          ## Interface: 110105
-          ## Title: Memento
-          ## Notes: Dies ist ein Beispiel-Addon
-          ## Version: v100
-          Memento.lua
-          EOF
-
       - name: Package Retail
         if: github.event.inputs.buildRetail == 'true'
         run: |

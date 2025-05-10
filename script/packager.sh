@@ -26,10 +26,4 @@ done
 echo "🚀 Klone BigWigs-Packager..."
 git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
 
-echo "📁 Verzeichnisinhalt:"
-find . -type f
-
 python3 script/build.py --version "$VERSION" --game "$GAME"
-
-echo "📁 Verzeichnisinhalt:"
-find . -type f

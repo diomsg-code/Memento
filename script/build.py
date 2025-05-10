@@ -47,7 +47,7 @@ def main():
     if not os.path.isfile(toc_src):
         print(f"❌ Fehlende TOC: {toc_src} – übersprungen.")
 
-    #shutil.copyfile(toc_src, f"{ADDON_NAME}.toc")
+    shutil.copyfile(toc_src, f"{ADDON_NAME}.toc")
 
     suffix = "" if game == "retail" else f"-{game}"
     zip_name = f"{ADDON_NAME}-{version}{suffix}"
