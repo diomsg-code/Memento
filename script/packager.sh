@@ -27,10 +27,10 @@ done
 echo "🚀 Klone BigWigs-Packager..."
 git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
 
-echo "📁 Verzeichnisinhalt-1:"
+echo "📁 Verzeichnisinhalt:"
 find . -type f
 
-python3 script/build.py --version "$NEW_TAG" --game "$GAME"
+python3 script/build.py --version "$VERSION" --game "$GAME"
 
-echo "📁 Verzeichnisinhalt-2:"
+echo "📁 Verzeichnisinhalt:"
 find . -type f
