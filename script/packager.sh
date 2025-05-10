@@ -36,9 +36,23 @@ RELEASE_TYPE="${RELEASE_TYPE:-Release}"
 # 📦 Tags berechnen über Python-Skript
 eval $(python3 script/tag.py "$RELEASE_TYPE")
 
-# ⏺ neuen Tag setzen
-git tag "$NEW_TAG"
-git push origin "refs/tags/$NEW_TAG"
+# ✳️ Vorher: Zugriffstoken prüfen
+if [[ -z "${G_TOKEN:-}" ]]; then
+  echo "❌ G_TOKEN (GitHub Token) ist nicht gesetzt!"
+  exit 5
+fi
+
+# ✳️ Remote-URL mit Token zusammenbauen
+REPO_URL="https://x-access-token:${G_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+# ✳️ Tag setzen, falls nicht vorhanden
+if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
+  echo "🔁 Tag '$NEW_TAG' existiert bereits."
+else
+  echo "🏷 Setze neuen Tag: $NEW_TAG"
+  git tag "$NEW_TAG"
+  git push "$REPO_URL" "refs/tags/$NEW_TAG"
+fi
 
 echo "📌 Neuer Tag gesetzt: $NEW_TAG"
 echo "⬅️  Letzter Release-Tag war: $LAST_RELEASE_TAG"
