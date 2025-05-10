@@ -46,10 +46,6 @@ jobs:
     name: Prework
     runs-on: ubuntu-latest
     env:
-      CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
-      WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
       G_TOKEN: ${{ secrets.G_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
     outputs:
@@ -69,7 +65,7 @@ jobs:
           echo "last_release_tag=$LAST_RELEASE_TAG" >> $GITHUB_OUTPUT
           echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
-          
+
       - name: Setze und pushe Git-Tag
         run: |
           python3 script/tag_push.py ${{ steps.tag.outputs.new_tag }}
@@ -82,8 +78,6 @@ jobs:
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
       CF_API_KEY: ${{ secrets.CF_API_KEY }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-      G_TOKEN: ${{ secrets.G_TOKEN }}
-      GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
