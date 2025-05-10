@@ -28,6 +28,10 @@ def compute_new_tag(last_tag, release_type):
     base_num = int(base_match.group(1))
     suffix = last_tag[len(f"v{base_num}"):]
 
+    print(base_match, file=sys.stderr)
+    print(base_num, file=sys.stderr)
+    print(suffix, file=sys.stderr)    
+
     if suffix.startswith("-alpha."):
         alpha_num = int(suffix.split(".")[1])
         if release_type == "Alpha":
@@ -52,7 +56,6 @@ def main():
     print(f"LAST_RELEASE_TAG={last_release_tag}")
     print(f"LAST_TAG={last_tag}")
     print(f"NEW_TAG={new_tag}")
-    print("TESTESTETST", file=sys.stderr)
 
 if __name__ == "__main__":
     main()
