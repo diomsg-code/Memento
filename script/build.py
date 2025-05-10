@@ -66,7 +66,9 @@ def main():
         cmd += ["-a", WAGO_ID]
 
     print("📦 Baue und lade hoch:", " ".join(cmd))
+    print("📄 Verfügbare TOCs:", [f for f in os.listdir('.') if f.endswith('.toc')])
     subprocess.run(cmd, check=True)
+    print("📄 Verfügbare TOCs:", [f for f in os.listdir('.') if f.endswith('.toc')])
 
 if __name__ == "__main__":
     main()
