@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# === Konfiguration ===
 ADDON_NAME="Memento"
 PACKAGER_REPO="https://github.com/BigWigsMods/packager.git"
 PACKAGER_DIR="vendor/packager"
