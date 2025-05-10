@@ -50,9 +50,7 @@ jobs:
       - name: Run Hybrid-Packager
         if: matrix.do_build
         run: |
-          bash script/packager.sh \
-            --version "${{ inputs.newVersionTag }}" \
-            --games "${{ matrix.game }}"
+          bash script/packager.sh --version v100" --games retail
         env:
           CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
           WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
