@@ -36,12 +36,6 @@ RELEASE_TYPE="${RELEASE_TYPE:-Release}"
 # 📦 Tags berechnen über Python-Skript
 eval $(python3 script/tag.py "$RELEASE_TYPE")
 
-# ✳️ Vorher: Zugriffstoken prüfen
-if [[ -z "${G_TOKEN:-}" ]]; then
-  echo "❌ G_TOKEN (GitHub Token) ist nicht gesetzt!"
-  exit 5
-fi
-
 echo "📌 Neuer Tag gesetzt: $NEW_TAG"
 echo "⬅️  Letzter Release-Tag war: $LAST_RELEASE_TAG"
 echo "⬅️  Letzter Tag war: $LAST_TAG"
