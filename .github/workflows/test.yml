@@ -86,7 +86,7 @@ jobs:
 
       - name: Erstelle Memento.toc
         run: |
-          cat <<EOF > Memento.toc
+          cat <<EOF > Memento/Memento.toc
           ## Interface: 100007
           ## Title: Memento
           ## Notes: Dies ist ein Beispiel-Addon
