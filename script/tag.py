@@ -52,7 +52,7 @@ def main():
     print(f"LAST_RELEASE_TAG={last_release_tag}")
     print(f"LAST_TAG={last_tag}")
     print(f"NEW_TAG={new_tag}")
-    print("TESTESTETST")
+    print("TESTESTETST", file=sys.stderr)
 
 if __name__ == "__main__":
     main()
