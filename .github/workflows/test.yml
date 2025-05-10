@@ -87,11 +87,11 @@ jobs:
       - name: Erstelle Memento.toc
         run: |
           cat <<EOF > Memento.toc
-          ## Interface: 100007
+          ## Interface: 110105
           ## Title: Memento
           ## Notes: Dies ist ein Beispiel-Addon
-          ## Version: 1.2.3
-          MyAddon.lua
+          ## Version: v100
+          Memento.lua
           EOF
 
       - name: Package Retail
