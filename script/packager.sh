@@ -61,4 +61,4 @@ echo "📌 Neuer Tag gesetzt: $NEW_TAG"
 echo "⬅️  Letzter Release-Tag war: $LAST_RELEASE_TAG"
 echo "⬅️  Letzter Tag war: $LAST_TAG"
 
-python3 script/build.py --version "$NEW_TAG" --game "$GAMES_ARG"
+python3 script/build.py --version "$NEW_TAG" --game "$GAME"
