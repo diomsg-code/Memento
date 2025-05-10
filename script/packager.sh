@@ -25,6 +25,6 @@ done
 [[ -z "$VERSION" || -z "$GAMES_ARG" ]] && usage
 
 echo "🚀 Klone BigWigs-Packager v2..."
-git clone --depth 1 --branch v2.4.2 "$PACKAGER_REPO" "$PACKAGER_DIR"
+git clone --depth 1 --tag v2 "$PACKAGER_REPO" "$PACKAGER_DIR"
 
 python3 script/build.py --version "$VERSION" --game "$GAMES_ARG"
