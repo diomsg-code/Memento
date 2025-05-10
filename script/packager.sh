@@ -30,6 +30,18 @@ git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
 echo "📁 Verzeichnisinhalt:"
 find . -type f
 
-python3 script/tag.py Release
+# release_type kommt aus Aufruf, z. B. "Release" oder "Alpha"
+RELEASE_TYPE="${RELEASE_TYPE:-Release}"
+
+# 📦 Tags berechnen über Python-Skript
+eval $(python3 scripts/tag.py "$RELEASE_TYPE")
+
+# ⏺ neuen Tag setzen
+git tag "$NEW_TAG"
+git push origin "refs/tags/$NEW_TAG"
+
+echo "📌 Neuer Tag gesetzt: $NEW_TAG"
+echo "⬅️  Letzter Release-Tag war: $LAST_RELEASE_TAG"
+echo "⬅️  Letzter Tag war: $LAST_TAG"
 
 python3 script/build.py --version "$VERSION" --game "$GAMES_ARG"
