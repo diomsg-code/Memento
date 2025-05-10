@@ -52,18 +52,23 @@ jobs:
       G_TOKEN: ${{ secrets.G_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Build Retail
+        if: github.event.inputs.buildRetail == 'true'
         run: |
           bash script/packager.sh --version v100 --game retail --type ${{ github.event.inputs.releaseType }}
 
-      - uses: actions/checkout@v4
       - name: Build Classic
+        if: github.event.inputs.buildClassic == 'true'
         run: |
           bash script/packager.sh --version v100 --game classic --type ${{ github.event.inputs.releaseType }}
 
-      - uses: actions/checkout@v4
       - name: Build Cata
+        if: github.event.inputs.buildCata == 'true'
         run: |
           bash script/packager.sh --version v100 --game cata --type ${{ github.event.inputs.releaseType }}
           
