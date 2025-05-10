@@ -38,42 +38,32 @@ on:
         default: true
         type: boolean
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+      WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+      G_TOKEN: ${{ secrets.G_TOKEN }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v4
       - name: Build Retail
         run: |
           bash script/packager.sh --version v100 --game retail
-        env:
-          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
-          WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-          CF_API_KEY: ${{ secrets.CF_API_KEY }}
-          WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-          G_TOKEN: ${{ secrets.G_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - uses: actions/checkout@v4
       - name: Build Classic
         run: |
           bash script/packager.sh --version v100 --game classic
-        env:
-          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
-          WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-          CF_API_KEY: ${{ secrets.CF_API_KEY }}
-          WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-          G_TOKEN: ${{ secrets.G_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - uses: actions/checkout@v4
       - name: Build Cata
         run: |
           bash script/packager.sh --version v100 --game cata
-        env:
-          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
-          WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-          CF_API_KEY: ${{ secrets.CF_API_KEY }}
-          WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-          G_TOKEN: ${{ secrets.G_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
+          
