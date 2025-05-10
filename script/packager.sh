@@ -34,7 +34,7 @@ find . -type f
 RELEASE_TYPE="${RELEASE_TYPE:-Release}"
 
 # 📦 Tags berechnen über Python-Skript
-eval $(python3 scripts/tag.py "$RELEASE_TYPE")
+eval $(python3 script/tag.py "$RELEASE_TYPE")
 
 # ⏺ neuen Tag setzen
 git tag "$NEW_TAG"
