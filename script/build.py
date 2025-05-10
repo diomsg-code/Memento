@@ -37,7 +37,7 @@ def main():
             print(f"⚠️ Unbekannte Spielversion '{game}' – übersprungen.")
             continue
 
-        toc_src = f"{ADDON_NAME}.toc" if game == "retail" else f"{ADDON_NAME}_{game.capitalize()}.toc"
+        toc_src = f"{ADDON_NAME}_Mainline.toc" if game == "retail" else f"{ADDON_NAME}_{game.capitalize()}.toc"
         if not os.path.isfile(toc_src):
             print(f"❌ Fehlende TOC: {toc_src} – übersprungen.")
             continue
