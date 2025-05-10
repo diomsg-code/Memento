@@ -24,7 +24,7 @@ while [[ $# -gt 0 ]]; do
 done
 [[ -z "$VERSION" || -z "$GAMES_ARG" ]] && usage
 
-echo "🚀 Klone BigWigs-Packager v2..."
-git clone --depth 1 --tags v2 "$PACKAGER_REPO" "$PACKAGER_DIR"
+echo "🚀 Klone BigWigs-Packager..."
+git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
 
 python3 script/build.py --version "$VERSION" --game "$GAMES_ARG"
