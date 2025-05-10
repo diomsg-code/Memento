@@ -8,6 +8,7 @@ ignore:
   - pkgmeta.retail.yaml
   - pkgmeta.classic.yaml
   - pkgmeta.cata.yaml
+  - script/
 
 manual-changelog:
   filename: CHANGELOG.md
