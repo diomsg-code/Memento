@@ -23,7 +23,7 @@ while [[ $# -gt 0 ]]; do
     *)         usage;;
   esac
 done
-[[ -z "$VERSION" || -z "$GAME" || -z "$TYPE"]] && usage
+[[ -z "$VERSION" || -z "$GAME" || -z "$TYPE" ]] && usage
 
 echo "🚀 Klone BigWigs-Packager..."
 git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
