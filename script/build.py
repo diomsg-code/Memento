@@ -7,6 +7,9 @@ import shutil
 ADDON_NAME = "Memento"
 PACKAGER_DIR = os.path.join("vendor", "packager")
 
+print("📂 Aktuelles Arbeitsverzeichnis:", os.getcwd())
+print("📄 Verfügbare TOCs:", [f for f in os.listdir('.') if f.endswith('.toc')])
+
 GAME_SETTINGS = {
     "retail": {
         "meta": "pkgmeta.retail.yaml",
@@ -48,12 +51,13 @@ def main():
 
     suffix = "" if game == "retail" else f"-{game}"
     zip_name = f"{ADDON_NAME}-{version}{suffix}"
+    version_name = f"{version}{suffix}"
 
     cmd = [
         "bash", os.path.join(PACKAGER_DIR, "release.sh"),
         "-g", game,
         "-m", cfg["meta"],
-        "-n", f"{zip_name}:{version}",
+        "-n", f"{zip_name}:{version_name}",
     ]
 
     #if CF_ID:
