@@ -24,41 +24,37 @@ def parse_args():
 
 def main():
     args = parse_args()
-    games = args.games.split(",")
 
-    for game in games:
-        cfg = GAME_SETTINGS.get(game)
-        if not cfg:
-            print(f"⚠️ Unbekannte Spielversion '{game}' – übersprungen.")
-            continue
+    cfg = GAME_SETTINGS.get(args.game)
+    if not cfg:
+        print(f"⚠️ Unbekannte Spielversion '{args.game}' – übersprungen.")
 
-        toc_src = f"{ADDON_NAME}_Mainline.toc" if game == "retail" else f"{ADDON_NAME}_{game.capitalize()}.toc"
-        if not os.path.isfile(toc_src):
-            print(f"❌ Fehlende TOC: {toc_src} – übersprungen.")
-            continue
+    toc_src = f"{ADDON_NAME}_Mainline.toc" if args.game == "retail" else f"{ADDON_NAME}_{args.game.capitalize()}.toc"
+    if not os.path.isfile(toc_src):
+        print(f"❌ Fehlende TOC: {toc_src} – übersprungen.")
 
-        # 1) TOC ins Arbeitsverzeichnis kopieren
-        subprocess.run(["cp", toc_src, f"{ADDON_NAME}.toc"], check=True)
+    # 1) TOC ins Arbeitsverzeichnis kopieren
+    subprocess.run(["cp", toc_src, f"{ADDON_NAME}.toc"], check=True)
 
-        # 2) ZIP-Name zusammenstellen
-        suffix = "" if game == "retail" else f"-{game}"
-        zip_name = f"{ADDON_NAME}-{args.version}{suffix}.zip"
+    # 2) ZIP-Name zusammenstellen
+    suffix = "" if args.game == "retail" else f"-{args.game}"
+    zip_name = f"{ADDON_NAME}-{args.version}{suffix}.zip"
 
-        # 3) Packager-Aufruf
-        cmd = [
-            "bash", os.path.join(PACKAGER_DIR, "release.sh"),
-            "-g", game,
-            "-m", cfg["meta"],
-            "-n", f"{zip_name}:{args.version}",
-        ]
-        # Optional: IDs anhängen
-        #if CF_ID:
-           # cmd += ["-p", CF_ID]
-        if WAGO_ID:
-            cmd += ["-a", WAGO_ID]
+    # 3) Packager-Aufruf
+    cmd = [
+        "bash", os.path.join(PACKAGER_DIR, "release.sh"),
+        "-g", args.game,
+        "-m", cfg["meta"],
+        "-n", f"{zip_name}:{args.version}",
+    ]
 
-        print("📦 Baue und lade hoch:", " ".join(cmd))
-        subprocess.run(cmd, check=True)
+    #if CF_ID:
+        # cmd += ["-p", CF_ID]
+    if WAGO_ID:
+        cmd += ["-a", WAGO_ID]
+
+    print("📦 Baue und lade hoch:", " ".join(cmd))
+    subprocess.run(cmd, check=True)
 
 if __name__ == "__main__":
     main()
