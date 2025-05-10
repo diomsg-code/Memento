@@ -57,6 +57,11 @@ jobs:
       last-tag: ${{ steps.tag.outputs.last_tag }}
       new-tag: ${{ steps.tag.outputs.new_tag }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Bestimmme alte Git-Tags und definiere einen neuen Git-Tag
         id: tag
         run: |
@@ -64,6 +69,7 @@ jobs:
           echo "last_release_tag=$LAST_RELEASE_TAG" >> $GITHUB_OUTPUT
           echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          
       - name: Setze und pushe Git-Tag
         run: |
           python3 script/tag_push.py ${{ steps.tag.outputs.new_tag }}
