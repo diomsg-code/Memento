@@ -55,15 +55,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build Retail
         run: |
-          bash script/packager.sh --version v100 --game retail
+          bash script/packager.sh --version v100 --game retail --type ${{ github.event.inputs.releaseType }}
 
       - uses: actions/checkout@v4
       - name: Build Classic
         run: |
-          bash script/packager.sh --version v100 --game classic
+          bash script/packager.sh --version v100 --game classic --type ${{ github.event.inputs.releaseType }}
 
       - uses: actions/checkout@v4
       - name: Build Cata
         run: |
-          bash script/packager.sh --version v100 --game cata
+          bash script/packager.sh --version v100 --game cata --type ${{ github.event.inputs.releaseType }}
           
