@@ -2,6 +2,10 @@ package-as: Memento
 
 ignore:
   - README.md
+  - Memento_Mainline.toc
+  - Memento_Vanilla.toc
+  - Memento_Cata.toc
+  - pkgmeta.retail.yml
 
 manual-changelog:
   filename: CHANGELOG.md

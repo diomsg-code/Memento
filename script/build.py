@@ -8,9 +8,9 @@ ADDON_NAME = "Memento"
 PACKAGER_DIR = os.path.join("vendor", "packager")
 
 GAME_SETTINGS = {
-    "retail":  {"meta": "pkgmeta.retail.yaml"},
-    "classic": {"meta": "pkgmeta.classic.yaml"},
-    "cata":    {"meta": "pkgmeta.cata.yaml"},
+    "retail":  {"meta": "pkgmeta.retail.yml"},
+    "classic": {"meta": "pkgmeta.classic.yml"},
+    "cata":    {"meta": "pkgmeta.cata.yml"},
 }
 
 CF_ID = os.getenv("CF_PROJECT_ID", "")
@@ -38,7 +38,7 @@ def main():
 
     # 2) ZIP-Name zusammenstellen
     suffix = "" if args.game == "retail" else f"-{args.game}"
-    zip_name = f"{ADDON_NAME}-{args.version}{suffix}.zip"
+    zip_name = f"{ADDON_NAME}-{args.version}{suffix}"
 
     # 3) Packager-Aufruf
     cmd = [
