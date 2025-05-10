@@ -30,4 +30,6 @@ git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
 echo "📁 Verzeichnisinhalt:"
 find . -type f
 
+python3 script/tag.py Release
+
 python3 script/build.py --version "$VERSION" --game "$GAMES_ARG"
