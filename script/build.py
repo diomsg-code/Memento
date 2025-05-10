@@ -54,7 +54,7 @@ def main():
             "bash", os.path.join(PACKAGER_DIR, "release.sh"),
             "-g", game,
             "-m", cfg["meta"],
-            "-n", f"{args.version}:{zip_name}",
+            "-n", f"{zip_name}:{args.version}",
         ]
         # Optional: IDs anhängen
         #if CF_ID:
