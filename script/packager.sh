@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_ROOT=$(git rev-parse --show-toplevel)
 ADDON_NAME=$(basename "$REPO_ROOT")
 
-PACKAGER_REPO="https://github.com/BigWigsMods/packager@v2.git"
+PACKAGER_REPO="https://github.com/BigWigsMods/packager.git"
 PACKAGER_DIR="vendor/packager"
 
 VERSION=""
