@@ -53,9 +53,5 @@ def main():
     print(f"LAST_TAG={last_tag}")
     print(f"NEW_TAG={new_tag}")
 
-    print(f"Letzer Release-Tag: {last_release_tag}", file=sys.stderr)
-    print(f"Letzer Tag: {last_tag}", file=sys.stderr)
-    print(f"Neuer Tag: {new_tag}", file=sys.stderr)    
-
 if __name__ == "__main__":
     main()

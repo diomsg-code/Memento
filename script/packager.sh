@@ -7,10 +7,12 @@ PACKAGER_DIR="vendor/packager"
 
 # Argumente
 VERSION=""
+LAST_VERSION=""
 GAME=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --version) VERSION="$2"; shift 2 ;;
+    --last-version) LAST_VERSION="$2"; shift 2 ;;
     --game)    GAME="$2";    shift 2 ;;
     *) echo "❌ Unbekanntes Argument: $1"; exit 1 ;;
   esac
@@ -53,6 +55,11 @@ echo "📄 Kopiere $TOC_SRC → Memento.toc"
 cp "$TOC_SRC" "Memento.toc"
 
 git add Memento.toc
+
+if [[ -f CHANGELOG.md ]]; then
+  echo "🔧 Ersetze Platzhalter in CHANGELOG.md mit Version $LAST_VERSION"
+  sed -i "s/@old-project-version@/${LAST_VERSION}/g" CHANGELOG.md
+fi
 
 ZIP_NAME="${ADDON_NAME}-${VERSION}${SUFFIX}"
 VERSION_NAME="${VERSION}${SUFFIX}"
