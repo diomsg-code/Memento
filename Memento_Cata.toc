@@ -16,8 +16,8 @@
 ## SavedVariablesPerCharacter: Memento_DataBossKill
 ## OptionalDeps: Ace3, AceGUI-3.0_SFX-Widgets
 
-locale\locale.xml
 lib\lib.xml
+locale\locale.xml
 
 Memento.lua
 
