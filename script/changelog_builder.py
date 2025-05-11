@@ -32,7 +32,7 @@ def extract_latest_changelog_block(changelog_path: str) -> str:
 
 def create_new_section(version: str, entries: str) -> str:
     today = datetime.date.today().isoformat()
-    header = f"**{version} – ({today})**"
+    header = f"**{version} ({today})**"
     return f"{header}\n{entries}\n"
 
 def update_full_changelog(new_block: str, full_path: str):
