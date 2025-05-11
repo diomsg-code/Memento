@@ -43,6 +43,9 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
+      GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
     outputs:
       last-release-tag: ${{ steps.tag.outputs.last_release_tag }}
       last-tag: ${{ steps.tag.outputs.last_tag }}
@@ -53,6 +56,18 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+
+      - name: Importiere GPG-Key
+        run: |
+          echo "$GPG_PRIVATE_KEY" \
+            | gpg --batch --import
+          git config --global gpg.program "gpg --batch --yes --pinentry-mode loopback"
+
+      - name: Konfiguriere Git-Signing
+        run: |
+          git config --global user.signingKey "$GPG_KEY_ID"
+          git config --global commit.gpgSign true
+          git config --global tag.gpgSign true
 
       - name: Specify old Git tags and define a new Git tag
         id: tag
