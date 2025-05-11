@@ -101,7 +101,7 @@ jobs:
       - name: Package Classic
         if: github.event.inputs.buildClassic == 'true'
         run: |
-          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --game classic
+          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game classic
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -111,4 +111,4 @@ jobs:
       - name: Package Cata
         if: github.event.inputs.buildCata == 'true'
         run: |
-          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --game cata
+          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game cata
