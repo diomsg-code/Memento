@@ -123,6 +123,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get the latest version of main from the repository
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Delay of 30 seconds
         run: |
           sleep 30
