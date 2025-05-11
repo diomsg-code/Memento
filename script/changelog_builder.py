@@ -10,6 +10,25 @@ def run_git(args: list[str], check=True):
     print(f"🧠 git {' '.join(args)}")
     subprocess.run(["git"] + args, check=check)
 
+
+def run(cmd, **kwargs):
+    print(f"> {cmd}")
+    subprocess.run(cmd, shell=True, check=True, **kwargs)
+
+def setup_gpg_and_git():
+    # 1) Importiere privaten GPG-Key
+    key_data = os.environ["GPG_PRIVATE_KEY"]
+    run(f"gpg --batch --import", input=key_data.encode())
+
+    # 2) Loopback-Pinentry, damit GPG in CI nicht interaktiv wird
+    run_git(["config", "--global", "gpg.program", "gpg --batch --yes --pinentry-mode loopback"])
+
+    # 3) Git so konfigurieren, dass Commits & Tags signiert werden
+    gpg_key = os.environ["GPG_KEY_ID"]
+    run_git(["config", "--global", "user.signingKey", gpg_key])
+    run_git(["config", "--global", "commit.gpgSign", "true"])
+    run_git(["config", "--global", "tag.gpgSign", "true"])
+
 def extract_latest_changelog_block(changelog_path: str) -> str:
     if not os.path.isfile(changelog_path):
         return ""
@@ -68,6 +87,8 @@ def main():
 
     new_section = create_new_section(args.version, entries)
     update_full_changelog(new_section, args.full)
+
+    setup_gpg_and_git()
 
     git_commit_and_push(args.version, args.full)
 
