@@ -21,7 +21,7 @@ done
 
 if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" ]]; then
   echo "⚠️ Benötigt: --version, --last-version und --game"
-  exit 1
+  exit 99
 fi
 
 case "$GAME" in
@@ -46,7 +46,7 @@ esac
 
 if [[ ! -f "${TOC_SRC}" ]]; then
   echo "⚠️ TOC-Datei fehlt: ${TOC_SRC}"
-  exit 1
+  exit 99
 fi
 
 echo "🔧 Kopiere ${TOC_SRC} → ${ADDON_NAME}.toc"
