@@ -1,4 +1,5 @@
-name: Publish 'Memento' Test
+name: Publish 'Memento'
+run-name: Publish 'Memento' (${{ github.event.inputs.release-type }})
 
 on:
   workflow_dispatch:
@@ -40,7 +41,7 @@ jobs:
     name: Prework
     runs-on: ubuntu-latest
     env:
-      G_TOKEN: ${{ secrets.G_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
     outputs:
       last-release-tag: ${{ steps.tag.outputs.last_release_tag }}
@@ -68,8 +69,9 @@ jobs:
         if: github.event.inputs.full-changelog == 'true'
         run: |
           python3 script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }}
-  release:
-    name: Release
+  release-retail:
+    name: Release Retail
+    if: github.event.inputs.build-retail == 'true'
     runs-on: ubuntu-latest
     needs: prework
     env:
@@ -84,26 +86,45 @@ jobs:
           fetch-depth: 0
 
       - name: Package Retail
-        if: github.event.inputs.build-retail == 'true'
         run: |
           bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game retail
-
+  release-classic:
+    name: Release Classic
+    if: github.event.inputs.build-classic == 'true'
+    runs-on: ubuntu-latest
+    needs: prework
+    env:
+      CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+      WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Package Classic
-        if: github.event.inputs.build-classic == 'true'
         run: |
           bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game classic
 
+
+  release:
+    name: Release Cata
+    if: github.event.inputs.build-cata == 'true'
+    runs-on: ubuntu-latest
+    needs: prework
+    env:
+      CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+      WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Package Cata
-        if: github.event.inputs.build-cata == 'true'
         run: |
           bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game cata
