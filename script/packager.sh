@@ -50,7 +50,7 @@ if [[ ! -f "$TOC_SRC" ]]; then
 fi
 
 echo "📄 Kopiere $TOC_SRC → Memento.toc"
-mv "$TOC_SRC" "Memento.toc"
+cp "$TOC_SRC" "Memento.toc"
 
 ZIP_NAME="${ADDON_NAME}-${VERSION}${SUFFIX}"
 VERSION_NAME="${VERSION}${SUFFIX}"
