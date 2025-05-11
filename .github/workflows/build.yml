@@ -61,14 +61,14 @@ jobs:
           echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
+      - name: Set and push Git tag
+        run: |
+          python3 script/tag_push.py ${{ steps.tag.outputs.new_tag }} "Release ${{ steps.tag.outputs.new_tag }}"
+
       - name: Extend FULL-CHANGELOG.md with the current release notes
         if: github.event.inputs.full-changelog == 'true'
         run: |
           python3 script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }}
-
-      - name: Set and push Git tag
-        run: |
-          python3 script/tag_push.py ${{ steps.tag.outputs.new_tag }} "Release ${{ steps.tag.outputs.new_tag }}"
   release-retail:
     name: Release Retail
     if: github.event.inputs.build-retail == 'true'

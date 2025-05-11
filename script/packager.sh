@@ -65,7 +65,7 @@ VERSION_NAME="${VERSION}${SUFFIX}"
 CMD=(
   bash "$PACKAGER_DIR/release.sh"
   -g "$GAME"
-  -m "build/$META"
+  -m "$META"
   -n "${ZIP_NAME}:${VERSION_NAME}"
 )
 
