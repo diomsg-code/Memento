@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_ROOT=$(git rev-parse --show-toplevel)
 ADDON_NAME=$(basename "$REPO_ROOT")
 
-PACKAGER_REPO="https://github.com/BigWigsMods/packager.git"
+PACKAGER_REPO="https://github.com/BigWigsMods/packager@v2.git"
 PACKAGER_DIR="vendor/packager"
 
 VERSION=""
@@ -74,7 +74,7 @@ if [[ -n "${WAGO_PROJECT_ID:-}" ]]; then
 fi
 
 echo "🚀 Klone BigWigs-Packager..."
-git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
+git clone --depth 1 --branch v2 "$PACKAGER_REPO" "$PACKAGER_DIR"
 
 echo "📦 Starte Packaging: ${CMD[*]}"
 "${CMD[@]}"
