@@ -16,15 +16,18 @@ def run(cmd, **kwargs):
     subprocess.run(cmd, shell=True, check=True, **kwargs)
 
 def setup_gpg_and_git():
-    # 1) Importiere privaten GPG-Key
-    key_data = os.environ["GPG_PRIVATE_KEY"]
-    run(f"gpg --batch --import", input=key_data.encode())
+    # 1) Import private key (wie gehabt) …
+    run("gpg --batch --import", input=os.environ["GPG_PRIVATE_KEY"].encode())
 
-    # 2) Loopback-Pinentry, damit GPG in CI nicht interaktiv wird
-    run_git(["config", "--global", "gpg.program", "gpg --batch --yes --pinentry-mode loopback"])
+    # 2) Erlaube Loopback-Pinentry
+    run('mkdir -p ~/.gnupg')
+    run('echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf')
+    run('echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf')
+    run("gpgconf --kill gpg-agent")
 
-    # 3) Git so konfigurieren, dass Commits & Tags signiert werden
+    # 3) Git so konfigurieren, dass es nur das gpg-Executable aufruft
     gpg_key = os.environ["GPG_KEY_ID"]
+    run_git(["config", "--global", "gpg.program", "gpg"])
     run_git(["config", "--global", "user.signingKey", gpg_key])
     run_git(["config", "--global", "commit.gpgSign", "true"])
     run_git(["config", "--global", "tag.gpgSign", "true"])
