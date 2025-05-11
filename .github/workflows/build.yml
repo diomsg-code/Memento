@@ -99,43 +99,13 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
 
-      - name: Delay of 60 seconds
+      - name: Delay of 40 seconds
         run: |
-          sleep 60
+          sleep 40
 
       - name: Package Retail
         run: |
           bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game retail
-  release-classic:
-    name: Release Classic
-    if: github.event.inputs.build-classic == 'true'
-    runs-on: ubuntu-latest
-    needs: prework
-    env:
-      CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
-      WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
-      CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
-      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Get the latest version of main from the repository
-        run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git fetch origin main
-          git reset --hard origin/main
-
-      - name: Delay of 30 seconds
-        run: |
-          sleep 30
-
-      - name: Package Classic
-        run: |
-          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game classic
   release-cata:
     name: Release Cata
     if: github.event.inputs.build-cata == 'true'
@@ -159,6 +129,36 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
 
+      - name: Delay of 20 seconds
+        run: |
+          sleep 20
+
       - name: Package Cata
         run: |
           bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game cata
+  release-classic:
+    name: Release Classic
+    if: github.event.inputs.build-classic == 'true'
+    runs-on: ubuntu-latest
+    needs: prework
+    env:
+      CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+      WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
+      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+      CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
+      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get the latest version of main from the repository
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Package Classic
+        run: |
+          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game classic
