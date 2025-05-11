@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ADDON_NAME="Memento"
+PACKAGER_REPO="https://github.com/BigWigsMods/packager.git"
 PACKAGER_DIR="vendor/packager"
 
 # Argumente
@@ -23,7 +24,6 @@ fi
 echo "📂 Arbeitsverzeichnis: $(pwd)"
 echo "📄 TOC-Dateien: $(ls *.toc 2>/dev/null || echo '(keine)')"
 
-# Spielversion-Konfiguration
 case "$GAME" in
   retail)
     TOC_SRC="Memento_Mainline.toc"
@@ -49,7 +49,6 @@ if [[ ! -f "$TOC_SRC" ]]; then
   exit 1
 fi
 
-# Kopiere TOC → MyAddon.toc
 echo "📄 Kopiere $TOC_SRC → Memento.toc"
 cp "$TOC_SRC" "Memento.toc"
 
@@ -63,10 +62,12 @@ CMD=(
   -n "${ZIP_NAME}:${VERSION_NAME}"
 )
 
-# Optional: WAGO Upload
 if [[ -n "${WAGO_PROJECT_ID:-}" ]]; then
   CMD+=("-a" "$WAGO_PROJECT_ID")
 fi
+
+echo "🚀 Klone BigWigs-Packager..."
+git clone --depth 1 --branch master "$PACKAGER_REPO" "$PACKAGER_DIR"
 
 echo "📦 Starte Packaging: ${CMD[*]}"
 "${CMD[@]}"
