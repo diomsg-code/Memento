@@ -56,7 +56,7 @@ jobs:
       - name: Bestimmme alte Git-Tags und definiere einen neuen Git-Tag
         id: tag
         run: |
-          eval "$(python3 script/tag.py ${{ github.event.inputs.release-type }})"
+          eval "$(python3 script/tag_define.py ${{ github.event.inputs.release-type }})"
           echo "last_release_tag=$LAST_RELEASE_TAG" >> $GITHUB_OUTPUT
           echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT

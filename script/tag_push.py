@@ -15,7 +15,7 @@ def create_and_push_annotated_tag(tag, message, token, repo):
     result = subprocess.run(["git", "tag", "-l", tag], capture_output=True, text=True)
     if tag in result.stdout.split():
         print(f"🔁 Tag '{tag}' existiert bereits – kein neues Tag gesetzt.")
-        return
+        sys.exit(99)
 
     print(f"🏷 Erstelle annotierten Tag '{tag}' mit Nachricht: '{message}'")
     run_git(["tag", "-a", tag, "-m", message])
@@ -25,17 +25,17 @@ def create_and_push_annotated_tag(tag, message, token, repo):
     run_git(["push", remote_url, f"refs/tags/{tag}"])
 
 def main():
-    if len(sys.argv) != 1:
-        print("❌ Verwendung: tag_push.py <release-type>")
+    if len(sys.argv) != 2:
+        print("❌ Verwendung: tag_push.py <tag> <release-type>")
         sys.exit(99)
 
     tag = sys.argv[1]
     message = sys.argv[2]
-    token = os.getenv("G_TOKEN")
+    token = os.getenv("GITHUB_TOKEN")
     repo = os.getenv("GITHUB_REPOSITORY")
 
     if not token or not repo:
-        print("❌ G_TOKEN oder GITHUB_REPOSITORY fehlen")
+        print("❌ GITHUB_TOKEN oder GITHUB_REPOSITORY fehlen")
         sys.exit(99)
 
     create_and_push_annotated_tag(tag, message, token, repo)
