@@ -50,7 +50,7 @@ def git_commit_and_push(version: str, file_path: str):
     run_git(["config", "user.name", "GitHub Actions"])
     run_git(["config", "user.email", "actions@github.com"])
     run_git(["add", file_path])
-    run_git(["commit", "-m", f"Update changelog for {version}"])
+    run_git(["commit", "-S", "-m", f"Update changelog for {version}"])
     run_git(["push"])
 
 def main():
