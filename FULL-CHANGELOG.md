@@ -1,3 +1,7 @@
+## v20 – 2025-05-11
+
+- Fixed: If the user interface was hidden, the small success notification was not fully displayed
+
 ## v19 – 2025-05-11
 
 - Fixed: If the user interface was hidden, the small success notification was not fully displayed
