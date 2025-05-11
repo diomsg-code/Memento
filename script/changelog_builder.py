@@ -6,6 +6,10 @@ import re
 import subprocess
 import sys
 
+def run_git(args: list[str], check=True):
+    print(f"🧠 git {' '.join(args)}")
+    subprocess.run(["git"] + args, check=check)
+
 def extract_latest_changelog_block(changelog_path: str) -> str:
     if not os.path.isfile(changelog_path):
         return ""
@@ -28,7 +32,7 @@ def extract_latest_changelog_block(changelog_path: str) -> str:
 
 def create_new_section(version: str, entries: str) -> str:
     today = datetime.date.today().isoformat()
-    header = f"{version} – ({today})"
+    header = f"## {version} – {today}"
     return f"{header}\n\n{entries}\n"
 
 def update_full_changelog(new_block: str, full_path: str):
@@ -43,14 +47,17 @@ def update_full_changelog(new_block: str, full_path: str):
         f.write(old_content)
 
 def git_commit_and_push(version: str, file_path: str):
+    run_git(["config", "user.name", "GitHub Actions"])
+    run_git(["config", "user.email", "actions@github.com"])
+
     print(f"📥 Git add: {file_path}")
-    subprocess.run(["git", "add", file_path], check=True)
+    run_git(["add", file_path])
 
     print(f"📝 Git commit: Update changelog for {version}")
-    subprocess.run(["git", "commit", "-m", f"Update changelog for {version}"], check=True)
+    run_git(["commit", "-m", f"Update changelog for {version}"])
 
     print("🚀 Git push")
-    subprocess.run(["git", "push"], check=True)
+    run_git(["push"])
 
 def main():
     parser = argparse.ArgumentParser()
@@ -70,7 +77,7 @@ def main():
 
     git_commit_and_push(args.version, args.full)
 
-    print("✅ FULL-CHANGELOG.md aktualisiert und gepusht.")
+    print("✅ FULL-CHANGELOG.md aktualisiert und (falls aktiviert) gepusht.")
 
 if __name__ == "__main__":
     main()
