@@ -25,9 +25,9 @@ def create_and_push_annotated_tag(tag, message, token, repo):
     run_git(["push", remote_url, f"refs/tags/{tag}"])
 
 def main():
-    if len(sys.argv) < 3:
-        print("❌ Verwendung: tag_push.py <tag> <nachricht>")
-        sys.exit(1)
+    if len(sys.argv) != 1:
+        print("❌ Verwendung: tag_push.py <release-type>")
+        sys.exit(99)
 
     tag = sys.argv[1]
     message = sys.argv[2]
@@ -36,7 +36,7 @@ def main():
 
     if not token or not repo:
         print("❌ G_TOKEN oder GITHUB_REPOSITORY fehlen")
-        sys.exit(2)
+        sys.exit(99)
 
     create_and_push_annotated_tag(tag, message, token, repo)
 
