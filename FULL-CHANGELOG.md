@@ -1,3 +1,8 @@
+**v25 – (2025-05-11)**
+
+- Changed: The version number scheme has been changed
+- Refactoring of the addon structure and source code
+
 **v24 – (2025-05-11)**
 
 - Changed: The version number scheme has been changed
