@@ -52,6 +52,8 @@ fi
 echo "📄 Kopiere $TOC_SRC → Memento.toc"
 cp "$TOC_SRC" "Memento.toc"
 
+git add Memento.toc
+
 ZIP_NAME="${ADDON_NAME}-${VERSION}${SUFFIX}"
 VERSION_NAME="${VERSION}${SUFFIX}"
 
