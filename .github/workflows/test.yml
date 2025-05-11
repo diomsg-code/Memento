@@ -107,9 +107,7 @@ jobs:
       - name: Package Classic
         run: |
           bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game classic
-
-
-  release:
+  release-cata:
     name: Release Cata
     if: github.event.inputs.build-cata == 'true'
     runs-on: ubuntu-latest

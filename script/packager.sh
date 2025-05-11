@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ADDON_NAME="Memento"
+REPO_ROOT=$(git rev-parse --show-toplevel)
+ADDON_NAME=$(basename "$REPO_ROOT")
+
 PACKAGER_REPO="https://github.com/BigWigsMods/packager.git"
 PACKAGER_DIR="vendor/packager"
 
@@ -13,28 +15,28 @@ while [[ $# -gt 0 ]]; do
     --version) VERSION="$2"; shift 2 ;;
     --last-version) LAST_VERSION="$2"; shift 2 ;;
     --game)    GAME="$2";    shift 2 ;;
-    *) echo "❌ Unbekanntes Argument: $1"; exit 1 ;;
+    *) echo "⚠️ Unbekanntes Argument: $1"; exit 1 ;;
   esac
 done
 
 if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" ]]; then
-  echo "❌ Benötigt: --version, --last-version und --game"
+  echo "⚠️ Benötigt: --version, --last-version und --game"
   exit 1
 fi
 
 case "$GAME" in
   retail)
-    TOC_SRC="Memento_Mainline.toc"
+    TOC_SRC="${ADDON_NAME}_Mainline.toc"
     META="pkgmeta.retail.yaml"
     SUFFIX=""
     ;;
   classic)
-    TOC_SRC="Memento_Vanilla.toc"
+    TOC_SRC="${ADDON_NAME}_Vanilla.toc"
     META="pkgmeta.classic.yaml"
     SUFFIX="-classic"
     ;;
   cata)
-    TOC_SRC="Memento_Cata.toc"
+    TOC_SRC="${ADDON_NAME}_Cata.toc"
     META="pkgmeta.cata.yaml"
     SUFFIX="-cata"
     ;;
@@ -42,18 +44,18 @@ case "$GAME" in
     echo "⚠️ Unbekannte Spielversion: $GAME"; exit 1 ;;
 esac
 
-if [[ ! -f "$TOC_SRC" ]]; then
-  echo "❌ TOC-Datei fehlt: $TOC_SRC"
+if [[ ! -f "${TOC_SRC}" ]]; then
+  echo "⚠️ TOC-Datei fehlt: ${TOC_SRC}"
   exit 1
 fi
 
-echo "📄 Kopiere $TOC_SRC → Memento.toc"
-cp "$TOC_SRC" "Memento.toc"
+echo "🔧 Kopiere ${TOC_SRC} → ${ADDON_NAME}.toc"
+cp "${TOC_SRC}" "${ADDON_NAME}.toc"
 
-git add Memento.toc
+git add ${ADDON_NAME}.toc
 
 if [[ -f CHANGELOG.md ]]; then
-  echo "🔧 Ersetze Platzhalter in CHANGELOG.md mit Version $LAST_VERSION"
+  echo "🔧 Ersetze Platzhalter in CHANGELOG.md mit Version ${LAST_VERSION}"
   sed -i "s/@last-project-version@/${LAST_VERSION}/g" CHANGELOG.md
 fi
 
