@@ -82,18 +82,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 100
-
-      - name: Get current tags
-        run: |
-          git fetch --tags
-
-      - name: Erzeuge zufällige Lua-Datei
-        run: |
-          FILE="Test$RANDOM.lua"
-          echo "-- Automatisch generiert" > "$FILE"
-          echo "print('Testdatei: $FILE')" >> "$FILE"
-          echo "Erstellt: $FILE"
+          fetch-depth: 0
 
       - name: Package Retail
         if: github.event.inputs.buildRetail == 'true'
@@ -104,17 +93,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Get current tags
-        run: |
-          git fetch --tags
-
-      - name: Erzeuge zufällige Lua-Datei
-        run: |
-          FILE="Test$RANDOM.lua"
-          echo "-- Automatisch generiert" > "$FILE"
-          echo "print('Testdatei: $FILE')" >> "$FILE"
-          echo "Erstellt: $FILE"
 
       - name: Package Classic
         if: github.event.inputs.buildClassic == 'true'
