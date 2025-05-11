@@ -1,23 +1,7 @@
-v22 – (2025-05-11)
-
+**2.5.1 (2025-04-24)**
 - Fixed: If the user interface was hidden, the small success notification was not fully displayed
 
-## v20 – 2025-05-11
-
-- Fixed: If the user interface was hidden, the small success notification was not fully displayed
-
-## v19 – 2025-05-11
-
-- Fixed: If the user interface was hidden, the small success notification was not fully displayed
-
-## v17 – 2025-05-11
-
-- Fixed: If the user interface was hidden, the small success notification was not fully displayed
-
-**2.5.1 (@build-date@)**
-- Fixed: If the user interface was hidden, the small success notification was not fully displayed
-
-**2.5.0 (@2025-04-23)**
+**2.5.0 (2025-04-23)**
 - Added: ruRU localization (#1 - Thanks to Hubbotu)
 - Removed: TOC version for patch 11.1.0 (Retail)
 

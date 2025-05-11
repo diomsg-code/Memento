@@ -1,14 +1,12 @@
 package-as: Memento
 
 ignore:
+  - build
   - script
   - README.md
   - Memento_Mainline.toc
   - Memento_Vanilla.toc
   - Memento_Cata.toc
-  - pkgmeta.retail.yaml
-  - pkgmeta.classic.yaml
-  - pkgmeta.cata.yaml
 
 manual-changelog:
   filename: CHANGELOG.md
