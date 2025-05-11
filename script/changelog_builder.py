@@ -60,7 +60,7 @@ def main():
     parser.add_argument("--full", default="FULL-CHANGELOG.md")
     args = parser.parse_args()
 
-    print(f"📚 Baue FULL-CHANGELOG.md für Version: {args.version}")
+    print(f"🔧 Baue FULL-CHANGELOG.md für Version: {args.version}")
     entries = extract_latest_changelog_block(args.changelog)
     if not entries:
         print("⚠️ Keine gültigen Einträge gefunden.")

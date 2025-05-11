@@ -77,7 +77,8 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+      CF_API_TOKEN: ${{ secrets.CF_API_KEY }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout Repository
@@ -96,7 +97,8 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+      CF_API_TOKEN: ${{ secrets.CF_API_KEY }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout repository
@@ -115,7 +117,8 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+      CF_API_TOKEN: ${{ secrets.CF_API_KEY }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout repository
