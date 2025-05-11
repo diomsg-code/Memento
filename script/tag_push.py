@@ -15,7 +15,7 @@ def create_and_push_annotated_tag(tag, message, token, repo):
 
     run_git(["config", "user.name", "GitHub Actions"])
     run_git(["config", "user.email", "actions@github.com"])
-    run_git(["tag", "-s", "-a", tag, "-m", message])
+    run_git(["tag", "-a", tag, "-m", message])
 
     remote_url = f"https://x-access-token:{token}@github.com/{repo}.git"
     run_git(["push", remote_url, f"refs/tags/{tag}"])
