@@ -1,4 +1,3 @@
--- Translator ZamestoTV
 local L = LibStub("AceLocale-3.0"):NewLocale("Memento", "ruRU")
 
 if not L then return end

@@ -3,7 +3,7 @@
 ## Author: diomsg (Diom-Antonidas EU)
 ## Version: @project-version@
 ## IconTexture: Interface\AddOns\Memento\media\icon.blp
-## X-Flavor: Vanilla
+## X-Flavor: Classic
 ## X-BuildDate: @build-date@
 ## X-E-Mail: feedback@wow-addon.dev
 ## X-Github: https://github.com/diomsg-code/Memento
@@ -16,9 +16,9 @@
 ## SavedVariablesPerCharacter: Memento_DataBossKill
 ## OptionalDeps: Ace3, AceGUI-3.0_SFX-Widgets
 
-libs.xml
-locals.xml
+locale\locale.xml
+lib\lib.xml
 
 Memento.lua
 
-core.xml
+core\core.xml
