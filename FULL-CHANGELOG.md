@@ -1,3 +1,7 @@
+**v47 (2025-05-11)**
+- Changed: The version number scheme has been changed [all versions]
+- Refactoring of the addon structure and source code [all versions]
+
 **v46 (2025-05-11)**
 - Changed: The version number scheme has been changed [all versions]
 - Refactoring of the addon structure and source code [all versions]
