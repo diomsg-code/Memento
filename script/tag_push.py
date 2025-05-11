@@ -7,25 +7,6 @@ def run_git(args, check=True):
     print(f"🧠 git {' '.join(args)}")
     subprocess.run(["git"] + args, check=check)
 
-def run(cmd, **kwargs):
-    print(f"> {cmd}")
-    subprocess.run(cmd, shell=True, check=True, **kwargs)
-
-def setup_gpg_and_git():
-    # 1) GnuPG-Config anlegen
-    run("mkdir -p ~/.gnupg")
-    run("printf 'pinentry-mode loopback\n' >> ~/.gnupg/gpg.conf")
-
-    # 2) Privaten Key importieren
-    key_data = os.environ["GPG_PRIVATE_KEY"]
-    run("gpg --batch --import", input=key_data.encode())
-
-    # 3) Git so konfigurieren, dass es "gpg" (nicht den ganzen String) als Signatur-Programm nutzt
-    run_git(["config", "--global", "gpg.program", "gpg"])
-    run_git(["config", "--global", "user.signingKey", os.environ["GPG_KEY_ID"]])
-    run_git(["config", "--global", "commit.gpgSign", "true"])
-    run_git(["config", "--global", "tag.gpgSign", "true"])
-
 def create_and_push_annotated_tag(tag, message, token, repo):
     result = subprocess.run(["git", "tag", "-l", tag], capture_output=True, text=True)
     if tag in result.stdout.split():
@@ -43,8 +24,6 @@ def main():
     if len(sys.argv) != 3:
         print("⚠️ Verwendung: tag_push.py <tag> <release-type>")
         sys.exit(99)
-
-    setup_gpg_and_git()
 
     tag = sys.argv[1]
     message = sys.argv[2]
