@@ -84,6 +84,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Erzeuge zufällige Lua-Datei
+        run: |
+          FILE="Test$RANDOM.lua"
+          echo "-- Automatisch generiert" > "$FILE"
+          echo "print('Testdatei: $FILE')" >> "$FILE"
+          echo "Erstellt: $FILE"
+
       - name: Package Retail
         if: github.event.inputs.buildRetail == 'true'
         run: |
