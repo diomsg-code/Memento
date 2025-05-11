@@ -3,7 +3,6 @@ import subprocess
 import sys
 import os
 
-
 def run_git(args, check=True):
     print(f"🧠 git {' '.join(args)}")
     subprocess.run(["git"] + args, check=check)
@@ -22,12 +21,9 @@ def create_and_push_annotated_tag(tag, message, token, repo):
     run_git(["push", remote_url, f"refs/tags/{tag}"])
 
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) != 3:
         print("⚠️ Verwendung: tag_push.py <tag> <release-type>")
         sys.exit(99)
-
-    res = len(sys.argv)
-    print(f"⚠️ ⚠️ {res}")
 
     tag = sys.argv[1]
     message = sys.argv[2]
