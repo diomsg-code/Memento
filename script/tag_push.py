@@ -9,25 +9,25 @@ def run_git(args, check=True):
     subprocess.run(["git"] + args, check=check)
 
 def create_and_push_annotated_tag(tag, message, token, repo):
-    run_git(["config", "user.name", "GitHub Actions"])
-    run_git(["config", "user.email", "actions@github.com"])
-
     result = subprocess.run(["git", "tag", "-l", tag], capture_output=True, text=True)
     if tag in result.stdout.split():
-        print(f"🔁 Tag '{tag}' existiert bereits – kein neues Tag gesetzt.")
+        print(f"⚠️ Tag '{tag}' existiert bereits.")
         sys.exit(99)
 
-    print(f"🏷 Erstelle annotierten Tag '{tag}' mit Nachricht: '{message}'")
+    run_git(["config", "user.name", "GitHub Actions"])
+    run_git(["config", "user.email", "actions@github.com"])
     run_git(["tag", "-a", tag, "-m", message])
 
     remote_url = f"https://x-access-token:{token}@github.com/{repo}.git"
-    print(f"🚀 Pushe Tag '{tag}' nach GitHub ...")
     run_git(["push", remote_url, f"refs/tags/{tag}"])
 
 def main():
     if len(sys.argv) < 3:
-        print("❌ Verwendung: tag_push.py <tag> <release-type>")
+        print("⚠️ Verwendung: tag_push.py <tag> <release-type>")
         sys.exit(99)
+
+    res = len(sys.argv)
+    print(f"⚠️ ⚠️ {res}")
 
     tag = sys.argv[1]
     message = sys.argv[2]
@@ -35,7 +35,7 @@ def main():
     repo = os.getenv("GITHUB_REPOSITORY")
 
     if not token or not repo:
-        print("❌ GITHUB_TOKEN oder GITHUB_REPOSITORY fehlen")
+        print("⚠️ GITHUB_TOKEN oder GITHUB_REPOSITORY fehlen.")
         sys.exit(99)
 
     create_and_push_annotated_tag(tag, message, token, repo)

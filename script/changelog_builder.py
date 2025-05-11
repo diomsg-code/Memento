@@ -33,7 +33,7 @@ def extract_latest_changelog_block(changelog_path: str) -> str:
 def create_new_section(version: str, entries: str) -> str:
     today = datetime.date.today().isoformat()
     header = f"**{version} – ({today})**"
-    return f"{header}\n\n{entries}\n"
+    return f"{header}\n{entries}\n"
 
 def update_full_changelog(new_block: str, full_path: str):
     old_content = ""
@@ -60,18 +60,18 @@ def main():
     parser.add_argument("--full", default="FULL-CHANGELOG.md")
     args = parser.parse_args()
 
-    print(f"📚 Baue Full-Changelog für Version: {args.version}")
+    print(f"📚 Baue FULL-CHANGELOG.md für Version: {args.version}")
     entries = extract_latest_changelog_block(args.changelog)
     if not entries:
         print("⚠️ Keine gültigen Einträge gefunden.")
-        sys.exit(1)
+        sys.exit(99)
 
     new_section = create_new_section(args.version, entries)
     update_full_changelog(new_section, args.full)
 
     git_commit_and_push(args.version, args.full)
 
-    print("✅ FULL-CHANGELOG.md aktualisiert und (falls aktiviert) gepusht.")
+    print("✅ FULL-CHANGELOG.md aktualisiert und gepusht.")
 
 if __name__ == "__main__":
     main()

@@ -23,7 +23,8 @@ def get_last_tag(tags):
 def compute_new_tag(last_tag, release_type):
     base_match = re.match(r"v([0-9]+)", last_tag)
     if not base_match:
-        raise ValueError(f"❌ Unerwartetes Tag-Format: {last_tag}")
+        print(f"⚠️ Unerwartetes Tag-Format: {last_tag}", file=sys.stderr)
+        sys.exit(99)
 
     base_num = int(base_match.group(1))
     suffix = last_tag[len(f"v{base_num}"):]
@@ -40,7 +41,8 @@ def compute_new_tag(last_tag, release_type):
         elif release_type == "Alpha":
             return f"v{base_num + 1}-alpha.1"
 
-    raise ValueError("❌ Konnte neuen Tag nicht bestimmen.")
+    print("⚠️ Konnte neuen Tag nicht bestimmen.", file=sys.stderr)
+    sys.exit(99)
 
 def main():
     release_type = sys.argv[1] if len(sys.argv) > 1 else "Release"
