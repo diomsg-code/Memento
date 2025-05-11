@@ -74,7 +74,7 @@ if [[ -n "${WAGO_PROJECT_ID:-}" ]]; then
 fi
 
 echo "🚀 Klone BigWigs-Packager..."
-git clone --depth 1 --branch v2 "$PACKAGER_REPO" "$PACKAGER_DIR"
+git clone --depth 1 --branch 16bee9f167d4a445da57aeabcbbc875848e3468a "$PACKAGER_REPO" "$PACKAGER_DIR"
 
 echo "📦 Starte Packaging: ${CMD[*]}"
 "${CMD[@]}"
