@@ -1,3 +1,7 @@
+## v17 – 2025-05-11
+
+- Fixed: If the user interface was hidden, the small success notification was not fully displayed
+
 **2.5.1 (@build-date@)**
 - Fixed: If the user interface was hidden, the small success notification was not fully displayed
 
