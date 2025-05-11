@@ -54,7 +54,7 @@ git add Memento.toc
 
 if [[ -f CHANGELOG.md ]]; then
   echo "🔧 Ersetze Platzhalter in CHANGELOG.md mit Version $LAST_VERSION"
-  sed -i "s/@old-project-version@/${LAST_VERSION}/g" CHANGELOG.md
+  sed -i "s/@last-project-version@/${LAST_VERSION}/g" CHANGELOG.md
 fi
 
 ZIP_NAME="${ADDON_NAME}-${VERSION}${SUFFIX}"
@@ -63,7 +63,7 @@ VERSION_NAME="${VERSION}${SUFFIX}"
 CMD=(
   bash "$PACKAGER_DIR/release.sh"
   -g "$GAME"
-  -m "$META"
+  -m "build/$META"
   -n "${ZIP_NAME}:${VERSION_NAME}"
 )
 
