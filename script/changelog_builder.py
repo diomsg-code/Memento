@@ -10,26 +10,6 @@ def run_git(args: list[str], check=True):
     print(f"🧠 git {' '.join(args)}")
     subprocess.run(["git"] + args, check=check)
 
-
-def run(cmd, **kwargs):
-    print(f"> {cmd}")
-    subprocess.run(cmd, shell=True, check=True, **kwargs)
-
-def setup_gpg_and_git():
-    # 1) GnuPG-Config anlegen
-    run("mkdir -p ~/.gnupg")
-    run("printf 'pinentry-mode loopback\n' >> ~/.gnupg/gpg.conf")
-
-    # 2) Privaten Key importieren
-    key_data = os.environ["GPG_PRIVATE_KEY"]
-    run("gpg --batch --import", input=key_data.encode())
-
-    # 3) Git so konfigurieren, dass es "gpg" (nicht den ganzen String) als Signatur-Programm nutzt
-    run_git(["config", "--global", "gpg.program", "gpg"])
-    run_git(["config", "--global", "user.signingKey", os.environ["GPG_KEY_ID"]])
-    run_git(["config", "--global", "commit.gpgSign", "true"])
-    run_git(["config", "--global", "tag.gpgSign", "true"])
-
 def extract_latest_changelog_block(changelog_path: str) -> str:
     if not os.path.isfile(changelog_path):
         return ""
@@ -88,8 +68,6 @@ def main():
 
     new_section = create_new_section(args.version, entries)
     update_full_changelog(new_section, args.full)
-
-    setup_gpg_and_git()
 
     git_commit_and_push(args.version, args.full)
 

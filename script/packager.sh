@@ -69,6 +69,10 @@ CMD=(
   -n "${ZIP_NAME}:${VERSION_NAME}"
 )
 
+if [[ -n "${CF_PROJECT_ID:-}" ]]; then
+  CMD+=("-p" "$CF_PROJECT_ID")
+fi
+
 if [[ -n "${WAGO_PROJECT_ID:-}" ]]; then
   CMD+=("-a" "$WAGO_PROJECT_ID")
 fi

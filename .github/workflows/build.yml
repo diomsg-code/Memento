@@ -43,9 +43,6 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
-      GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
     outputs:
       last-release-tag: ${{ steps.tag.outputs.last_release_tag }}
       last-tag: ${{ steps.tag.outputs.last_tag }}
