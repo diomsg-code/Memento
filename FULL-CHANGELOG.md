@@ -1,3 +1,18 @@
+**v24 – (2025-05-11)**
+
+- Changed: The version number scheme has been changed
+- Refactoring of the addon structure and source code
+
+**v24-alpha.1 – (2025-05-11)**
+
+- Changed: The version number scheme has been changed
+- Refactoring of the addon structure and source code
+
+**v23 – (2025-05-11)**
+
+- Changed: The version number scheme has been changed
+- Refactoring of the addon structure and source code
+
 **2.5.1 (2025-04-24)**
 - Fixed: If the user interface was hidden, the small success notification was not fully displayed
 
