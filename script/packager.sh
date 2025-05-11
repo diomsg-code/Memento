@@ -5,7 +5,6 @@ ADDON_NAME="Memento"
 PACKAGER_REPO="https://github.com/BigWigsMods/packager.git"
 PACKAGER_DIR="vendor/packager"
 
-# Argumente
 VERSION=""
 LAST_VERSION=""
 GAME=""
@@ -18,13 +17,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ -z "$VERSION" || -z "$GAME" ]]; then
-  echo "❌ Benötigt: --version und --game"
+if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" ]]; then
+  echo "❌ Benötigt: --version, --last-version und --game"
   exit 1
 fi
-
-echo "📂 Arbeitsverzeichnis: $(pwd)"
-echo "📄 TOC-Dateien: $(ls *.toc 2>/dev/null || echo '(keine)')"
 
 case "$GAME" in
   retail)
