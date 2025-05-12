@@ -39,14 +39,14 @@ function Memento:PrintDebug(msg)
             local name, _, _, _, _, _, shown, locked, docked, uni = GetChatWindowInfo(i)
 
             if name == "Debug" and docked ~= nil then
-                _G['ChatFrame' .. i]:AddMessage(Memento_MarkOrangeFont("Memento: ") .. msg)
+                _G['ChatFrame' .. i]:AddMessage(Memento_MarkOrangeFont("Memento: ") .. msg .. " - Time: " .. tostring(GetTime()))
                 notfound = false
                 break
             end
         end
 
         if notfound then
-            DEFAULT_CHAT_FRAME:AddMessage(Memento_MarkOrangeFont("Memento (Debug): ") .. msg)
+            DEFAULT_CHAT_FRAME:AddMessage(Memento_MarkOrangeFont("Memento (Debug): ") .. msg .. " - Time: " .. tostring(GetTime()))
         end
 	end
 end
