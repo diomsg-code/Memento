@@ -54,6 +54,16 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
+      - name: Import GPG key
+        id: import-gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_tag_gpgsign: true
+
       - name: Specify old Git tags and define a new Git tag
         id: tag
         run: |
@@ -65,7 +75,7 @@ jobs:
       - name: Extend FULL-CHANGELOG.md with the current release notes
         if: github.event.inputs.full-changelog == 'true'
         run: |
-          python3 script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }}
+          python3 script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }} --name ${{ steps.import-gpg.outputs.name }} --email ${{ steps.import-gpg.outputs.email }}
 
       - name: Get the latest version of main from the repository
         run: |
@@ -75,7 +85,7 @@ jobs:
 
       - name: Set and push Git tag
         run: |
-          python3 script/tag_push.py ${{ steps.tag.outputs.new_tag }} "Release ${{ steps.tag.outputs.new_tag }}"
+          python3 script/tag_push.py --tag ${{ steps.tag.outputs.new_tag }} --message "Release ${{ steps.tag.outputs.new_tag }}" --name ${{ steps.import-gpg.outputs.name }} --email ${{ steps.import-gpg.outputs.email }}
   release-retail:
     name: Release Retail
     if: github.event.inputs.build-retail == 'true'

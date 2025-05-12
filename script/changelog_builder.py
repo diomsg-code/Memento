@@ -46,9 +46,9 @@ def update_full_changelog(new_block: str, full_path: str):
         f.write("\n")
         f.write(old_content)
 
-def git_commit_and_push(version: str, file_path: str):
-    run_git(["config", "user.name", "GitHub Actions"])
-    run_git(["config", "user.email", "actions@github.com"])
+def git_commit_and_push(version: str, file_path: str, name, email):
+    run_git(["config", "user.name", name])
+    run_git(["config", "user.email", email])
     run_git(["add", file_path])
     run_git(["commit", "-m", f"Update changelog for {version}"])
     run_git(["push"])
@@ -56,6 +56,8 @@ def git_commit_and_push(version: str, file_path: str):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--version", required=True)
+    parser.add_argument("--name", required=True)
+    parser.add_argument("--email", required=True)
     parser.add_argument("--changelog", default="CHANGELOG.md")
     parser.add_argument("--full", default="FULL-CHANGELOG.md")
     args = parser.parse_args()
@@ -69,7 +71,7 @@ def main():
     new_section = create_new_section(args.version, entries)
     update_full_changelog(new_section, args.full)
 
-    git_commit_and_push(args.version, args.full)
+    git_commit_and_push(args.version, args.full, args.name, args.email)
 
     print("✅ FULL-CHANGELOG.md aktualisiert und gepusht.")
 

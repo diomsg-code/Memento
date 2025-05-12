@@ -26,19 +26,9 @@ fi
 
 case "$GAME" in
   retail)
-    TOC_SRC="${ADDON_NAME}_Mainline.toc"
+    TOC_SRC="${ADDON_NAME}.toc"
     META="pkgmeta.retail.yaml"
     SUFFIX=""
-    ;;
-  classic)
-    TOC_SRC="${ADDON_NAME}_Vanilla.toc"
-    META="pkgmeta.classic.yaml"
-    SUFFIX="-classic"
-    ;;
-  cata)
-    TOC_SRC="${ADDON_NAME}_Cata.toc"
-    META="pkgmeta.cata.yaml"
-    SUFFIX="-cata"
     ;;
   *)
     echo "⚠️ Unbekannte Spielversion: $GAME"; exit 1 ;;
@@ -48,11 +38,6 @@ if [[ ! -f "${TOC_SRC}" ]]; then
   echo "⚠️ TOC-Datei fehlt: ${TOC_SRC}"
   exit 99
 fi
-
-echo "🔧 Kopiere ${TOC_SRC} → ${ADDON_NAME}.toc"
-cp "${TOC_SRC}" "${ADDON_NAME}.toc"
-
-git add ${ADDON_NAME}.toc
 
 if [[ -f CHANGELOG.md ]]; then
   echo "🔧 Ersetze Platzhalter in CHANGELOG.md mit Version ${LAST_VERSION}"
