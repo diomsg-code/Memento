@@ -134,7 +134,7 @@ function Memento:OnInitialize()
                             self:PrintDebug("Encounter already killed. No screenshot requested.")
                         else
                             TimePlayed()
-                            
+
                             self:ScheduleTimer("EncounterVictoryEventHandler", self.db.profile.events.encounter.victory.timer + fixDelay, encounterName, difficultyName, difficulty, encounterID)
                         end
                     else
@@ -143,7 +143,7 @@ function Memento:OnInitialize()
                 else
                     if((groupType == "party" and self.db.profile.events.encounter.wipe.party) or (groupType == "raid" and self.db.profile.events.encounter.wipe.raid) or (groupType == "scenario" and self.db.profile.events.encounter.wipe.scenario)) then
                         TimePlayed()
-                        
+
                         self:ScheduleTimer("EncounterWipeEventHandler", self.db.profile.events.encounter.wipe.timer + fixDelay, encounterName, difficultyName)
                     else
                         self:PrintDebug("Event 'ENCOUNTER_END' (Wipe) completed. No screenshot requested.")
