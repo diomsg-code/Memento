@@ -1,3 +1,6 @@
+**v44-alpha.1 (2025-05-12)**
+- Changed: The events for the screenshots are collected in a queue and processed one after the other, there is always at least one second between two screenshots [all versions]
+
 **v43 (2025-05-11)**
 - Changed: The version number scheme has been changed [all versions]
 - Refactoring of the addon structure and source code [all versions]
