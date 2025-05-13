@@ -51,7 +51,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
+          token: sdfsd
           fetch-depth: 0
           persist-credentials: true
 
