@@ -41,7 +41,7 @@ jobs:
     name: Prework
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
     outputs:
       last-release-tag: ${{ steps.tag.outputs.last_release_tag }}
@@ -95,13 +95,14 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.BOT_TOKEN }}
       CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
@@ -125,13 +126,14 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.BOT_TOKEN }}
       CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
@@ -155,13 +157,14 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.BOT_TOKEN }}
       CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
