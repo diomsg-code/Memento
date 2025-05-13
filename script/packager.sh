@@ -26,8 +26,18 @@ fi
 
 case "$GAME" in
   retail)
-    TOC_SRC="${ADDON_NAME}.toc"
+    TOC_SRC="${ADDON_NAME}_Mainline.toc"
     META="pkgmeta.retail.yaml"
+    SUFFIX=""
+    ;;
+  cata)
+    TOC_SRC="${ADDON_NAME}_Cata.toc"
+    META="pkgmeta.cata.yaml"
+    SUFFIX=""
+    ;;
+  classic)
+    TOC_SRC="${ADDON_NAME}_Vanilla.toc"
+    META="pkgmeta.classic.yaml"
     SUFFIX=""
     ;;
   *)
