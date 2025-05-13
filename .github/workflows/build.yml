@@ -41,7 +41,7 @@ jobs:
     name: Prework
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
     outputs:
       last-release-tag: ${{ steps.tag.outputs.last_release_tag }}
@@ -54,11 +54,7 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
           persist-credentials: true
-      - name: Push mit Bot
-        env:
-          KASTELO_BOT_PAT: ${{ secrets.BOT_TOKEN }}
-        run: |
-          git push https://x-access-token:${KASTELO_BOT_PAT}@github.com/diomsg-code/Memento.git HEAD:main
+          
       - name: Import GPG key
         id: import-gpg
         uses: crazy-max/ghaction-import-gpg@v6
