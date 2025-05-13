@@ -41,7 +41,7 @@ jobs:
     name: Prework
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
       GITHUB_REPOSITORY: ${{ github.repository }}
     outputs:
       last-release-tag: ${{ steps.tag.outputs.last_release_tag }}
