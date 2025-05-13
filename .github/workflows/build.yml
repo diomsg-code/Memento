@@ -64,6 +64,7 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
           git_tag_gpgsign: true
+          git_push_gpgsign: false
 
       - name: Specify old Git tags and define a new Git tag
         id: tag
@@ -95,14 +96,13 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      GITHUB_OAUTH: ${{ secrets.BOT_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
       CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
@@ -126,14 +126,13 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      GITHUB_OAUTH: ${{ secrets.BOT_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
       CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
@@ -157,14 +156,13 @@ jobs:
     env:
       CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
       WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
-      GITHUB_OAUTH: ${{ secrets.BOT_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
       CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
