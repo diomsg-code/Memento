@@ -15,7 +15,7 @@ def create_and_push_annotated_tag(tag, message):
         sys.exit(99)
 
     run_git(["tag", "-a", tag, "-m", message])
-    run_git(["push", f"refs/tags/{tag}"])
+    run_git(["push", "origin", f"refs/tags/{tag}"])
 
 def main():
     parser = argparse.ArgumentParser()
