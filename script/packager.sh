@@ -12,6 +12,7 @@ LAST_VERSION=""
 GAME=""
 RELEASE_CF=""
 RELEASE_WAGO=""
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --version) VERSION="$2"; shift 2 ;;
@@ -28,34 +29,60 @@ if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" || -z "$RELEASE_CF" || -
   exit 99
 fi
 
-case "$GAME" in
-  retail)
-    TOC_SRC="${ADDON_NAME}_Mainline.toc"
-    META="pkgmeta.retail.yaml"
-    SUFFIX=""
-    ;;
-  cata)
-    TOC_SRC="${ADDON_NAME}_Cata.toc"
-    META="pkgmeta.cata.yaml"
-    SUFFIX="-cata"
-    ;;
-  classic)
-    TOC_SRC="${ADDON_NAME}_Vanilla.toc"
-    META="pkgmeta.classic.yaml"
-    SUFFIX="-classic"
-    ;;
-  *)
-    echo "⚠️ Unbekannte Spielversion: $GAME"; exit 1 ;;
-esac
+MAPPING_FILE="build.ini"
+SECTION_FOUND=false
+
+while IFS= read -r line; do
+  line="${line#"${line%%[![:space:]]*}"}"
+  line="${line%"${line##*[![:space:]]}"}"
+
+  [[ -z "$line" || "$line" =~ ^# ]] && continue
+
+  if [[ "$line" =~ ^\[$GAME\]$ ]]; then
+    SECTION_FOUND=true
+    continue
+  fi
+
+  if [[ "$line" =~ ^\[.*\]$ && "$SECTION_FOUND" == true ]]; then
+    break
+  fi
+
+  if [[ "$SECTION_FOUND" == true ]]; then
+    IFS='=' read -r key value <<< "$line"
+    key="${key// /}"
+    value="${value##*( )}"
+    value="${value%%*( )}"
+
+    case "$key" in
+      toc) TOC_SRC="$value" ;;
+      meta) META="$value" ;;
+      suffix) SUFFIX="$value" ;;
+    esac
+  fi
+done < "$MAP_FILE"
+
+if [[ -z "$TOC_SRC" || -z "$META" ]]; then
+  echo "⚠️ Fehler: Kein gültiger Abschnitt für Spielversion '$GAME' in $MAPPING_FILE"
+  exit 1
+fi
 
 if [[ ! -f "${TOC_SRC}" ]]; then
   echo "⚠️ TOC-Datei fehlt: ${TOC_SRC}"
   exit 99
 fi
 
+if [[ "$TOC_SRC" != "${ADDON_NAME}.toc" ]]; then
+  cp "$TOC_SRC" "${ADDON_NAME}.toc"
+  git add "${ADDON_NAME}.toc"
+fi
+
 if [[ -f CHANGELOG.md ]]; then
   echo "🔧 Ersetze Platzhalter in CHANGELOG.md mit Version ${LAST_VERSION}"
   sed -i "s/@last-project-version@/${LAST_VERSION}/g" CHANGELOG.md
+fi
+
+if [[ -n "$SUFFIX" ]]; then
+  SUFFIX="-$SUFFIX"
 fi
 
 ZIP_NAME="${ADDON_NAME}-${VERSION}${SUFFIX}"
