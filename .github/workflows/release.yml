@@ -13,32 +13,32 @@ on:
           - Release
           - Alpha
       build-retail:
-        description: 'Retail-Version'
+        description: 'Retail-Version erstellen'
         required: false
         default: true
         type: boolean
       build-cata:
-        description: 'Cata-Version'
+        description: 'Cata-Version erstellen'
         required: false
         default: true
         type: boolean
       build-classic:
-        description: 'Classic-Version'
+        description: 'Classic-Version erstellen'
         required: false
         default: true
         type: boolean
       release-cf:
-        description: 'CurseForge veröffentlich'
+        description: 'auf CurseForge veröffentlich'
         required: false
         default: true
         type: boolean
       release-wago:
-        description: 'Wago veröffentlichen'
+        description: 'aus Wago veröffentlichen'
         required: false
         default: true
         type: boolean
       full-changelog:
-        description: 'vollständiges Changelog'
+        description: 'vollständiges Changelog erstellen'
         required: false
         default: true
         type: boolean
@@ -90,7 +90,7 @@ jobs:
       - name: Specify old Git tags and define a new Git tag
         id: tag
         run: |
-          eval "$(python3 .build/script/tag_define.py ${{ github.event.inputs.release-type }})"
+          eval "$(python3 .release/script/tag_define.py ${{ github.event.inputs.release-type }})"
           echo "last_release_tag=$LAST_RELEASE_TAG" >> $GITHUB_OUTPUT
           echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
@@ -98,7 +98,7 @@ jobs:
       - name: Extend FULL-CHANGELOG.md with the current release notes
         if: github.event.inputs.full-changelog == 'true'
         run: |
-          python3 .build/script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }}
+          python3 .release/script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }}
 
       - name: Get the latest version of main from the repository
         run: |
@@ -108,7 +108,7 @@ jobs:
 
       - name: Set and push Git tag
         run: |
-          python3 .build/script/tag_push.py --tag ${{ steps.tag.outputs.new_tag }} --message "Tag ${{ steps.tag.outputs.new_tag }}"
+          python3 .release/script/tag_push.py --tag ${{ steps.tag.outputs.new_tag }} --message "Tag ${{ steps.tag.outputs.new_tag }}"
 
   release-retail:
     name: Release Retail
@@ -133,7 +133,7 @@ jobs:
 
       - name: Package Retail
         run: >
-          bash .build/script/packager.sh
+          bash .release/script/packager.sh
           --game retail
           --version ${{ needs.prework.outputs.new-tag }}
           --last-version ${{ needs.prework.outputs.last-tag }}
@@ -163,7 +163,7 @@ jobs:
 
       - name: Package Cata
         run: >
-          bash .build/script/packager.sh
+          bash .release/script/packager.sh
           --game cata
           --version ${{ needs.prework.outputs.new-tag }}
           --last-version ${{ needs.prework.outputs.last-tag }}
@@ -190,7 +190,7 @@ jobs:
 
       - name: Package Classic
         run: >
-          bash .build/script/packager.sh
+          bash .release/script/packager.sh
           --game classic
           --version ${{ needs.prework.outputs.new-tag }}
           --last-version ${{ needs.prework.outputs.last-tag }}

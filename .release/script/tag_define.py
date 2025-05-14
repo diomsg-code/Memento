@@ -63,7 +63,7 @@ def determine_last_release_tag(tags, major):
 
 def main():
     release_type = sys.argv[1] if len(sys.argv) > 1 else "release"
-    ini_path = ".build/build.ini"
+    ini_path = ".release/release.ini"
     major = load_major_from_ini(path=ini_path)
 
     tags = get_tags()
