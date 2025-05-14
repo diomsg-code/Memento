@@ -33,7 +33,7 @@ on:
         default: true
         type: boolean
       release-wago:
-        description: 'aus Wago veröffentlichen'
+        description: 'auf Wago veröffentlichen'
         required: false
         default: true
         type: boolean
@@ -97,8 +97,7 @@ jobs:
 
       - name: Extend FULL-CHANGELOG.md with the current release notes
         if: github.event.inputs.full-changelog == 'true'
-        run: |
-          python3 .release/script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }}
+        run: python3 .release/script/changelog_builder.py --version ${{ steps.tag.outputs.new_tag }}
 
       - name: Get the latest version of main from the repository
         run: |
@@ -107,8 +106,7 @@ jobs:
           git reset --hard origin/main
 
       - name: Set and push Git tag
-        run: |
-          python3 .release/script/tag_push.py --tag ${{ steps.tag.outputs.new_tag }} --message "Tag ${{ steps.tag.outputs.new_tag }}"
+        run: python3 .release/script/tag_push.py --tag ${{ steps.tag.outputs.new_tag }} --message "Tag ${{ steps.tag.outputs.new_tag }}"
 
   release-retail:
     name: Release Retail
@@ -119,7 +117,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
@@ -149,7 +146,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
@@ -179,7 +175,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
       - name: Get the latest version of main from the repository
