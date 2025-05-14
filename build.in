@@ -1,0 +1,14 @@
+[retail]
+toc = Memento_Mainline.toc
+meta = pkgmeta.retail.yaml
+suffix =
+
+[cata]
+toc = Memento_Cata.toc
+meta = pkgmeta.cata.yaml
+suffix = cata
+
+[classic]
+toc = Memento_Classic.toc
+meta = pkgmeta.classic.yaml
+suffix = classic
