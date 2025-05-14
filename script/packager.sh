@@ -17,9 +17,9 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --version) VERSION="$2"; shift 2 ;;
     --last-version) LAST_VERSION="$2"; shift 2 ;;
-    --game)    GAME="$2";    shift 2 ;;
-    --release-cf)    RELEASE_CF="$2";    shift 2 ;;
-    --release-wago)    RELEASE_WAGO="$2";    shift 2 ;;
+    --game) GAME="$2"; shift 2 ;;
+    --release-cf) RELEASE_CF="$2"; shift 2 ;;
+    --release-wago) RELEASE_WAGO="$2"; shift 2 ;;
     *) echo "⚠️ Unbekanntes Argument: $1"; exit 1 ;;
   esac
 done
@@ -54,9 +54,9 @@ while IFS= read -r line; do
     value="${value%%*( )}"
 
     case "$key" in
-      toc) TOC_SRC="$value" ;;
-      meta) META="$value" ;;
-      suffix) SUFFIX="$value" ;;
+      toc) TOC_SRC="$(echo "$value" | xargs)" ;;
+      meta) META="$(echo "$value" | xargs)" ;;
+      suffix) SUFFIX="$(echo "$value" | xargs)" ;;
     esac
   fi
 done < "$MAPPING_FILE"
