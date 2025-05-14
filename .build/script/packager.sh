@@ -17,9 +17,9 @@ RELEASE_WAGO=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --game) GAME="$2"; shift 2 ;;
     --version) VERSION="$2"; shift 2 ;;
     --last-version) LAST_VERSION="$2"; shift 2 ;;
-    --game) GAME="$2"; shift 2 ;;
     --release-cf) RELEASE_CF="$2"; shift 2 ;;
     --release-wago) RELEASE_WAGO="$2"; shift 2 ;;
     *) echo "⚠️ Unbekanntes Argument: $1"; exit 1 ;;
