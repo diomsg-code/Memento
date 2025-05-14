@@ -12,6 +12,9 @@ on:
         options:
           - Release
           - Alpha
+      release-tag:
+        description: 'neuer Tag (manuell)'
+        required: false
       build-retail:
         description: 'Retail-Version erstellen'
         required: false
@@ -91,6 +94,11 @@ jobs:
         id: tag
         run: |
           eval "$(python3 .release/script/tag_define.py ${{ github.event.inputs.release-type }})"
+
+          if [[ -n "${{ github.event.inputs.release-tag }}" ]]; then
+            NEW_TAG="${{ github.event.inputs.release-tag }}"
+          fi
+
           echo "last_release_tag=$LAST_RELEASE_TAG" >> $GITHUB_OUTPUT
           echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
