@@ -2,54 +2,78 @@
 import subprocess
 import re
 import sys
+import configparser
+from pathlib import Path
+
+def load_major_from_ini(path="version.ini", section="global", key="major"):
+    config = configparser.ConfigParser()
+    config.read(path)
+    try:
+        return int(config[section][key])
+    except KeyError:
+        print(f"⚠️ Sektion '{section}' oder Schlüssel '{key}' nicht gefunden in {path}", file=sys.stderr)
+        sys.exit(99)
+    except ValueError:
+        print(f"⚠️ Ungültiger Integer-Wert für '{key}' in Sektion '{section}' ({config[section].get(key)})", file=sys.stderr)
+        sys.exit(99)
+    except Exception as e:
+        print(f"⚠️ Fehler beim Lesen der INI-Datei {path}: {e}", file=sys.stderr)
+        sys.exit(99)
 
 def get_tags():
     subprocess.run(["git", "fetch", "--tags"], check=True)
-    result = subprocess.run(["git", "tag", "--sort=-creatordate"], stdout=subprocess.PIPE, text=True, check=True)
+    result = subprocess.run(
+        ["git", "tag", "--sort=-creatordate"],
+        stdout=subprocess.PIPE,
+        text=True,
+        check=True
+    )
     return result.stdout.strip().splitlines()
 
-def get_last_release_tag(tags):
+def parse_release_tags(tags, major):
+    pattern = re.compile(rf"v{major}\.(\d+)$")
+    releases = []
     for tag in tags:
-        if re.fullmatch(r"v[0-9]+", tag):
-            return tag
-    return "v0"
+        m = pattern.fullmatch(tag)
+        if m:
+            releases.append((int(m.group(1)), tag))
 
-def get_last_tag(tags):
-    for tag in tags:
-        if re.fullmatch(r"v[0-9]+(?:-alpha\.[0-9]+)?", tag):
-            return tag
-    return "v0"
+    return sorted(releases, key=lambda x: x[0], reverse=True)
 
-def compute_new_tag(last_tag, release_type):
-    base_match = re.match(r"v([0-9]+)", last_tag)
-    if not base_match:
-        print(f"⚠️ Unerwartetes Tag-Format: {last_tag}", file=sys.stderr)
-        sys.exit(99)
+def compute_new_tag(tags, major, release_type):
+    current_releases = parse_release_tags(tags, major)
+    last_minor = current_releases[0][0] if current_releases else -1
+    new_minor = last_minor + 1
 
-    base_num = int(base_match.group(1))
-    suffix = last_tag[len(f"v{base_num}"):]
+    if release_type.lower() == "release":
+        return f"v{major}.{new_minor}"
 
-    if suffix.startswith("-alpha."):
-        alpha_num = int(suffix.split(".")[1])
-        if release_type == "Alpha":
-            return f"v{base_num}-alpha.{alpha_num + 1}"
-        elif release_type == "Release":
-            return f"v{base_num}"
-    else:
-        if release_type == "Release":
-            return f"v{base_num + 1}"
-        elif release_type == "Alpha":
-            return f"v{base_num + 1}-alpha.1"
+    alpha_pattern = re.compile(rf"v{major}\.{new_minor}-alpha\.(\d+)$")
+    alpha_numbers = [int(m.group(1)) for tag in tags if (m := alpha_pattern.fullmatch(tag))]
+    next_alpha = max(alpha_numbers) + 1 if alpha_numbers else 1
 
-    print("⚠️ Konnte neuen Tag nicht bestimmen.", file=sys.stderr)
-    sys.exit(99)
+    return f"v{major}.{new_minor}-alpha.{next_alpha}"
+
+def determine_last_release_tag(tags, major):
+    current = parse_release_tags(tags, major)
+    if current:
+        return current[0][1]
+
+    prev = parse_release_tags(tags, major - 1)
+    if prev:
+        return prev[0][1]
+
+    return None
 
 def main():
-    release_type = sys.argv[1] if len(sys.argv) > 1 else "Release"
+    release_type = sys.argv[1] if len(sys.argv) > 1 else "release"
+    ini_path = ".build/build.ini"
+    major = load_major_from_ini(path=ini_path)
+
     tags = get_tags()
-    last_release_tag = get_last_release_tag(tags)
-    last_tag = get_last_tag(tags)
-    new_tag = compute_new_tag(last_tag, release_type)
+    new_tag = compute_new_tag(tags, major, release_type)
+    last_tag = tags[0] if tags else None
+    last_release_tag = determine_last_release_tag(tags, major)
 
     print(f"LAST_RELEASE_TAG={last_release_tag}")
     print(f"LAST_TAG={last_tag}")
