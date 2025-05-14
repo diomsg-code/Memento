@@ -26,4 +26,4 @@ jobs:
       - name: Specify old Git tags and define a new Git tag
         id: tag
         run: |
-          eval "$(python3 .build/script/tag_define.py ${{ github.event.inputs.release-type }})"
+          eval "$(python3 .build/script/test.py ${{ github.event.inputs.release-type }})"
