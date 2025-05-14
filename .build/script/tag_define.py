@@ -22,12 +22,8 @@ def load_major_from_ini(path="version.ini", section="global", key="major"):
 
 def get_tags():
     subprocess.run(["git", "fetch", "--tags"], check=True)
-    result = subprocess.run(
-        ["git", "tag", "--sort=-creatordate"],
-        stdout=subprocess.PIPE,
-        text=True,
-        check=True
-    )
+    result = subprocess.run(["git", "tag", "--sort=-creatordate"], stdout=subprocess.PIPE, text=True, check=True)
+
     return result.stdout.strip().splitlines()
 
 def parse_release_tags(tags, major):
