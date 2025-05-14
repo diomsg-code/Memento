@@ -27,6 +27,16 @@ on:
         required: false
         default: true
         type: boolean
+      release-cf:
+        description: 'CurseForge veröffentlich'
+        required: false
+        default: true
+        type: boolean
+      release-wago:
+        description: 'Wago veröffentlichen'
+        required: false
+        default: true
+        type: boolean
       full-changelog:
         description: 'vollständiges Changelog'
         required: false
@@ -121,7 +131,7 @@ jobs:
 
       - name: Package Retail
         run: |
-          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game retail
+          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game retail --release-cf ${{ github.event.inputs.release-cf }} --release-wago ${{ github.event.inputs.release-wago }}
   release-cata:
     name: Release Cata
     if: github.event.inputs.build-cata == 'true'
@@ -151,7 +161,7 @@ jobs:
 
       - name: Package Cata
         run: |
-          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game cata
+          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game cata --release-cf ${{ github.event.inputs.release-cf }} --release-wago ${{ github.event.inputs.release-wago }}
   release-classic:
     name: Release Classic
     if: github.event.inputs.build-classic == 'true'
@@ -177,4 +187,4 @@ jobs:
 
       - name: Package Classic
         run: |
-          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game classic
+          bash script/packager.sh --version ${{ needs.prework.outputs.new-tag }} --last-version ${{ needs.prework.outputs.last-tag }} --game classic --release-cf ${{ github.event.inputs.release-cf }} --release-wago ${{ github.event.inputs.release-wago }}
