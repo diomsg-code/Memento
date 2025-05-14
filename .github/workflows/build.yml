@@ -102,6 +102,7 @@ jobs:
       - name: Set and push Git tag
         run: |
           python3 .build/script/tag_push.py --tag ${{ steps.tag.outputs.new_tag }} --message "Tag ${{ steps.tag.outputs.new_tag }}"
+
   release-retail:
     name: Release Retail
     if: github.event.inputs.build-retail == 'true'
@@ -129,12 +130,14 @@ jobs:
         run: sleep 40
 
       - name: Package Retail
-        run: bash .build/script/packager.sh \
-          --game retail \
-          --version ${{ needs.prework.outputs.new-tag }} \
-          --last-version ${{ needs.prework.outputs.last-tag }} \
-          --release-cf ${{ github.event.inputs.release-cf }} \
+        run: >
+          bash .build/script/packager.sh
+          --game retail
+          --version ${{ needs.prework.outputs.new-tag }}
+          --last-version ${{ needs.prework.outputs.last-tag }}
+          --release-cf ${{ github.event.inputs.release-cf }}
           --release-wago ${{ github.event.inputs.release-wago }}
+
   release-cata:
     name: Release Cata
     if: github.event.inputs.build-cata == 'true'
@@ -162,12 +165,14 @@ jobs:
         run: sleep 20
 
       - name: Package Cata
-        run: bash .build/script/packager.sh \
-          --game cata \
-          --version ${{ needs.prework.outputs.new-tag }} \
-          --last-version ${{ needs.prework.outputs.last-tag }} \
-          --release-cf ${{ github.event.inputs.release-cf }} \
+        run: >
+          bash .build/script/packager.sh
+          --game cata
+          --version ${{ needs.prework.outputs.new-tag }}
+          --last-version ${{ needs.prework.outputs.last-tag }}
+          --release-cf ${{ github.event.inputs.release-cf }}
           --release-wago ${{ github.event.inputs.release-wago }}
+
   release-classic:
     name: Release Classic
     if: github.event.inputs.build-classic == 'true'
@@ -192,9 +197,10 @@ jobs:
           git reset --hard origin/main
 
       - name: Package Classic
-        run: bash .build/script/packager.sh \
-          --game classic \
-          --version ${{ needs.prework.outputs.new-tag }} \
-          --last-version ${{ needs.prework.outputs.last-tag }} \
-          --release-cf ${{ github.event.inputs.release-cf }} \
+        run: >
+          bash .build/script/packager.sh
+          --game classic
+          --version ${{ needs.prework.outputs.new-tag }}
+          --last-version ${{ needs.prework.outputs.last-tag }}
+          --release-cf ${{ github.event.inputs.release-cf }}
           --release-wago ${{ github.event.inputs.release-wago }}
