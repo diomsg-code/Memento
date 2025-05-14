@@ -77,9 +77,9 @@ def main():
 
     print(f"✅ Tag-Bestimmung abgeschlossen.", file=sys.stderr)
 
-    print(f"ℹ️ Letzter Release Tag: {last_release_tag}", file=sys.stderr)
-    print(f"ℹ️ Letzter Tag: {last_tag}", file=sys.stderr)
-    print(f"ℹ️ Neuer Tag: {new_tag}", file=sys.stderr)
+    print(f"ℹ️ letzter Release Tag: {last_release_tag}", file=sys.stderr)
+    print(f"ℹ️ letzter Tag: {last_tag}", file=sys.stderr)
+    print(f"ℹ️ neuer Tag: {new_tag}", file=sys.stderr)
 
 if __name__ == "__main__":
     main()
