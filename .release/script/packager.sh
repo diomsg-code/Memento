@@ -27,11 +27,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" || -z "$RELEASE_CF" || -z "$RELEASE_WAGO" ]]; then
-  echo "⚠️ Benötigt: --version, --last-version und --game"
+  echo "⚠️ Benötigt: --game, --version, --last-version, --release-cf und --release-wage"
   exit 99
 fi
 
-MAPPING_FILE=".build/build.ini"
+MAPPING_FILE=".release/release.ini"
 SECTION_FOUND=false
 
 while IFS= read -r line; do
