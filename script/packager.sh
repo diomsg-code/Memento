@@ -37,12 +37,12 @@ case "$GAME" in
   cata)
     TOC_SRC="${ADDON_NAME}_Cata.toc"
     META="pkgmeta.cata.yaml"
-    SUFFIX=""
+    SUFFIX="-cata"
     ;;
   classic)
     TOC_SRC="${ADDON_NAME}_Vanilla.toc"
     META="pkgmeta.classic.yaml"
-    SUFFIX=""
+    SUFFIX="-classic"
     ;;
   *)
     echo "⚠️ Unbekannte Spielversion: $GAME"; exit 1 ;;
