@@ -10,16 +10,20 @@ PACKAGER_DIR="vendor/packager"
 VERSION=""
 LAST_VERSION=""
 GAME=""
+RELEASE_CF=""
+RELEASE_WAGO=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --version) VERSION="$2"; shift 2 ;;
     --last-version) LAST_VERSION="$2"; shift 2 ;;
     --game)    GAME="$2";    shift 2 ;;
+    --release-cf)    RELEASE_CF="$2";    shift 2 ;;
+    --release-wago)    RELEASE_WAGO="$2";    shift 2 ;;
     *) echo "⚠️ Unbekanntes Argument: $1"; exit 1 ;;
   esac
 done
 
-if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" ]]; then
+if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" || -z "$RELEASE_CF" || -z "$RELEASE_WAGO" ]]; then
   echo "⚠️ Benötigt: --version, --last-version und --game"
   exit 99
 fi
@@ -63,12 +67,13 @@ CMD=(
   -m "$META"
   -n "${ZIP_NAME}:${VERSION_NAME}"
 )
-
-if [[ -n "${CF_PROJECT_ID:-}" ]]; then
+echo "${RELEASE_CF}"
+echo "${RELEASE_WAGO}"
+if [[ -n "${CF_PROJECT_ID:-}" && "${RELEASE_CF:-false}" == "true" ]]; then
   CMD+=("-p" "$CF_PROJECT_ID")
 fi
 
-if [[ -n "${WAGO_PROJECT_ID:-}" ]]; then
+if [[ -n "${WAGO_PROJECT_ID:-}" && "${RELEASE_WAGO:-false}" == "true"  ]]; then
   CMD+=("-a" "$WAGO_PROJECT_ID")
 fi
 
