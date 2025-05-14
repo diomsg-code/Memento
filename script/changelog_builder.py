@@ -49,7 +49,7 @@ def update_full_changelog(new_block: str, full_path: str):
 def git_commit_and_push(version: str, file_path: str):
     run_git(["add", file_path])
     run_git(["commit", "-m", f"Update changelog for {version}"])
-    run_git(["push"])
+    run_git(["push", "origin"])
 
 def main():
     parser = argparse.ArgumentParser()
