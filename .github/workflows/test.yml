@@ -1,0 +1,29 @@
+on:
+  workflow_dispatch:
+    inputs:
+      release-type:
+        description: 'Art des Releases'
+        required: true
+        default: 'release'
+        type: choice
+        options:
+          - Release
+          - Alpha
+
+permissions:
+  contents: write
+
+jobs:
+  prework:
+    name: Prework
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Specify old Git tags and define a new Git tag
+        id: tag
+        run: |
+          eval "$(python3 .build/script/tag_define.py ${{ github.event.inputs.release-type }})"
