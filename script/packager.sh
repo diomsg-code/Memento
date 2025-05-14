@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "🔧 Starte Vorverarbeitung..."
+
 REPO_ROOT=$(git rev-parse --show-toplevel)
 ADDON_NAME=$(basename "$REPO_ROOT")
 
@@ -77,7 +79,6 @@ if [[ "$TOC_SRC" != "${ADDON_NAME}.toc" ]]; then
 fi
 
 if [[ -f CHANGELOG.md ]]; then
-  echo "🔧 Ersetze Platzhalter in CHANGELOG.md mit Version ${LAST_VERSION}"
   sed -i "s/@last-project-version@/${LAST_VERSION}/g" CHANGELOG.md
 fi
 
@@ -94,13 +95,12 @@ CMD=(
   -m "$META"
   -n "${ZIP_NAME}:${VERSION_NAME}"
 )
-echo "${RELEASE_CF}"
-echo "${RELEASE_WAGO}"
+
 if [[ -n "${CF_PROJECT_ID:-}" && "${RELEASE_CF:-false}" == "true" ]]; then
   CMD+=("-p" "$CF_PROJECT_ID")
 fi
 
-if [[ -n "${WAGO_PROJECT_ID:-}" && "${RELEASE_WAGO:-false}" == "true"  ]]; then
+if [[ -n "${WAGO_PROJECT_ID:-}" && "${RELEASE_WAGO:-false}" == "true" ]]; then
   CMD+=("-a" "$WAGO_PROJECT_ID")
 fi
 
