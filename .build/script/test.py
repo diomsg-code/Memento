@@ -57,7 +57,6 @@ def parse_alpha_tags(tags, major, minor):
 
 
 def compute_new_tag(tags, major, release_type):
-    # Ermittelt das nächste Minor-Release basierend auf bestehenden Tags
     releases = parse_release_tags(tags, major)
     last_minor = releases[0][0] if releases else -1
     new_minor = last_minor + 1
@@ -65,7 +64,6 @@ def compute_new_tag(tags, major, release_type):
     if release_type.lower() == "release":
         return f"v{major}.{new_minor}"
     else:
-        # Alpha-Build für das neue Minor
         alphas = parse_alpha_tags(tags, major, new_minor)
         next_alpha = alphas[0][0] + 1 if alphas else 1
         return f"v{major}.{new_minor}-alpha.{next_alpha}"
@@ -74,14 +72,26 @@ def compute_new_tag(tags, major, release_type):
 def main():
     # Optionales Argument: 'release' oder 'alpha'
     release_type = sys.argv[1] if len(sys.argv) > 1 else "release"
-    ini_path = ".build/build.ini"
+    ini_path = Path(__file__).parent / "version.ini"
     major = load_major_from_ini(path=ini_path)
 
     tags = get_tags()
+    # Ältestes Tag insgesamt (nach creatordate sortiert desc)
+    last_tag = tags[0] if tags else None
+
+    # Letztes Release-Tag für diese Major-Version
+    releases = parse_release_tags(tags, major)
+    last_release_tag = releases[0][1] if releases else None
+
     new_tag = compute_new_tag(tags, major, release_type)
 
+    # Ausgaben
     print(f"NEW_TAG={new_tag}")
+    print(f"LAST_RELEASE_TAG={last_release_tag}")
+    print(f"LAST_TAG={last_tag}")
     print(f"ℹ️ Generiertes neues Tag: {new_tag}", file=sys.stderr)
+    print(f"ℹ️ Letztes Release-Tag: {last_release_tag}", file=sys.stderr)
+    print(f"ℹ️ Letztes Tag insgesamt: {last_tag}", file=sys.stderr)
 
 
 if __name__ == "__main__":
