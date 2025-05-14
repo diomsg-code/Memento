@@ -82,7 +82,7 @@ def main():
     tags = get_tags()
     new_tag = compute_new_tag(tags, major, release_type)
     last_tag = tags[0] if tags else None
-    last_release_tag = determine_last_release_tag(tags, major, new_tag)
+    last_release_tag = determine_last_release_tag(tags, major)
 
     # Parsable Ausgaben
     print(f"NEW_TAG={new_tag}")
