@@ -29,7 +29,7 @@ if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" || -z "$RELEASE_CF" || -
   exit 99
 fi
 
-MAPPING_FILE="./build.ini"
+MAPPING_FILE="build.ini"
 SECTION_FOUND=false
 
 while IFS= read -r line; do
