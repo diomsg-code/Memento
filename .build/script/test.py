@@ -72,7 +72,7 @@ def compute_new_tag(tags, major, release_type):
 def main():
     # Optionales Argument: 'release' oder 'alpha'
     release_type = sys.argv[1] if len(sys.argv) > 1 else "release"
-    ini_path = Path(__file__).parent / "version.ini"
+    ini_path = ".build/build.ini"
     major = load_major_from_ini(path=ini_path)
 
     tags = get_tags()
