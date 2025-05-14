@@ -17,13 +17,13 @@ on:
         required: false
         default: true
         type: boolean
-      build-classic:
-        description: 'Classic-Version'
+      build-cata:
+        description: 'Cata-Version'
         required: false
         default: true
         type: boolean
-      build-cata:
-        description: 'Cata-Version'
+      build-classic:
+        description: 'Classic-Version'
         required: false
         default: true
         type: boolean
