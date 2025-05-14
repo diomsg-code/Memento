@@ -45,39 +45,34 @@ def parse_release_tags(tags, major):
     return sorted(releases, key=lambda x: x[0], reverse=True)
 
 def compute_new_tag(tags, major, release_type):
-    # Ermittlung des nächsten Minor
     current_releases = parse_release_tags(tags, major)
     last_minor = current_releases[0][0] if current_releases else -1
     new_minor = last_minor + 1
 
     if release_type.lower() == "release":
         return f"v{major}.{new_minor}"
-    # Alpha-Build
-    alphas = []
-    pattern_alpha = re.compile(rf"v{major}\.{new_minor}-alpha\.(\d+)$")
-    for tag in tags:
-        m = pattern_alpha.fullmatch(tag)
-        if m:
-            alphas.append(int(m.group(1)))
-    next_alpha = max(alphas) + 1 if alphas else 1
+    # Alpha build for new minor
+    alpha_pattern = re.compile(rf"v{major}\.{new_minor}-alpha\.(\d+)$")
+    alpha_numbers = [int(m.group(1)) for tag in tags if (m := alpha_pattern.fullmatch(tag))]
+    next_alpha = max(alpha_numbers) + 1 if alpha_numbers else 1
     return f"v{major}.{new_minor}-alpha.{next_alpha}"
 
-def determine_last_release_tag(tags, major, new_tag):
+def determine_last_release_tag(tags, major):
     """
     Ermittelt das letzte Release-Tag vor dem neuen Tag:
-    - Wenn es schon Releases in aktueller Major-Version gibt, nimm das mit zweitgrößtem Minor.
-    - Andernfalls nimm das höchste Release-Tag der vorherigen Major-Version.
+    - Wenn es Releases in der aktuellen Major-Version gibt, nimm das aktuellste (höchster Minor).
+    - Andernfalls nimm das aktuellste Release-Tag der vorherigen Major-Version.
     """
-    # Tags der aktuellen Major-Version
+    # Suche Releases in aktueller Major-Version
     current = parse_release_tags(tags, major)
-    # Falls mindestens zwei Releases existieren, zweiter Eintrag ist vorheriges
-    if len(current) >= 2:
-        return current[1][1]
-    # Kein oder nur ein Release: suche im vorherigen Major
+    if current:
+        return current[0][1]
+    # Fallback: vorherige Major-Version
     prev = parse_release_tags(tags, major - 1)
     if prev:
         return prev[0][1]
     return None
+
 
 def main():
     release_type = sys.argv[1] if len(sys.argv) > 1 else "release"
