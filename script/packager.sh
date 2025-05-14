@@ -59,7 +59,7 @@ while IFS= read -r line; do
       suffix) SUFFIX="$value" ;;
     esac
   fi
-done < "$MAP_FILE"
+done < "$MAPPING_FILE"
 
 if [[ -z "$TOC_SRC" || -z "$META" ]]; then
   echo "⚠️ Fehler: Kein gültiger Abschnitt für Spielversion '$GAME' in $MAPPING_FILE"
