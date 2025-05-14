@@ -76,21 +76,24 @@ def main():
     major = load_major_from_ini(path=ini_path)
 
     tags = get_tags()
-    # Ältestes Tag insgesamt (nach creatordate sortiert desc)
+    # Insgesamt letztes Tag (nach creatordate sortiert desc)
     last_tag = tags[0] if tags else None
 
-    # Letztes Release-Tag für diese Major-Version
-    releases = parse_release_tags(tags, major)
-    last_release_tag = releases[0][1] if releases else None
+    # Letztes Release-Tag der vorherigen Major-Version
+    prev_major = major - 1
+    prev_releases = parse_release_tags(tags, prev_major)
+    last_release_tag = prev_releases[0][1] if prev_releases else None
 
     new_tag = compute_new_tag(tags, major, release_type)
 
-    # Ausgaben
+    # Ausgaben als parsable Vars
     print(f"NEW_TAG={new_tag}")
     print(f"LAST_RELEASE_TAG={last_release_tag}")
     print(f"LAST_TAG={last_tag}")
+
+    # Ausführliche Infos stderr
     print(f"ℹ️ Generiertes neues Tag: {new_tag}", file=sys.stderr)
-    print(f"ℹ️ Letztes Release-Tag: {last_release_tag}", file=sys.stderr)
+    print(f"ℹ️ Letztes Release-Tag (vorherige Major-Version): {last_release_tag}", file=sys.stderr)
     print(f"ℹ️ Letztes Tag insgesamt: {last_tag}", file=sys.stderr)
 
 
