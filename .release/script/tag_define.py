@@ -59,8 +59,7 @@ def determine_last_release_tag(tags, major):
     if prev:
         return prev[0][1]
 
-    print(f"⚠️ Kein letztes Reelase gefunden.", file=sys.stderr)
-    sys.exit(99)
+    return None
 
 def main():
     release_type = sys.argv[1] if len(sys.argv) > 1 else "release"
@@ -70,7 +69,7 @@ def main():
     tags = get_tags()
     new_tag = compute_new_tag(tags, major, release_type)
     last_tag = tags[0] if tags else None
-    last_release_tag = determine_last_release_tag(tags, major) if tags else None
+    last_release_tag = determine_last_release_tag(tags, major)
 
     print(f"LAST_RELEASE_TAG={last_release_tag}")
     print(f"LAST_TAG={last_tag}")
