@@ -25,5 +25,7 @@ def main():
 
     create_and_push_annotated_tag(args.tag, args.message)
 
+    print(f"✅ Neuer Tag gepusht.", file=sys.stderr)
+
 if __name__ == "__main__":
     main()

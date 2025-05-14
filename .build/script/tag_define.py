@@ -55,6 +55,8 @@ def main():
     print(f"LAST_TAG={last_tag}")
     print(f"NEW_TAG={new_tag}")
 
+    print(f"✅ Tag-Bestimmung abgeschlossen.", file=sys.stderr)
+
     print(f"ℹ️ Letzter Release Tag: {last_release_tag}", file=sys.stderr)
     print(f"ℹ️ Letzter Tag: {last_tag}", file=sys.stderr)
     print(f"ℹ️ Neuer Tag: {new_tag}", file=sys.stderr)

@@ -89,7 +89,7 @@ function Memento:OnInitialize()
                     else
                         self:PrintDebug("Event 'ACHIEVEMENT_EARNED' (Guild) completed. No screenshot requested.")
                     end
-                end
+            	end
             end
         )
 

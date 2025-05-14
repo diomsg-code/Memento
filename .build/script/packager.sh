@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "🔧 Starte Vorverarbeitung..."
+echo "🔧 Starte Prüfungen..."
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
 ADDON_NAME=$(basename "$REPO_ROOT")
@@ -31,7 +31,7 @@ if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" || -z "$RELEASE_CF" || -
   exit 99
 fi
 
-MAPPING_FILE="build.ini"
+MAPPING_FILE=".build/build.ini"
 SECTION_FOUND=false
 
 while IFS= read -r line; do
@@ -92,7 +92,7 @@ VERSION_NAME="${VERSION}${SUFFIX}"
 CMD=(
   bash "$PACKAGER_DIR/release.sh"
   -g "$GAME"
-  -m "$META"
+  -m ".build/config/$META"
   -n "${ZIP_NAME}:${VERSION_NAME}"
 )
 
