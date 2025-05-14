@@ -51,7 +51,7 @@ env:
   WAGO_PROJECT_ID: ${{ vars.WAGO_PROJECT_ID }}
   CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
   WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
-  GITHUB_OAUTH: ${{ secrets.G_TOKEN }}
+  GITHUB_OAUTH: ${{ secrets.BOT_TOKEN }}
 
 jobs:
   prework:
@@ -67,9 +67,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
           persist-credentials: true
+          token: ${{ secrets.BOT_TOKEN }}
 
       - name: Import GPG key (Bot)
         id: import-gpg
@@ -117,9 +117,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
-          persist-credentials: true
 
       - name: Get the latest version of main from the repository
         run: |
@@ -148,9 +146,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
-          persist-credentials: true
 
       - name: Get the latest version of main from the repository
         run: |
@@ -162,6 +158,8 @@ jobs:
         run: sleep 20
 
       - name: Package Cata
+        env:
+          github_token: ${{ secrets.BOT_TOKEN }}
         run: >
           bash .release/script/packager.sh
           --game cata
@@ -179,9 +177,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
-          persist-credentials: true
 
       - name: Get the latest version of main from the repository
         run: |
