@@ -8,7 +8,7 @@ def run_git(args, check=True):
     print(f"🧠 git {' '.join(args)}")
     subprocess.run(["git"] + args, check=check)
 
-def create_and_push_annotated_tag(tag, message):
+def git_push_tag(tag, message):
     result = subprocess.run(["git", "tag", "-l", tag], capture_output=True, text=True)
     if tag in result.stdout.split():
         print(f"⚠️ Tag '{tag}' existiert bereits.")
@@ -23,7 +23,7 @@ def main():
     parser.add_argument("--message", required=True)
     args = parser.parse_args()
 
-    create_and_push_annotated_tag(args.tag, args.message)
+    git_push_tag(args.tag, args.message)
 
     print(f"✅ Neuer Tag gepusht.", file=sys.stderr)
 

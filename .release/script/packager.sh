@@ -9,9 +9,9 @@ ADDON_NAME=$(basename "$REPO_ROOT")
 PACKAGER_REPO="https://github.com/BigWigsMods/packager.git"
 PACKAGER_DIR="vendor/packager"
 
-VERSION=""
-LAST_VERSION=""
 GAME=""
+VERSION=""
+LAST_RELEASE_VERSION=""
 RELEASE_CF=""
 RELEASE_WAGO=""
 
@@ -19,14 +19,14 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --game) GAME="$2"; shift 2 ;;
     --version) VERSION="$2"; shift 2 ;;
-    --last-version) LAST_VERSION="$2"; shift 2 ;;
+    --last-release-version) LAST_RELEASE_VERSION="$2"; shift 2 ;;
     --release-cf) RELEASE_CF="$2"; shift 2 ;;
     --release-wago) RELEASE_WAGO="$2"; shift 2 ;;
     *) echo "⚠️ Unbekanntes Argument: $1"; exit 1 ;;
   esac
 done
 
-if [[ -z "$VERSION" || -z "$LAST_VERSION" || -z "$GAME" || -z "$RELEASE_CF" || -z "$RELEASE_WAGO" ]]; then
+if [[ -z "$VERSION" || -z "$LAST_RELEASE_VERSION" || -z "$GAME" || -z "$RELEASE_CF" || -z "$RELEASE_WAGO" ]]; then
   echo "⚠️ Benötigt: --game, --version, --last-version, --release-cf und --release-wage"
   exit 99
 fi
@@ -65,7 +65,7 @@ done < "$MAPPING_FILE"
 
 if [[ -z "$TOC_SRC" || -z "$META" ]]; then
   echo "⚠️ Fehler: Kein gültiger Abschnitt für Spielversion '$GAME' in $MAPPING_FILE"
-  exit 1
+  exit 99
 fi
 
 if [[ ! -f "${TOC_SRC}" ]]; then
@@ -79,7 +79,16 @@ if [[ "$TOC_SRC" != "${ADDON_NAME}.toc" ]]; then
 fi
 
 if [[ -f CHANGELOG.md ]]; then
-  sed -i "s/@last-project-version@/${LAST_VERSION}/g" CHANGELOG.md
+  if [[ "${LAST_RELEASE_VERSION}" == "None" ]]; then
+    link="https://github.com/diomsg-code/${ADDON_NAME}/commits/${VERSION}"
+  else
+    link="https://github.com/diomsg-code/${ADDON_NAME}/compare/${LAST_RELEASE_VERSION}...${VERSION}"
+  fi
+
+  sed -i "s|@full-changelog@|${link}|g" CHANGELOG.md
+else
+  echo "⚠️ CHANGELOG.md nicht gefunden."
+  exit 99
 fi
 
 if [[ -n "$SUFFIX" ]]; then

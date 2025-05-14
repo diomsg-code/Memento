@@ -10,6 +10,11 @@ def run_git(args: list[str], check=True):
     print(f"🧠 git {' '.join(args)}")
     subprocess.run(["git"] + args, check=check)
 
+def git_push_commit(version: str, file_path: str):
+    run_git(["add", file_path])
+    run_git(["commit", "-m", f"Update changelog for {version}"])
+    run_git(["push", "origin"])
+
 def extract_latest_changelog_block(changelog_path: str) -> str:
     if not os.path.isfile(changelog_path):
         return ""
@@ -46,11 +51,6 @@ def update_full_changelog(new_block: str, full_path: str):
         f.write("\n")
         f.write(old_content)
 
-def git_commit_and_push(version: str, file_path: str):
-    run_git(["add", file_path])
-    run_git(["commit", "-m", f"Update changelog for {version}"])
-    run_git(["push", "origin"])
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--version", required=True)
@@ -67,7 +67,7 @@ def main():
     new_section = create_new_section(args.version, entries)
     update_full_changelog(new_section, args.full)
 
-    git_commit_and_push(args.version, args.full)
+    git_push_commit(args.version, args.full)
 
     print("✅ FULL-CHANGELOG.md aktualisiert und gepusht.")
 

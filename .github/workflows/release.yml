@@ -133,7 +133,7 @@ jobs:
           bash .release/script/packager.sh
           --game retail
           --version ${{ needs.prework.outputs.new-tag }}
-          --last-version ${{ needs.prework.outputs.last-tag }}
+          --last-release-version ${{ needs.prework.outputs.last-release-tag }}
           --release-cf ${{ github.event.inputs.release-cf }}
           --release-wago ${{ github.event.inputs.release-wago }}
 
@@ -164,7 +164,7 @@ jobs:
           bash .release/script/packager.sh
           --game cata
           --version ${{ needs.prework.outputs.new-tag }}
-          --last-version ${{ needs.prework.outputs.last-tag }}
+          --last-release-version ${{ needs.prework.outputs.last-release-tag }}
           --release-cf ${{ github.event.inputs.release-cf }}
           --release-wago ${{ github.event.inputs.release-wago }}
 
@@ -190,6 +190,6 @@ jobs:
           bash .release/script/packager.sh
           --game classic
           --version ${{ needs.prework.outputs.new-tag }}
-          --last-version ${{ needs.prework.outputs.last-tag }}
+          --last-release-version ${{ needs.prework.outputs.last-release-tag }}
           --release-cf ${{ github.event.inputs.release-cf }}
           --release-wago ${{ github.event.inputs.release-wago }}
