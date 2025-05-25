@@ -1,3 +1,5 @@
+This repository has moved to: https://github.com/wow-addon-dev/Memento
+
 # Memento
 
 [![GitHub Release](https://img.shields.io/github/v/release/diomsg-code/Memento?logo=github&cacheSeconds=600)](https://github.com/diomsg-code/Memento/releases)
